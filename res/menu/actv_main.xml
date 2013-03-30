@@ -1,8 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/menu_settings"
+        android:id="@+id/opt_actvmain_get_texts"
         android:orderInCategory="100"
-        android:title="@string/menu_settings"/>
+        android:title="@string/opt_menu_actv_main_get_texts"
+        android:icon="@drawable/cr5_optmenu_actvmain_get_text_30x30"
+        />
 
 </menu>
