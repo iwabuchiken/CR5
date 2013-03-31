@@ -3,9 +3,11 @@ package cr5.main;
 import cr5.utils.Methods_CR5;
 import android.os.Bundle;
 import android.app.Activity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class ActvMain extends Activity {
 
@@ -41,7 +43,30 @@ public class ActvMain extends Activity {
 		
 		case R.id.opt_actvmain_get_texts:
 			
-			Methods_CR5.getTexts(this);
+			boolean res = Methods_CR5.validateTableExists_texts(this);
+			
+			if (res == true) {
+				
+				Methods_CR5.getTexts(this);
+				
+			} else {//if (res == true)
+				
+				// Log
+				Log.d("ActvMain.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]",
+						"Validation: Table \"texts\" => Failed");
+				
+				// debug
+				Toast.makeText(this, "Can't prepare the table \"texts\"", Toast.LENGTH_LONG).show();
+				
+			}//if (res == true)
+			
+//			Methods_CR5.getTexts(this);
 			
 			break;
 			

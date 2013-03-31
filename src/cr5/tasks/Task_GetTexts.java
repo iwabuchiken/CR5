@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import cr5.utils.CONS;
+import cr5.utils.Methods_CR5;
 
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -115,9 +116,9 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", "entity.toString()=" + entity.toString());
 		
-		/*********************************
-		 * JSONObject
-		 *********************************/
+		/***************************************
+		 * Get: Json array
+		 ***************************************/
 //		JSONObject joRoot = null;
 		JSONArray jaRoot = null;
 		
@@ -125,33 +126,29 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 
 			String entityContent = EntityUtils.toString(entity);
 			
-			// Log
-			Log.d("Task_GetTexts.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ ":"
-					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-					+ "]", "EntityUtils.toString(entity)=" + entityContent);
+//			// Log
+//			Log.d("Task_GetTexts.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "EntityUtils.toString(entity)=" + entityContent);
 
 //			joRoot = new JSONObject(EntityUtils.toString(entity));
 //			jaRoot = new JSONArray(EntityUtils.toString(entity));
 			
-			String jsonString =
-					" [{\"key\":\"01\",\"name\":\"October\"},{\"key\":\"01\",\"name\":\"sakura\"}]";
-
-			// Log
-			Log.d("Task_GetTexts.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ ":"
-					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-					+ "]", "jsonString=" + jsonString);
+//			String jsonString =
+//					" [{\"key\":\"01\",\"name\":\"October\"},{\"key\":\"01\",\"name\":\"sakura\"}]";
+//
+//			// Log
+//			Log.d("Task_GetTexts.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "jsonString=" + jsonString);
 			
 //			jaRoot = new JSONArray(jsonString);
 			jaRoot = new JSONArray(entityContent);
-			
-			
-//			jaRoot = new JSONArray(entityContent);
-			
-			
+
 		} catch (ParseException e) {
 			
 			// Log
@@ -194,18 +191,46 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 //				+ "]", "JSONObject => Created");
 				+ "]", "JSONArray => Created");
-		
+
 		/***************************************
-		 * Get: Json array
+		 * Store data
 		 ***************************************/
-//		JSONArray jaTexts = doInBackground__2__getJsonArray(joRoot);
-		JSONArray jaTexts = doInBackground__2__getJsonArray(jaRoot);
+		JSONObject joText = null;
+				
+		for (int i = 0; i < jaRoot.length(); i++) {
+			
+			try {
+				
+				joText = jaRoot.getJSONObject(i);
+				
+			} catch (JSONException e) {
+				
+				// Log
+				Log.d("Task_GetTexts.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]",
+						"item=" + i + " => " + e.toString());
+				
+				continue;
+				
+			}
+			
+			boolean res = Methods_CR5.storeData_Text(actv, joText);
+			
+		}//for (int i = 0; i < jaRoot.length(); i++)
 		
-		if (jaTexts == null) {
-			
-			return CONS.ReturnValue.RETURN_ERROR;
-			
-		}//if (jaTests == null)
+////		JSONArray jaTexts = doInBackground__2__getJsonArray(joRoot);
+//		JSONArray jaTexts = doInBackground__2__getJsonArray(jaRoot);
+//		aa
+//		if (jaTexts == null) {
+//			
+//			return CONS.ReturnValue.RETURN_ERROR;
+//			
+//		}//if (jaTests == null)
 		
 //		// Log
 //		Log.d("Task_GetTexts.java" + "["

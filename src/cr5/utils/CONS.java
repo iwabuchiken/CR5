@@ -11,6 +11,35 @@ import android.widget.TextView;
 
 public class CONS {
 	
+	public static class DB {
+		
+		public static final String dbName = "cr5.db";
+		
+		public static final String tname_texts = "texts";
+		
+		public static final String[] cols_texts = {
+			"text", "url",
+			"genreId", "subGenreId", "dbId", "langId",
+			"memo"
+			
+		};
+		
+		public static final String[] col_types_texts = {
+			"TEXT", "TEXT",
+			"INTEGER", "INTEGER", "INTEGER", "INTEGER",
+			"TEXT"
+		};
+
+		public static final String[] cols_texts_full = {
+			android.provider.BaseColumns._ID,
+			"created_at", "modified_at",
+			"text", "url",
+			"genreId", "subGenreId", "dbId", "langId",
+			"memo"
+		};
+
+	}
+	
 	public static class ReturnValue {
 		
 		public static final int RETURN_OK = 60;
