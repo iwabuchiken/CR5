@@ -55,6 +55,7 @@ public final class R {
     public static final class string {
         public static final int app_name=0x7f05000d;
         public static final int dlg_db_admin_item_backup_db=0x7f050012;
+        public static final int dlg_db_admin_item_create_table_refresh_history=0x7f050015;
         public static final int dlg_db_admin_item_refresh_db=0x7f050013;
         public static final int dlg_db_admin_item_restore_db=0x7f050014;
         /**  dlg_db_admin.xml 

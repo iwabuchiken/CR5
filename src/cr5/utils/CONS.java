@@ -39,6 +39,26 @@ public class CONS {
 		};
 
 		/***************************************
+		 * Table: refresh_history
+		 ***************************************/
+		public static final String tname_RefreshHistory = "refresh_history";
+		
+		public static final String[] cols_RefreshHistory = {
+			"num_of_items", "item_ids"
+		};
+		
+		public static final String[] col_types_RefreshHistory = {
+			"INTEGER",		"TEXT",
+		};
+
+		public static final String[] cols_RefreshHistory_full = {
+			android.provider.BaseColumns._ID,
+			"created_at", "modified_at",
+			"num_of_items", "item_ids"
+		};
+		
+		
+		/***************************************
 		 * Backup
 		 ***************************************/
 		public static String dpath_storageSdcard = "/mnt/sdcard-ext";

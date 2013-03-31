@@ -55,7 +55,8 @@ public class Methods_dlg {
 		String[] choices = {
 			actv.getString(R.string.dlg_db_admin_item_backup_db),
 			actv.getString(R.string.dlg_db_admin_item_refresh_db),
-			actv.getString(R.string.dlg_db_admin_item_restore_db)
+			actv.getString(R.string.dlg_db_admin_item_restore_db),
+			actv.getString(R.string.dlg_db_admin_item_create_table_refresh_history),
 		};
 		
 		List<String> list = new ArrayList<String>();

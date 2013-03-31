@@ -30,5 +30,7 @@
     	<string name="dlg_db_admin_item_backup_db">Backup DB</string>
     	<string name="dlg_db_admin_item_refresh_db">DBリフレッシュ</string>
     	<string name="dlg_db_admin_item_restore_db">Restore DB</string>
+    	<string name="dlg_db_admin_item_create_table_refresh_history">
+    	    				Create table: refresh_history</string>
 	    
 </resources>
