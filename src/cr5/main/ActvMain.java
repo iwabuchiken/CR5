@@ -1,6 +1,7 @@
 package cr5.main;
 
 import cr5.utils.Methods_CR5;
+import cr5.utils.Methods_dlg;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
@@ -41,7 +42,7 @@ public class ActvMain extends Activity {
 		// TODO Auto-generated method stub
 		switch (item.getItemId()) {
 		
-		case R.id.opt_actvmain_get_texts:
+		case R.id.opt_actvmain_get_texts://------------------------------
 			
 			boolean res = Methods_CR5.validateTableExists_texts(this);
 			
@@ -68,7 +69,13 @@ public class ActvMain extends Activity {
 			
 //			Methods_CR5.getTexts(this);
 			
-			break;
+			break;// case R.id.opt_actvmain_get_texts
+			
+		case R.id.opt_menu_actv_main_db_activity://----------------------------
+			
+			Methods_dlg.dlg_db_activity(this);
+			
+			break;// case R.id.opt_menu_actv_main_db_activity
 			
 		}//switch (item.getItemId())
 		

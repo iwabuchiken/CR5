@@ -242,7 +242,8 @@ public class DBUtils extends SQLiteOpenHelper{
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "Table exists => " + tableName);
 			
-			return false;
+//			return false;
+			return true;
 		}//if (!tableExists(SQLiteDatabase db, String tableName))
 		
 		/*----------------------------

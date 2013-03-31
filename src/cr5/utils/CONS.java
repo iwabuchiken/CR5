@@ -38,6 +38,20 @@ public class CONS {
 			"memo"
 		};
 
+		/***************************************
+		 * Backup
+		 ***************************************/
+		public static String dpath_storageSdcard = "/mnt/sdcard-ext";
+		
+		public static String dpath_db = "/data/data/cr5.main/databases";
+		
+		public static String dpath_dbBackup = 
+				dpath_storageSdcard + "/cr5_backup";
+
+		public static String fname_dbBackupTrunk = "cr5_backup";
+		public static String fname_dbBackupExt = ".bk";
+
+		
 	}
 	
 	public static class ReturnValue {

@@ -22,6 +22,12 @@
     <string name="v1_tv_dir_path">Directory path</string>
     
     <!-- main_menu.xml -->
-    <string name="opt_menu_actv_main_get_texts">Get texts</string>
+	    <string name="opt_menu_actv_main_get_texts">Get texts</string>
+	    <string name="opt_menu_actv_main_db_activity">データベース</string>
 
+	<!-- dlg_db_admin.xml -->
+    	<string name="dlg_db_admin_title">DB Admin</string>
+    	<string name="dlg_db_admin_item_backup_db">Backup DB</string>
+    	<string name="dlg_db_admin_item_refresh_db">DBリフレッシュ</string>
+	    
 </resources>

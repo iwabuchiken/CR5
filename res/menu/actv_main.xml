@@ -1,5 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
+    <item android:id="@+id/opt_menu_actv_main_db_activity"
+		android:title="@string/opt_menu_actv_main_db_activity"
+		android:icon="@drawable/cr5_optmenu_actv_main_db_activity"/>
+    
     <item
         android:id="@+id/opt_actvmain_get_texts"
         android:orderInCategory="100"

@@ -1,5 +1,6 @@
 package cr5.listeners.dialog;
 
+import cr5.utils.Tags;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Vibrator;
@@ -71,20 +72,26 @@ public class DialogButtonOnClickListener implements OnClickListener {
 		
 	}//public DialogButtonOnClickListener(Activity actv, Dialog dlg1, long file_id, String tableName)
 
-public void onClick(View v) {
+	public void onClick(View v) {
 		//
-//		Tags.DialogTags tag_name = (Tags.DialogTags) v.getTag();
+		Tags.DialogTags tag_name = (Tags.DialogTags) v.getTag();
 
 //		// Log
 //		Log.d("DialogButtonOnClickListener.java" + "["
 //				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //				+ "]", "tag_name.name()=" + tag_name.name());
 		//
-//		switch (tag_name) {
-//		
-//		default: // ----------------------------------------------------
-//			break;
-//		}//switch (tag_name)
+		switch (tag_name) {
+		
+		case dlg_generic_dismiss://----------------------------------
+			
+			dlg1.dismiss();
+			
+			break;// case dlg_generic_dismiss
+			
+		default: // ----------------------------------------------------
+			break;
+		}//switch (tag_name)
 	}//public void onClick(View v)
 
 }//DialogButtonOnClickListener

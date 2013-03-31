@@ -28,26 +28,37 @@ public final class R {
         public static final int yello=0x7f040009;
     }
     public static final class drawable {
-        public static final int cr5_optmenu_actvmain_get_text_30x30=0x7f020000;
-        public static final int cr5_project_icon_72x72=0x7f020001;
-        public static final int ic_launcher=0x7f020002;
+        public static final int cr5_opt_menu_db_activity=0x7f020000;
+        public static final int cr5_optmenu_actv_main_db_activity=0x7f020001;
+        public static final int cr5_optmenu_actvmain_get_text_30x30=0x7f020002;
+        public static final int cr5_project_icon_72x72=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
     }
     public static final class id {
         public static final int actv_main_lv=0x7f080000;
-        public static final int lr_actv_main_tv_created_at=0x7f080003;
-        public static final int lr_actv_main_tv_genre=0x7f080002;
-        public static final int lr_actv_main_tv_title=0x7f080001;
-        public static final int opt_actvmain_get_texts=0x7f080004;
+        public static final int dlg_db_admin_bt_cancel=0x7f080002;
+        public static final int dlg_db_admin_lv=0x7f080001;
+        public static final int lr_actv_main_tv_created_at=0x7f080005;
+        public static final int lr_actv_main_tv_genre=0x7f080004;
+        public static final int lr_actv_main_tv_title=0x7f080003;
+        public static final int opt_actvmain_get_texts=0x7f080007;
+        public static final int opt_menu_actv_main_db_activity=0x7f080006;
     }
     public static final class layout {
         public static final int actv_main=0x7f030000;
-        public static final int listrow_actv_main=0x7f030001;
+        public static final int dlg_db_admin=0x7f030001;
+        public static final int listrow_actv_main=0x7f030002;
     }
     public static final class menu {
         public static final int actv_main=0x7f070000;
     }
     public static final class string {
         public static final int app_name=0x7f05000d;
+        public static final int dlg_db_admin_item_backup_db=0x7f050012;
+        public static final int dlg_db_admin_item_refresh_db=0x7f050013;
+        /**  dlg_db_admin.xml 
+         */
+        public static final int dlg_db_admin_title=0x7f050011;
         public static final int generic_bt_back=0x7f050003;
         public static final int generic_bt_cancel=0x7f050002;
         /**  Generic items 
@@ -63,6 +74,7 @@ public final class R {
         public static final int generic_tv_register=0x7f050006;
         public static final int hello=0x7f05000c;
         public static final int menu_settings=0x7f050000;
+        public static final int opt_menu_actv_main_db_activity=0x7f050010;
         /**  main_menu.xml 
          */
         public static final int opt_menu_actv_main_get_texts=0x7f05000f;
