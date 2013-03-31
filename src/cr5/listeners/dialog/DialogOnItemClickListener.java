@@ -112,11 +112,70 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 							R.string.dlg_db_admin_item_create_table_refresh_history))) {//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
 			
 			case_dlg_db_admin_lv__refresh_history();
-			
+
+		} else if (item.equals(actv.getString(
+				R.string.dlg_db_admin_item_reset_table_texts))) {//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
+
+			case_dlg_db_admin_lv__ResetTableTexts();
 			
 		}//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
 		
 	}
+
+	private void case_dlg_db_admin_lv__ResetTableTexts() {
+		// TODO Auto-generated method stub
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		boolean res = dbu.dropTable(actv, CONS.DB.tname_texts);
+		
+		if (res == true) {
+			
+			res = dbu.createTable(
+					CONS.DB.tname_texts,
+					CONS.DB.cols_texts,
+					CONS.DB.col_types_texts);
+			
+			if (res == true) {
+				
+				// debug
+				Toast.makeText(actv,
+						"Table reset => " + CONS.DB.tname_texts,
+						Toast.LENGTH_LONG).show();
+				
+				// Log
+				Log.d("DialogOnItemClickListener.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2].getMethodName()
+						+ "]",
+						"Table reset => " + CONS.DB.tname_texts);
+				
+				dlg1.dismiss();
+				
+			} else {//if (res == true)
+
+				// debug
+				Toast.makeText(actv,
+						"Sorry. Table creation failed. Now you don't have the table:"
+							+ CONS.DB.tname_texts,
+						Toast.LENGTH_LONG).show();
+				
+				// Log
+				Log.d("DialogOnItemClickListener.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2].getMethodName()
+						+ "]",
+						"Sorry. Table creation failed. Now you don't have the table:"
+								+ CONS.DB.tname_texts);
+				
+			}//if (res == true)
+			
+		} else {//if (res == true)
+			
+		}//if (res == true)
+		
+	}//private void case_dlg_db_admin_lv__ResetTableTexts()
 
 	private void case_dlg_db_admin_lv__refresh_history() {
 		// Log
