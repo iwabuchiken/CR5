@@ -54,7 +54,7 @@ public class Text {
 			
 		}
 
-		public Builder langId(long val) {
+		public Builder setLangId(long val) {
 			
 			langId = val;	return this;
 			

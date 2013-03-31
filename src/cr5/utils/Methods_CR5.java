@@ -110,36 +110,39 @@ public class Methods_CR5 {
 	
 	public static boolean
 	storeData_Text(Activity actv, JSONObject joText) {
-		
-		try {
-			
-			long id = joText.getLong("id");
-			String createdAt = joText.getString("created_at");
-			
-			// Log
-			Log.d("Methods_CR5.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ ":"
-					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-					+ "]", "Text: id=" + id + "/" + "created_at=" + createdAt);
-			
-			
-		} catch (JSONException e) {
-			
-			// Log
-			Log.d("Methods_CR5.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ ":"
-					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-					+ "]", e.toString());
-			
-			return false;
-			
-		}
-		
+	
 		/***************************************
 		 * Build a Text instance
 		 ***************************************/
+		Text t = storeData_Text__1__buildTextInstance(joText);
+		
+		/***************************************
+		 * Store text
+		 ***************************************/
+		boolean res = storeData_Text__2__StoreText(actv, t);
+		
+		return false;
+		
+	}//storeData_Text(Activity actv, JSONObject joText)
+
+
+	
+	private static boolean
+	storeData_Text__2__StoreText(Activity actv, Text t) {
+		
+		DBUtils_CR5 dbu = new DBUtils_CR5(actv, CONS.DB.dbName);
+		
+		boolean res = dbu.insertData_Text(actv, t);
+		
+		return false;
+	}
+
+
+	private static
+	Text storeData_Text__1__buildTextInstance(JSONObject joText) {
+		
+		Text t = null;
+		
 		try {
 			
 			String	createdAt	= joText.getString("created_at");
@@ -152,8 +155,16 @@ public class Methods_CR5 {
 			long	langId		= joText.getLong("lang_id");
 			String	memo		= joText.getString("memo");
 			
-			Text t = new Text.Builder()
+			t = new Text.Builder()
 						.setCreatedAt(Methods.convert_railsTimeLabel2MilSec(createdAt))
+						.setModifiedAt(Methods.convert_railsTimeLabel2MilSec(modifiedAt))
+						.setText(text)
+						.setUrl(url)
+						.setGenreId(genreId)
+						.setSubGenreId(subGenreId)
+						.setDbId(dbId)
+						.setLangId(langId)
+						.setMemo(memo)
 						.build();
 			
 			// Log
@@ -179,6 +190,34 @@ public class Methods_CR5 {
 					"Time label="
 					+ Methods.get_TimeLabel(Methods.convert_railsTimeLabel2MilSec(createdAt)));
 
+			if (t != null) {
+				
+				// Log
+				Log.d("Methods_CR5.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]",
+						"t.getUrl()=" + t.getUrl());
+				
+			} else {//if (t != null)
+				
+				// Log
+				Log.d("Methods_CR5.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]", "t == null");
+				
+			}//if (t != null)
+			
+			
+			return t;
+			
 		} catch (JSONException e) {
 			
 			// Log
@@ -187,23 +226,15 @@ public class Methods_CR5 {
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
 					+ "]", e.toString());
-		}
-		
-		
-		
-//		// Log
-//		Log.d("Methods_CR5.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ ":"
-//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//				+ "]", "message" + joText);
-		
-		return false;
-		
-	}//storeData_Text(Activity actv, JSONObject joText)
-
-
+			
+			return null;
+			
+		}//try
+//		return null;
+	}//Text storeData_Text__1__buildTextInstance(JSONObject joText)
 	
+
+
 	public static boolean
 	validateTableExists_texts(Activity actv) {
 		

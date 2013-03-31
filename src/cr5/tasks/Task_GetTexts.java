@@ -126,28 +126,15 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 
 			String entityContent = EntityUtils.toString(entity);
 			
-//			// Log
-//			Log.d("Task_GetTexts.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ ":"
-//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//					+ "]", "EntityUtils.toString(entity)=" + entityContent);
-
-//			joRoot = new JSONObject(EntityUtils.toString(entity));
-//			jaRoot = new JSONArray(EntityUtils.toString(entity));
-			
-//			String jsonString =
-//					" [{\"key\":\"01\",\"name\":\"October\"},{\"key\":\"01\",\"name\":\"sakura\"}]";
-//
-//			// Log
-//			Log.d("Task_GetTexts.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ ":"
-//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//					+ "]", "jsonString=" + jsonString);
-			
 //			jaRoot = new JSONArray(jsonString);
 			jaRoot = new JSONArray(entityContent);
+			
+			// Log
+			Log.d("Task_GetTexts.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "jaRoot.length()=" + jaRoot.length());
 
 		} catch (ParseException e) {
 			
@@ -222,110 +209,6 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 			boolean res = Methods_CR5.storeData_Text(actv, joText);
 			
 		}//for (int i = 0; i < jaRoot.length(); i++)
-		
-////		JSONArray jaTexts = doInBackground__2__getJsonArray(joRoot);
-//		JSONArray jaTexts = doInBackground__2__getJsonArray(jaRoot);
-//		aa
-//		if (jaTexts == null) {
-//			
-//			return CONS.ReturnValue.RETURN_ERROR;
-//			
-//		}//if (jaTests == null)
-		
-//		// Log
-//		Log.d("Task_GetTexts.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ ":"
-//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//				+ "]", "joRoot.length()=" + joRoot.length());
-//		
-////		joRoot.names()
-//		
-//		
-//		JSONArray jaTexts = null;
-//		
-//		jaTexts = joRoot.names();
-//		
-////		try {
-////			
-//////			jaTexts = joRoot.getJSONArray("created_at");
-//////			jaTexts = joRoot.getJSONArray("");
-//////			jaTexts = joRoot.names();
-////			
-////		} catch (JSONException e) {
-////			
-////			// Log
-////			Log.e("Task_GetTexts.java" + "["
-////					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-////					+ ":"
-////					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-////					+ "]", e.toString());
-////			
-////			return CONS.Task_GetTexts.EXCEPTION_JSON;
-////			
-////		}
-////		
-//		// Log
-//		Log.d("Task_GetTexts.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ ":"
-//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//				+ "]", "jaTexts.length()=" + jaTexts.length());
-//		
-////		JSONObject joText = null;
-//		String joText = null;
-//		
-//		try {
-//			
-//			joText = (String) jaTexts.getJSONObject(0);
-//			
-//		} catch (JSONException e) {
-//			
-//			// Log
-//			Log.e("Task_GetTexts.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ ":"
-//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//					+ "]", e.toString());
-//			
-//			return CONS.Task_GetTexts.EXCEPTION_JSON;
-//			
-//		}
-//		
-////		if (joText != null) {
-////			
-////			try {
-////				
-////				String url1 = joText.getString("url");
-////				
-////				// Log
-////				Log.d("Task_GetTexts.java"
-////						+ "["
-////						+ Thread.currentThread().getStackTrace()[2]
-////								.getLineNumber()
-////						+ ":"
-////						+ Thread.currentThread().getStackTrace()[2]
-////								.getMethodName() + "]", "url=" + url1);
-////				
-////			} catch (JSONException e) {
-////				
-////				return CONS.Task_GetTexts.EXCEPTION_JSON;
-////				
-////			}
-////			
-////			
-////			
-////		} else {//if (joText != null)
-////			
-////			// Log
-////			Log.d("Task_GetTexts.java" + "["
-////					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-////					+ ":"
-////					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-////					+ "]", "joText == null");
-////			
-////		}//if (joText != null)
-		
 		
 		/***************************************
 		 * Return
