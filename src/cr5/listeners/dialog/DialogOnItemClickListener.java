@@ -101,7 +101,12 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 						CONS.DB.fname_dbBackupExt);
 //						dbBackupPath, dbBackupNameTrunk, dbBackupNameExt)
 			
-		}//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
+		} else if (item.equals(actv.getString(R.string.dlg_db_admin_item_restore_db))) {//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
+			
+//			Methods.restore_db(actv, CONS.DB.dbName, src, dst)
+			Methods.restore_db(actv);
+			
+		}
 		
 	}//private void case_dlg_db_admin_lv(String item)
 

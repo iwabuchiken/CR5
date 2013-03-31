@@ -425,6 +425,80 @@ public class Methods {
 		
 	}//private boolean restore_db()
 
+	public static void restore_db(Activity actv) {
+    	
+//    	// Log
+//		Log.d("MainActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", "Starting: restore_db()");
+
+		/*********************************
+		 * Get the absolute path of the latest backup file
+		 *********************************/
+		// Get the most recently-created db file
+//		String src_dir = "/mnt/sdcard-ext/IFM9_backup";
+		String src_dir = CONS.DB.dpath_dbBackup;
+		
+		File f_dir = new File(src_dir);
+		
+		File[] src_dir_files = f_dir.listFiles();
+		
+		// If no files in the src dir, quit the method
+		if (src_dir_files.length < 1) {
+			
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "No files in the dir: " + src_dir);
+			
+			return;
+			
+		}//if (src_dir_files.length == condition)
+		
+		// Latest file
+		File f_src_latest = src_dir_files[0];
+		
+		
+		for (File file : src_dir_files) {
+			
+			if (f_src_latest.lastModified() < file.lastModified()) {
+						
+				f_src_latest = file;
+				
+			}//if (variable == condition)
+			
+		}//for (File file : src_dir_files)
+		
+		// Show the path of the latest file
+		// Log
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", "f_src_latest=" + f_src_latest.getAbsolutePath());
+		
+		/*********************************
+		 * Restore file
+		 *********************************/
+		String src = f_src_latest.getAbsolutePath();
+		String dst = StringUtils.join(
+				new String[]{CONS.DB.dpath_db, CONS.DB.dbName},
+				File.separator);
+		
+		// Log
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "dst=" + dst);
+		
+		boolean res = Methods.restore_db(actv, CONS.DB.dbName, src, dst);
+		
+		// Log
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", "res=" + res);
+		
+	}//private void restore_db()
+
 	public static String[] get_column_list(Activity actv, String dbName, String tableName) {
 		/*********************************
 		 * 1. Set up db

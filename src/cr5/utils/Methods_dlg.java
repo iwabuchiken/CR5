@@ -53,8 +53,9 @@ public class Methods_dlg {
 		 * 2. Prep => List
 			****************************/
 		String[] choices = {
-						actv.getString(R.string.dlg_db_admin_item_backup_db),
-						actv.getString(R.string.dlg_db_admin_item_refresh_db)
+			actv.getString(R.string.dlg_db_admin_item_backup_db),
+			actv.getString(R.string.dlg_db_admin_item_refresh_db),
+			actv.getString(R.string.dlg_db_admin_item_restore_db)
 		};
 		
 		List<String> list = new ArrayList<String>();
