@@ -307,5 +307,54 @@ public class DBUtils_CR5 extends SQLiteOpenHelper{
 
 	}//insertData_History__1_getContentValues
 
+	public long getLastRefreshedDate(Activity actv) {
+		// TODO Auto-generated method stub
+		SQLiteDatabase rdb = this.getReadableDatabase();
+		
+		String sql = "SELECT * FROM " + CONS.DB.tname_RefreshHistory;
+		
+		Cursor c = null;
+		
+		try {
+			
+			c = rdb.rawQuery(sql, null);
+			
+		} catch (Exception e) {
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception => " + e.toString());
+			
+			rdb.close();
+			
+			return -1;
+		}
+
+		/***************************************
+		 * Search: The largest
+		 ***************************************/
+		long largestDate = -1;
+		
+		while(c.moveToNext()) {
+		
+			long createdAt_mill = c.getLong(c.getColumnIndex("createdAt_mill"));
+			
+			if (createdAt_mill > largestDate) {
+				
+				largestDate = createdAt_mill;
+				
+			}//if (createdAt_mill == condition)
+			
+		}
+		
+		/***************************************
+		 * Finish
+		 ***************************************/
+		rdb.close();
+		
+		return largestDate;
+		
+	}//public long getLastRefreshedDate(Activity actv)
+
 }//public class DBUtils
 

@@ -3,17 +3,21 @@ package cr5.tasks;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -884,6 +888,42 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 	HttpResponse doInBackground__1__getHttpResponse_v2_GET(String[] urls) {
 		// TODO Auto-generated method stub
 //		HttpPost httpPost = new HttpPost(urls[0]);
+		/***************************************
+		 * Build: url
+		 ***************************************/
+		DBUtils_CR5 dbu = new DBUtils_CR5(actv, CONS.DB.dbName);
+		
+		long lastRefreshedDate = dbu.getLastRefreshedDate(actv);
+		
+		String url = urls[0];
+		
+		if (lastRefreshedDate != -1) {
+			
+			String param = __getHttpResponse_v2_GET__1_BuildParam(lastRefreshedDate);
+			
+			// Log
+			Log.d("Task_GetTexts.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "param=" + param);
+			
+			url += "?" + param;
+			
+			// Log
+			Log.d("Task_GetTexts.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "url=" + url);
+			
+		}//if (lastRefreshedDate == condition)
+//		String param = __getHttpResponse_v2_GET__1_BuildParam(lastRefreshedDate);
+//		String url = 
+		
+		/***************************************
+		 * Prep: HttpResponse
+		 ***************************************/
 		HttpGet httpGet = new HttpGet(urls[0]);
 		
 		httpGet.setHeader("Content-type", "application/json");
@@ -948,6 +988,19 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 		}//if (hr == null)
 
 	}//HttpResponse doInBackground__1__getHttpResponse_v2_GET(String[] urls)
+
+
+	private String
+	__getHttpResponse_v2_GET__1_BuildParam(long lastRefreshedDate) {
+
+		List<NameValuePair> params = new LinkedList<NameValuePair>();
+		
+		params.add(new BasicNameValuePair("since", String.valueOf(lastRefreshedDate)));
+		
+		return URLEncodedUtils.format(params, "utf-8");
+		
+	}//__getHttpResponse_v2_GET__1_BuildParam(long lastRefreshedDate)
+	
 
 
 	private void

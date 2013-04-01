@@ -273,5 +273,7 @@ public class Methods_CR5 {
 					CONS.DB.col_types_texts);
 		
 	}//validateTableExists_texts(Activity actv)
+
+
 	
 }//public class Methods_CM5

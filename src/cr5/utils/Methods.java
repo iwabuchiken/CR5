@@ -1070,6 +1070,9 @@ public class Methods {
 		
 	}//columnExists(Activity actv, String dbName, String tableName, String colName)
 
+	/***************************************
+	 * REF=> http://www.coderanch.com/t/401142/java/java/check-String-numeric
+	 ***************************************/
 	public static boolean isNumeric(String label) {
 	
 		if (label.matches("((-|\\+)?[0-9]+(\\.[0-9]+)?)+")) {
