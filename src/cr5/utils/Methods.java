@@ -1042,6 +1042,47 @@ public class Methods {
 		
 	}//public static void db_backup(Activity actv, Dialog dlg, String item)
 
+	public static boolean
+	columnExists(Activity actv, String dbName, String tableName, String colName) {
+		
+		String[] cols = Methods.get_column_list(actv, dbName, tableName);
+		
+		for (String col_name : cols) {
+			
+			if (col_name.equals(colName)) {
+				
+				// debug
+				Toast.makeText(actv, "Column exists: " + colName, Toast.LENGTH_SHORT).show();
+				
+				// Log
+				Log.d("Methods.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", "Column exists: " + colName);
+				
+				return true;
+				
+			}
+			
+		}//for (String col_name : cols)
 
+		return false;
+		
+	}//columnExists(Activity actv, String dbName, String tableName, String colName)
+
+	public static boolean isNumeric(String label) {
+	
+		if (label.matches("((-|\\+)?[0-9]+(\\.[0-9]+)?)+")) {
+			
+            return true;
+            
+        } else {  
+            
+        	return false;
+        	
+        } 
+		
+	}//public static boolean isNumeric(String label)
+	
 }//public class Methods
 

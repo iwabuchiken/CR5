@@ -118,9 +118,27 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 
 			case_dlg_db_admin_lv__ResetTableTexts();
 			
+		} else if (item.equals(actv.getString(
+				R.string.dlg_db_admin_item_add_column_millsec_refresh))) {//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
+
+			case_dlg_db_admin_lv__AddColRefresh();
+		
 		}//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
 		
 	}
+
+	private void case_dlg_db_admin_lv__AddColRefresh() {
+		// TODO Auto-generated method stub
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		int res = dbu.addColumn(
+						actv,
+						CONS.DB.tname_RefreshHistory,
+						"createdAt_mill",
+						"INTEGER");
+		
+	}//private void case_dlg_db_admin_lv__AddColRefresh()
 
 	private void case_dlg_db_admin_lv__ResetTableTexts() {
 		// TODO Auto-generated method stub

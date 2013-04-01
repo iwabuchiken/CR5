@@ -133,9 +133,11 @@ public class Methods_CR5 {
 		/***************************************
 		 * Store text
 		 ***************************************/
-		boolean res = storeData_Text__2__StoreText(actv, t);
+		return storeData_Text__2__StoreText(actv, t);
 		
-		return false;
+//		boolean res = storeData_Text__2__StoreText(actv, t);
+//		
+//		return false;
 		
 	}//storeData_Text(Activity actv, JSONObject joText)
 
@@ -146,9 +148,10 @@ public class Methods_CR5 {
 		
 		DBUtils_CR5 dbu = new DBUtils_CR5(actv, CONS.DB.dbName);
 		
-		boolean res = dbu.insertData_Text(actv, t);
-		
-		return false;
+		return dbu.insertData_Text(actv, t);
+//		boolean res = dbu.insertData_Text(actv, t);
+//		
+//		return false;
 	}
 
 

@@ -47,17 +47,17 @@ public class CONS {
 		public static final String tname_RefreshHistory = "refresh_history";
 		
 		public static final String[] cols_RefreshHistory = {
-			"num_of_items", "item_ids"
+			"num_of_items", "item_ids", "createdAt_mill"
 		};
 		
 		public static final String[] col_types_RefreshHistory = {
-			"INTEGER",		"TEXT",
+			"INTEGER",		"TEXT",		"INTEGER"
 		};
 
 		public static final String[] cols_RefreshHistory_full = {
 			android.provider.BaseColumns._ID,
 			"created_at", "modified_at",
-			"num_of_items", "item_ids"
+			"num_of_items", "item_ids", "createdAt_mill"
 		};
 		
 		
@@ -98,9 +98,12 @@ public class CONS {
 		
 		public static final int JSONARRAY_LENGTH_0 = -40;
 		
-		public static final int STORE_DATA_SUCCESSFUL = 10;
+//		public static final int STORE_DATA_SUCCESSFUL = 10;
+		public static final int STORE_DATA_SUCCESSFUL_WITH_HISTORY = 10;
+		public static final int STORE_DATA_SUCCESSFUL_NO_HISTORY = 11;
 		
-		public static final int STORE_DATA_PARTIAL = 11;
+		public static final int STORE_DATA_PARTIAL_WITH_HISTORY = 15;
+		public static final int STORE_DATA_PARTIAL_NO_HISTORY = 16;
 		
 		public static final int STORE_DATA_FAILED = -50;
 		

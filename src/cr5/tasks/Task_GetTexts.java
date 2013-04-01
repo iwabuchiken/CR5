@@ -1,8 +1,11 @@
 package cr5.tasks;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
@@ -17,6 +20,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import cr5.utils.CONS;
+import cr5.utils.DBUtils_CR5;
+import cr5.utils.Methods;
 import cr5.utils.Methods_CR5;
 
 import android.app.Activity;
@@ -36,6 +41,15 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 	}
 
 
+	/***************************************
+	 * @return -2 ... HTTP_RESPONSE_NULL<br>
+	 * 		-201 ... NOT_CREATED<br>
+	 * 		-30 ... BUILD_JSONARRAY_FAILED<br>
+	 * 		-40 ... JSONARRAY_LENGTH_0<br>
+	 * 		10 ... STORE_DATA_SUCCESSFUL<br>
+	 * 		STORE_DATA_PARTIAL = 11<br>
+	 * 		STORE_DATA_FAILED = -50
+	 ***************************************/
 	@Override
 	protected Integer doInBackground(String... urls) {
 		
@@ -150,20 +164,65 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 		/***************************************
 		 * Store data
 		 ***************************************/
-		int res = this.doInBackground__3__StoreData(jaRoot);
+		int numOfStoredItems = this.doInBackground__3__StoreData(jaRoot);
 		
 		// Log
 		Log.d("Task_GetTexts.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-				+ "]", "res=" + res);
+				+ "]", "numOfStoredItems=" + numOfStoredItems);
 
+		/***************************************
+		 * Store: history (Also, return)
+		 ***************************************/
+		if (numOfStoredItems == jaRoot.length()) {
+			
+			boolean res = this.doInBackground__4__StoreHistory(jaRoot, numOfStoredItems);
+			
+			if (res == true) {
+				
+				return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL_WITH_HISTORY;
+				
+			} else {//if (res == true)
+				
+				return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL_NO_HISTORY;
+				
+			}//if (res == true)
+			
+//			return CONS.ReturnValue.RETURN_OK;
+//			return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL;
+			
+		} else if (numOfStoredItems > 0) {
+			
+			boolean res = this.doInBackground__4__StoreHistory(jaRoot, numOfStoredItems);
+	
+			if (res == true) {
+				
+				return CONS.Task_GetTexts.STORE_DATA_PARTIAL_WITH_HISTORY;
+				
+			} else {//if (res == true)
+				
+				return CONS.Task_GetTexts.STORE_DATA_PARTIAL_NO_HISTORY;
+				
+//				return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL_NO_HISTORY;
+				
+			}//if (res == true)
+
+//			return CONS.Task_GetTexts.STORE_DATA_PARTIAL;
+			
+		} else {//if (res > 0)
+			
+			return CONS.Task_GetTexts.STORE_DATA_FAILED;
+			
+		}//if (res > 0)
+		
+		
 		/***************************************
 		 * Return
 		 ***************************************/
 		
-		return CONS.ReturnValue.RETURN_OK;
+//		return CONS.ReturnValue.RETURN_OK;
 
 //		JSONObject joText = null;
 //		
@@ -199,6 +258,155 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 	}//protected Integer doInBackground(String... urls)
 
 
+	private boolean
+	doInBackground__4__StoreHistory(JSONArray jaRoot, int numOfStoredItems) {
+		// TODO Auto-generated method stub
+		/***************************************
+		 * Get: Last created_at value
+		 * 		=> No data in any of JSONObject in jaRoot
+		 * 			==> Set the current time
+		 ***************************************/
+		long lastCreatedAt = __StoreHistory__1__GetLastCreatedAt(jaRoot);
+		
+		if (lastCreatedAt == -1) {
+			
+			lastCreatedAt = Methods.getMillSeconds_now();
+			
+		}//if (lastCreatedAt == -1)
+		
+		// Log
+		Log.d("Task_GetTexts.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "lastCreatedAt=" + lastCreatedAt);
+		
+		/***************************************
+		 * Get: Ids string
+		 ***************************************/
+		String idsString = __StoreHistory__2__GetIdsString(jaRoot);
+		
+		// Log
+		Log.d("Task_GetTexts.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "idsString=" + idsString);
+		
+		/***************************************
+		 * Store: History
+		 ***************************************/
+		DBUtils_CR5 dbu = new DBUtils_CR5(actv, CONS.DB.dbName);
+		
+//		boolean res = dbu.storeData_History(
+		return dbu.storeData_History(
+								actv,
+								numOfStoredItems,
+								idsString,
+								lastCreatedAt);
+		
+
+//		return 0;
+		
+	}//doInBackground__4__StoreHistory(JSONArray jaRoot)
+
+
+	private String __StoreHistory__2__GetIdsString(JSONArray jaRoot) {
+		// TODO Auto-generated method stub
+		JSONObject joText = null;
+
+		List<String> idList = new ArrayList<String>();
+		
+//		for (int i = 1; i < jaRoot.length(); i++) {
+		for (int i = 0; i < jaRoot.length(); i++) {
+			
+			try {
+				
+				joText = jaRoot.getJSONObject(i);
+				
+				String idString = joText.getString("id");
+				
+				if (Methods.isNumeric(idString)) {
+					
+					idList.add(idString);
+					
+				}//if (currentCreatedAt == condition)
+				
+			} catch (JSONException e) {
+				
+				// Log
+				Log.d("Task_GetTexts.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]",
+						"item=" + i + " => " + e.toString());
+				
+				continue;
+				
+			}
+			
+		}//for (int i = 1; i < jaRoot.length(); i++)
+		
+		return StringUtils.join(idList.toArray(), " ");
+		
+	}//private String __StoreHistory__2__GetIdsString(JSONArray jaRoot)
+
+
+	/***************************************
+	 * @return 	>=0 ... The largest "created_at_mill" value<br>
+	 * 			-1 ... All the JSONObject don't have a value for "created_at_mill"
+	 ***************************************/
+	private long
+	__StoreHistory__1__GetLastCreatedAt(JSONArray jaRoot) {
+		// TODO Auto-generated method stub
+		long lastCreatedAt = -1;
+		
+		JSONObject joText = null;
+		
+//		for (int i = 1; i < jaRoot.length(); i++) {
+		for (int i = 0; i < jaRoot.length(); i++) {
+			
+			try {
+				
+				joText = jaRoot.getJSONObject(i);
+				
+				long currentCreatedAt = joText.getLong("created_at_mill");
+				
+				if (currentCreatedAt > lastCreatedAt) {
+					
+					lastCreatedAt = currentCreatedAt;
+					
+				}//if (currentCreatedAt == condition)
+				
+			} catch (JSONException e) {
+				
+				// Log
+				Log.d("Task_GetTexts.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]",
+						"item=" + i + " => " + e.toString());
+				
+				continue;
+				
+			}
+			
+		}//for (int i = 1; i < jaRoot.length(); i++)
+				
+		return lastCreatedAt;
+		
+	}//__StoreHistory__1__GetLastCreatedAt(JSONArray jaRoot)
+
+
+	/***************************************
+	 * @return Number of items stored
+	 ***************************************/
 	private int
 	doInBackground__3__StoreData(JSONArray jaRoot) {
 		// TODO Auto-generated method stub
@@ -235,7 +443,16 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
 					+ "]", "joText=" + joText);
 			
+			/***************************************
+			 * Store: data
+			 ***************************************/
 			boolean res = Methods_CR5.storeData_Text(actv, joText);
+			
+			if (res == true) {
+				
+				counter += 1;
+				
+			}
 			
 		}//for (int i = 0; i < jaRoot.length(); i++)
 		

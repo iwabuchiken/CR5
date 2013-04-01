@@ -978,6 +978,50 @@ public class DBUtils extends SQLiteOpenHelper{
 	}//public int getNumOfEntries(Activity actv, String table_name)
 
 	public int
+	addColumn(Activity actv, String tableName, String colName, String colType) {
+		/*********************************
+		 * memo
+		 *********************************/
+//		DBUtils dbu = new DBUtils(actv, CONS.dbName);
+		
+		SQLiteDatabase wdb = this.getWritableDatabase();
+		
+		String sql = "ALTER TABLE " + tableName + " ADD COLUMN "
+					+ colName
+					+ " "
+					+ colType;
+		
+		try {
+			
+			wdb.execSQL(sql);
+			
+			// Log
+			Log.d("DBAdminActivity.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "SQL => Done: " + sql);
+			
+			wdb.close();
+			
+			return CONS.ReturnValue.RETURN_OK;
+			
+		} catch (SQLException e) {
+
+			// Log
+			Log.d("DBAdminActivity.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception => " + e.toString());
+
+			wdb.close();
+			
+			return CONS.ReturnValue.RETURN_ERROR;
+
+		}//try
+				
+//		wdb.close();
+		
+	}//public int addColumn(Activity actv, String tableName, String colName, String colType)
+
+	public int
 	getNumOfEntries_BM(Activity actv, String table_name, long aiDbId) {
 		/*********************************
 		 * memo
