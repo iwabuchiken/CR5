@@ -111,10 +111,24 @@ public class Methods_CR5 {
 	public static boolean
 	storeData_Text(Activity actv, JSONObject joText) {
 	
+//		// Log
+//		Log.d("Methods_CR5.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ ":"
+//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//				+ "]", "joText" + joText);
+		
 		/***************************************
 		 * Build a Text instance
 		 ***************************************/
 		Text t = storeData_Text__1__buildTextInstance(joText);
+		
+		// Log
+		Log.d("Methods_CR5.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "t.getCreatedAt_mill()=" + t.getCreatedAt_mill());
 		
 		/***************************************
 		 * Store text
@@ -145,15 +159,17 @@ public class Methods_CR5 {
 		
 		try {
 			
-			String	createdAt	= joText.getString("created_at");
-			String	modifiedAt	= joText.getString("updated_at");
-			String	text		= joText.getString("text");
-			String	url			= joText.getString("url");
-			long	genreId		= joText.getLong("genre_id");
-			long	subGenreId	= joText.getLong("subgenre_id");
-			long	dbId		= joText.getLong("id");
-			long	langId		= joText.getLong("lang_id");
-			String	memo		= joText.getString("memo");
+			String	createdAt		= joText.getString("created_at");
+			String	modifiedAt		= joText.getString("updated_at");
+			String	text			= joText.getString("text");
+			String	url				= joText.getString("url");
+			long	genreId			= joText.getLong("genre_id");
+			long	subGenreId		= joText.getLong("subgenre_id");
+			long	dbId			= joText.getLong("id");
+			long	langId			= joText.getLong("lang_id");
+			String	memo			= joText.getString("memo");
+			long	createdAt_mill	= joText.getLong("created_at_mill");
+
 			
 			t = new Text.Builder()
 						.setCreatedAt(Methods.convert_railsTimeLabel2MilSec(createdAt))
@@ -165,6 +181,7 @@ public class Methods_CR5 {
 						.setDbId(dbId)
 						.setLangId(langId)
 						.setMemo(memo)
+						.setCreatedAt_mill(createdAt_mill)
 						.build();
 			
 			// Log
@@ -190,6 +207,13 @@ public class Methods_CR5 {
 					"Time label="
 					+ Methods.get_TimeLabel(Methods.convert_railsTimeLabel2MilSec(createdAt)));
 
+//			// Log
+//			Log.d("Methods_CR5.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "joText=" + joText);
+			
 			if (t != null) {
 				
 				// Log

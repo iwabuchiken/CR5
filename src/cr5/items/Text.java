@@ -11,6 +11,7 @@ public class Text {
 	long	dbId;
 	long	langId;
 	String	memo;
+	long	createdAt_mill;
 	
 	public Text() {
 		
@@ -20,16 +21,17 @@ public class Text {
 	
 	public Text(Builder builder) {
 		// TODO Auto-generated constructor stub
-		createdAt = builder.createdAt;
-		modifiedAt = builder.modifiedAt;
-		text = builder.text;
-		url = builder.url;
-		genreId = builder.genreId;
-		subGenreId = builder.subGenreId;
-		dbId = builder.dbId;
-		langId = builder.langId;
-		memo = builder.memo;
-
+		createdAt		= builder.createdAt;
+		modifiedAt		= builder.modifiedAt;
+		text			= builder.text;
+		url				= builder.url;
+		genreId			= builder.genreId;
+		subGenreId		= builder.subGenreId;
+		dbId			= builder.dbId;
+		langId			= builder.langId;
+		memo			= builder.memo;
+		createdAt_mill	= builder.createdAt_mill;
+		
 	}//public Text(Builder builder)
 
 	public static class Builder {
@@ -43,10 +45,19 @@ public class Text {
 		private long	dbId;
 		private long	langId;
 		private String	memo;
+		private long	createdAt_mill;
 
 		public Text build() {
 			return new Text(this);
 		}
+
+		
+		public Builder setCreatedAt_mill(long val) {
+			
+			this.createdAt_mill = val;	return this;
+			
+		}
+
 
 		public Builder setMemo(String val) {
 			
@@ -159,6 +170,18 @@ public class Text {
 	}
 	public void setMemo(String memo) {
 		this.memo = memo;
+	}
+
+
+
+	public long getCreatedAt_mill() {
+		return createdAt_mill;
+	}
+
+
+
+	public void setCreatedAt_mill(long createdAt_mill) {
+		this.createdAt_mill = createdAt_mill;
 	}
 	
 	

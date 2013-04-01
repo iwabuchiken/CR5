@@ -196,6 +196,8 @@ public class DBUtils_CR5 extends SQLiteOpenHelper{
 		val.put("langId", t.getLangId());
 		
 		val.put("memo", t.getMemo());
+		
+		val.put("createdAt_mill", t.getCreatedAt_mill());
 
 		return val;
 		

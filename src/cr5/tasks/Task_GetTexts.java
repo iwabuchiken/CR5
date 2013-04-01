@@ -120,6 +120,134 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 		 * Get: Json array
 		 ***************************************/
 //		JSONObject joRoot = null;
+//		JSONArray jaRoot = null;
+		JSONArray jaRoot = this.doInBackground__2__GetJsonArray(entity);
+		
+		if (jaRoot == null) {
+			
+			// Log
+			Log.d("Task_GetTexts.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "jaRoot => null");
+			
+			return CONS.Task_GetTexts.BUILD_JSONARRAY_FAILED;
+			
+		} else if (jaRoot.length() == 0) {//if (jaRoot == null)
+			
+			// Log
+			Log.d("Task_GetTexts.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "jaRoot.length() == 0");
+			
+			return CONS.Task_GetTexts.JSONARRAY_LENGTH_0;
+			
+		}//if (jaRoot == null)
+		
+		/***************************************
+		 * Store data
+		 ***************************************/
+		int res = this.doInBackground__3__StoreData(jaRoot);
+		
+		// Log
+		Log.d("Task_GetTexts.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "res=" + res);
+
+		/***************************************
+		 * Return
+		 ***************************************/
+		
+		return CONS.ReturnValue.RETURN_OK;
+
+//		JSONObject joText = null;
+//		
+//		int counter = 0;
+//		
+//		for (int i = 0; i < jaRoot.length(); i++) {
+//			
+//			try {
+//				
+//				joText = jaRoot.getJSONObject(i);
+//				
+//			} catch (JSONException e) {
+//				
+//				// Log
+//				Log.d("Task_GetTexts.java"
+//						+ "["
+//						+ Thread.currentThread().getStackTrace()[2]
+//								.getLineNumber()
+//						+ ":"
+//						+ Thread.currentThread().getStackTrace()[2]
+//								.getMethodName() + "]",
+//						"item=" + i + " => " + e.toString());
+//				
+//				continue;
+//				
+//			}
+//			
+//			boolean res = Methods_CR5.storeData_Text(actv, joText);
+//			
+//		}//for (int i = 0; i < jaRoot.length(); i++)
+		
+		
+	}//protected Integer doInBackground(String... urls)
+
+
+	private int
+	doInBackground__3__StoreData(JSONArray jaRoot) {
+		// TODO Auto-generated method stub
+		JSONObject joText = null;
+		
+		int counter = 0;
+		
+		for (int i = 0; i < jaRoot.length(); i++) {
+			
+			try {
+				
+				joText = jaRoot.getJSONObject(i);
+				
+			} catch (JSONException e) {
+				
+				// Log
+				Log.d("Task_GetTexts.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]",
+						"item=" + i + " => " + e.toString());
+				
+				continue;
+				
+			}
+			
+			// Log
+			Log.d("Task_GetTexts.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "joText=" + joText);
+			
+			boolean res = Methods_CR5.storeData_Text(actv, joText);
+			
+		}//for (int i = 0; i < jaRoot.length(); i++)
+		
+		return counter;
+		
+	}//doInBackground__3__StoreData(JSONArray jaRoot)
+	
+
+
+	private JSONArray
+	doInBackground__2__GetJsonArray(HttpEntity entity) {
+		// TODO Auto-generated method stub
 		JSONArray jaRoot = null;
 		
 		try {
@@ -145,7 +273,8 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
 					+ "]", e.toString());
 			
-			return CONS.Task_GetTexts.EXCEPTION_PARSE_JSON;
+//			return CONS.Task_GetTexts.EXCEPTION_PARSE_JSON;
+			return null;
 			
 		} catch (JSONException e) {
 
@@ -156,7 +285,8 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
 					+ "]", e.toString());
 			
-			return CONS.Task_GetTexts.EXCEPTION_JSON;
+//			return CONS.Task_GetTexts.EXCEPTION_JSON;
+			return null;
 
 		} catch (IOException e) {
 
@@ -167,7 +297,8 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
 					+ "]", e.toString());
 			
-			return CONS.Task_GetTexts.EXCEPTION_IO;
+//			return CONS.Task_GetTexts.EXCEPTION_IO;
+			return null;
 			
 		}//try
 		
@@ -179,43 +310,11 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 //				+ "]", "JSONObject => Created");
 				+ "]", "JSONArray => Created");
 
-		/***************************************
-		 * Store data
-		 ***************************************/
-		JSONObject joText = null;
-				
-		for (int i = 0; i < jaRoot.length(); i++) {
-			
-			try {
-				
-				joText = jaRoot.getJSONObject(i);
-				
-			} catch (JSONException e) {
-				
-				// Log
-				Log.d("Task_GetTexts.java"
-						+ "["
-						+ Thread.currentThread().getStackTrace()[2]
-								.getLineNumber()
-						+ ":"
-						+ Thread.currentThread().getStackTrace()[2]
-								.getMethodName() + "]",
-						"item=" + i + " => " + e.toString());
-				
-				continue;
-				
-			}
-			
-			boolean res = Methods_CR5.storeData_Text(actv, joText);
-			
-		}//for (int i = 0; i < jaRoot.length(); i++)
+//		return null;
+		return jaRoot;
 		
-		/***************************************
-		 * Return
-		 ***************************************/
-		return CONS.ReturnValue.RETURN_OK;
-		
-	}//protected Integer doInBackground(String... urls)
+	}//doInBackground__2__GetJsonArray(HttpEntity entity)
+	
 
 
 	private

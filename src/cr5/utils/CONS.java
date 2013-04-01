@@ -15,19 +15,22 @@ public class CONS {
 		
 		public static final String dbName = "cr5.db";
 		
+		/***************************************
+		 * Table: texts
+		 ***************************************/
 		public static final String tname_texts = "texts";
 		
 		public static final String[] cols_texts = {
 			"text", "url",
 			"genreId", "subGenreId", "dbId", "langId",
-			"memo"
+			"memo", "createdAt_mill"
 			
 		};
 		
 		public static final String[] col_types_texts = {
 			"TEXT", "TEXT",
 			"INTEGER", "INTEGER", "INTEGER", "INTEGER",
-			"TEXT"
+			"TEXT",	"INTEGER"
 		};
 
 		public static final String[] cols_texts_full = {
@@ -90,6 +93,16 @@ public class CONS {
 		public static final int EXCEPTION_JSON = -11;
 		
 		public static final int EXCEPTION_IO = -20;
+		
+		public static final int BUILD_JSONARRAY_FAILED = -30;
+		
+		public static final int JSONARRAY_LENGTH_0 = -40;
+		
+		public static final int STORE_DATA_SUCCESSFUL = 10;
+		
+		public static final int STORE_DATA_PARTIAL = 11;
+		
+		public static final int STORE_DATA_FAILED = -50;
 		
 	}
 	
