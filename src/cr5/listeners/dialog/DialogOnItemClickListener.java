@@ -119,6 +119,11 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 			case_dlg_db_admin_lv__ResetTableTexts();
 			
 		} else if (item.equals(actv.getString(
+				R.string.dlg_db_admin_item_reset_table_history))) {//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
+			
+			case_dlg_db_admin_lv__ResetTableHistory();
+			
+		} else if (item.equals(actv.getString(
 				R.string.dlg_db_admin_item_add_column_millsec_refresh))) {//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
 
 			case_dlg_db_admin_lv__AddColRefresh();
@@ -126,6 +131,61 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 		}//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
 		
 	}
+
+	private void case_dlg_db_admin_lv__ResetTableHistory() {
+		// TODO Auto-generated method stub
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		boolean res = dbu.dropTable(actv, CONS.DB.tname_RefreshHistory);
+		
+		if (res == true) {
+			
+			res = dbu.createTable(
+					CONS.DB.tname_RefreshHistory,
+					CONS.DB.cols_RefreshHistory,
+					CONS.DB.col_types_RefreshHistory);
+			
+			if (res == true) {
+				
+				// debug
+				Toast.makeText(actv,
+						"Table reset => " + CONS.DB.tname_RefreshHistory,
+						Toast.LENGTH_LONG).show();
+				
+				// Log
+				Log.d("DialogOnItemClickListener.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2].getMethodName()
+						+ "]",
+						"Table reset => " + CONS.DB.tname_RefreshHistory);
+				
+				dlg1.dismiss();
+				
+			} else {//if (res == true)
+
+				// debug
+				Toast.makeText(actv,
+						"Sorry. Table creation failed. Now you don't have the table:"
+							+ CONS.DB.tname_texts,
+						Toast.LENGTH_LONG).show();
+				
+				// Log
+				Log.d("DialogOnItemClickListener.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2].getMethodName()
+						+ "]",
+						"Sorry. Table creation failed. Now you don't have the table:"
+								+ CONS.DB.tname_RefreshHistory);
+				
+			}//if (res == true)
+			
+		} else {//if (res == true)
+			
+		}//if (res == true)
+		
+	}//private void case_dlg_db_admin_lv__ResetTableHistory()
 
 	private void case_dlg_db_admin_lv__AddColRefresh() {
 		// TODO Auto-generated method stub
@@ -146,7 +206,7 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 		
 		boolean res = dbu.dropTable(actv, CONS.DB.tname_texts);
 		
-		if (res == true) {
+//		if (res == true) {
 			
 			res = dbu.createTable(
 					CONS.DB.tname_texts,
@@ -189,9 +249,9 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 				
 			}//if (res == true)
 			
-		} else {//if (res == true)
-			
-		}//if (res == true)
+//		} else {//if (res == true)
+//			
+//		}//if (res == true)
 		
 	}//private void case_dlg_db_admin_lv__ResetTableTexts()
 

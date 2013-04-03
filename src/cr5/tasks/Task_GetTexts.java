@@ -62,7 +62,7 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-				+ "]", "url=" + urls[0]);
+				+ "]", "urls[0]=" + urls[0]);
 
 		/***************************************
 		 * Get: HttpResponse
@@ -910,21 +910,30 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 			
 			url += "?" + param;
 			
-			// Log
-			Log.d("Task_GetTexts.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ ":"
-					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-					+ "]", "url=" + url);
+//			// Log
+//			Log.d("Task_GetTexts.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "url=" + url);
 			
 		}//if (lastRefreshedDate == condition)
 //		String param = __getHttpResponse_v2_GET__1_BuildParam(lastRefreshedDate);
 //		String url = 
 		
+		// Log
+		Log.d("Task_GetTexts.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "url=" + url);
+		
 		/***************************************
 		 * Prep: HttpResponse
 		 ***************************************/
-		HttpGet httpGet = new HttpGet(urls[0]);
+		
+//		HttpGet httpGet = new HttpGet(urls[0]);
+		HttpGet httpGet = new HttpGet(url);
 		
 		httpGet.setHeader("Content-type", "application/json");
 		
