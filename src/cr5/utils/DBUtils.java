@@ -49,61 +49,6 @@ public class DBUtils extends SQLiteOpenHelper{
 	// Database
 	SQLiteDatabase db = null;
 
-	//
-//	String[] cols_with_index = 
-//				{android.provider.BaseColumns._ID, 
-//					"file_id", 		"file_path", "file_name", "date_added",
-//					"date_modified", "memos", "tags"};
-//	
-//	String[] col_types_with_index =
-//				{	"INTEGER", "TEXT", 	"TEXT",		"INTEGER",
-//					"INTEGER",		"TEXT",	"TEXT"};
-//
-//	// Main data
-//	public static String[] cols = 
-//		{"file_id", "file_path", "file_name", 	"date_added",
-//		"date_modified",	"memos", "tags", 	"last_viewed_at"};
-////	"date_modified", "memos", "tags"};
-//
-//	public static String[] col_types =
-//		{"INTEGER", "TEXT", 	"TEXT",			"INTEGER",
-//		"INTEGER",			"TEXT",	"TEXT",		"INTEGER"};
-//
-//	static String[] cols_for_insert_data = 
-//		{"file_id", 		"file_path", "file_name", "date_added", "date_modified"};
-//
-//	// Proj
-//	static String[] proj = {
-//		MediaStore.Images.Media._ID, 
-//		MediaStore.Images.Media.DATA,
-//		MediaStore.Images.Media.DISPLAY_NAME,
-//		MediaStore.Images.Media.DATE_ADDED,
-//		MediaStore.Images.Media.DATE_MODIFIED,
-//		};
-//
-//	static String[] proj_for_get_data = {
-//		MediaStore.Images.Media._ID, 
-//		MediaStore.Images.Media.DATA,
-//		MediaStore.Images.Media.DISPLAY_NAME,
-//		MediaStore.Images.Media.DATE_ADDED,
-//		MediaStore.Images.Media.DATE_MODIFIED,
-//		"memos",
-//		"tags"
-//		};
-//
-//	static String[] cols_refresh_log = {
-//		"last_refreshed", "num_of_items_added"
-//	};
-//	
-//	static String[] col_types_refresh_log = {
-//		"INTEGER", 			"INTEGER"
-//	};
-//
-//	static String[] cols_memo_patterns = {"word", "table_name"};
-//	static String[] col_types_memo_patterns = {"TEXT", "TEXT"};
-//	
-//	static String table_name_memo_patterns = "memo_patterns";
-	
 	/*****************************************************************
 	 * Constructor
 	 *****************************************************************/
@@ -242,7 +187,9 @@ public class DBUtils extends SQLiteOpenHelper{
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "Table exists => " + tableName);
 			
-			return false;
+//			return false;
+			return true;
+			
 		}//if (!tableExists(SQLiteDatabase db, String tableName))
 		
 		/*----------------------------
@@ -1030,6 +977,51 @@ public class DBUtils extends SQLiteOpenHelper{
 		return num_of_entries;
 		
 	}//public int getNumOfEntries(Activity actv, String table_name)
+
+	public int
+
+	addColumn(Activity actv, String tableName, String colName, String colType) {
+		/*********************************
+		 * memo
+		 *********************************/
+//		DBUtils dbu = new DBUtils(actv, CONS.dbName);
+		
+		SQLiteDatabase wdb = this.getWritableDatabase();
+		
+		String sql = "ALTER TABLE " + tableName + " ADD COLUMN "
+					+ colName
+					+ " "
+					+ colType;
+		
+		try {
+			
+			wdb.execSQL(sql);
+			
+			// Log
+			Log.d("DBAdminActivity.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "SQL => Done: " + sql);
+			
+			wdb.close();
+			
+			return CONS.ReturnValue.RETURN_OK;
+			
+		} catch (SQLException e) {
+
+			// Log
+			Log.d("DBAdminActivity.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception => " + e.toString());
+
+			wdb.close();
+			
+			return CONS.ReturnValue.RETURN_ERROR;
+
+		}//try
+				
+//		wdb.close();
+		
+	}//public int addColumn(Activity actv, String tableName, String colName, String colType)
 
 	public int
 	getNumOfEntries_BM(Activity actv, String table_name, long aiDbId) {

@@ -19,6 +19,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -342,8 +343,9 @@ public class Methods {
 	}//private long getMillSeconds_now(int year, int month, int date)
 
 	public static String get_TimeLabel(long millSec) {
-		
-		 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd_HHmmss");
+
+		//		 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd_HHmmss");
+		 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.JAPAN);
 		 
 		return sdf1.format(new Date(millSec));
 		
@@ -423,107 +425,79 @@ public class Methods {
 		
 	}//private boolean restore_db()
 
-	
+	public static void restore_db(Activity actv) {
+    	
+//    	// Log
+//		Log.d("MainActv.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", "Starting: restore_db()");
 
-//	public static void save_history(Activity actv, long fileId,
-//			String table_name) {
-//		/*********************************
-//		 * 1. Build data
-//		 * 2. Set up db
-//		 * 
-//		 * 2-2. Table exists?
-//		 * 
-//		 * 3. Insert data
-//		 * 4. Close db
-//		 *********************************/
-//		Object[] data = {fileId, table_name};
-//		
-//		/*********************************
-//		 * 2. Set up db
-//		 *********************************/
-//		DBUtils dbu = new DBUtils(actv, CONS.dbName);
-//		
-//		//
-//		SQLiteDatabase wdb = dbu.getWritableDatabase();
-//		
-//		/*********************************
-//		 * 2-2. Table exists?
-//		 *********************************/
-//		boolean result = dbu.tableExists(wdb, CONS.History.tname_history);
-//		
-//		if (result == false) {
-//			// Log
-//			Log.e("Methods.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", "Table doesn't exist: " + CONS.History.tname_history);
-//			
-//			// Create one
-//			result = dbu.createTable(
-//											wdb, 
-//											CONS.History.tname_history, 
-//											CONS.cols_show_history, 
-//											CONS.col_types_show_history);
-//			
-//			if (result == true) {
-//				// Log
-//				Log.d("Methods.java"
-//						+ "["
-//						+ Thread.currentThread().getStackTrace()[2]
-//								.getLineNumber() + "]", "Table created: " + CONS.History.tname_history);
-//				
-//			} else {//if (result == true)
-//				// Log
-//				Log.e("Methods.java"
-//						+ "["
-//						+ Thread.currentThread().getStackTrace()[2]
-//								.getLineNumber() + "]", "Create table failed: " + CONS.History.tname_history);
-//				
-//				// debug
-//				Toast.makeText(actv, 
-//						"Create table failed: " + CONS.History.tname_history,
-//						Toast.LENGTH_SHORT).show();
-//
-//				wdb.close();
-//				
-//				return;
-//				
-//			}//if (result == true)
-//		}//if (result == false)
-//
-//		
-//		/*********************************
-//		 * 3. Insert data
-//		 *********************************/
-//		boolean res = DBUtils.insertData_history(actv, wdb, data);
-//		
-////		// Log
-////		Log.d("Methods.java" + "["
-////				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-////				+ "]", "res=" + res);
-//		
-//		if (res == true) {
-//			
-//			// Log
-//			Log.d("Methods.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", "History saved: fileId=" + fileId);
-//			
-//		} else {//if (res == true)
-//			
-//			// Log
-//			Log.e("Methods.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", "Save history => Failed: " + fileId);
-//			
-//		}//if (res == true)
-//		
-//		
-//		/*********************************
-//		 * 4. Close db
-//		 *********************************/
-//		wdb.close();
-//		
-//	}//public static void save_history()
+		/*********************************
+		 * Get the absolute path of the latest backup file
+		 *********************************/
+		// Get the most recently-created db file
+//		String src_dir = "/mnt/sdcard-ext/IFM9_backup";
+		String src_dir = CONS.DB.dpath_dbBackup;
+		
+		File f_dir = new File(src_dir);
+		
+		File[] src_dir_files = f_dir.listFiles();
+		
+		// If no files in the src dir, quit the method
+		if (src_dir_files.length < 1) {
+			
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "No files in the dir: " + src_dir);
+			
+			return;
+			
+		}//if (src_dir_files.length == condition)
+		
+		// Latest file
+		File f_src_latest = src_dir_files[0];
+		
+		
+		for (File file : src_dir_files) {
+			
+			if (f_src_latest.lastModified() < file.lastModified()) {
+						
+				f_src_latest = file;
+				
+			}//if (variable == condition)
+			
+		}//for (File file : src_dir_files)
+		
+		// Show the path of the latest file
+		// Log
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", "f_src_latest=" + f_src_latest.getAbsolutePath());
+		
+		/*********************************
+		 * Restore file
+		 *********************************/
+		String src = f_src_latest.getAbsolutePath();
+		String dst = StringUtils.join(
+				new String[]{CONS.DB.dpath_db, CONS.DB.dbName},
+				File.separator);
+		
+		// Log
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "dst=" + dst);
+		
+		boolean res = Methods.restore_db(actv, CONS.DB.dbName, src, dst);
+		
+		// Log
+		Log.d("MainActv.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", "res=" + res);
+		
+	}//private void restore_db()
 
 	public static String[] get_column_list(Activity actv, String dbName, String tableName) {
 		/*********************************
@@ -719,81 +693,6 @@ public class Methods {
 		
 	}//public static boolean add_column_to_table()
 
-	
-	
-//	public static boolean record_history(Activity actv, TI ti) {
-//		/*********************************
-//		 * memo
-//		 *********************************/
-//		int current_history_mode = Methods.get_pref(
-//				actv, 
-//				CONS.pname_mainActv, 
-////				MainActv.prefName_mainActv_history_mode,
-//				CONS.pname_mainActv_history_mode,
-//				-1);
-//
-//		if (current_history_mode == CONS.HISTORY_MODE_OFF) {
-//			
-//			Methods.save_history(
-//					actv,
-//					ti.getFileId(),
-//					Methods.convert_path_into_table_name(actv));
-//			
-//			/*********************************
-//			 * 2-2-a. Update data
-//			 *********************************/
-////			// Log
-////			Log.d("Methods.java"
-////					+ "["
-////					+ Thread.currentThread().getStackTrace()[2]
-////							.getLineNumber() + "]",
-////					"[onListItemClick] Table name=" + Methods.convert_path_into_table_name(actv));
-//			
-//			DBUtils dbu = new DBUtils(actv, CONS.dbName);
-//			
-//			//
-//			SQLiteDatabase wdb = dbu.getWritableDatabase();
-//
-//			
-//			boolean res = DBUtils.updateData_TI_last_viewed_at(
-//								actv,
-//								wdb,
-//								Methods.convert_path_into_table_name(actv),
-//								ti);
-//			
-//			if (res == true) {
-//				// Log
-//				Log.d("Methods.java"
-//						+ "["
-//						+ Thread.currentThread().getStackTrace()[2]
-//								.getLineNumber() + "]", "Data updated: " + ti.getFile_name());
-//			} else {//if (res == true)
-//				// Log
-//				Log.e("Methods.java"
-//						+ "["
-//						+ Thread.currentThread().getStackTrace()[2]
-//								.getLineNumber() + "]",
-//						"Update data => Failed: " + ti.getFile_name());
-//			}//if (res == true)
-//			
-//			
-//			wdb.close();
-//			
-//		} else {//if (current_move_mode == MainActv.HISTORY_MODE_OFF)
-//			
-//			// Log
-//			Log.e("Methods.java"
-//					+ "["
-//					+ Thread.currentThread().getStackTrace()[2]
-//							.getLineNumber() + "]", "History not saved");
-//			
-//		}//if (current_move_mode == MainActv.HISTORY_MODE_OFF)
-//
-//		
-//		
-//		return false;
-//	}//public static boolean record_history(Activity actv, long fileId)
-
 	/*********************************
 	 * <Notes>
 	 * 1. File names => Sorted alphabetico-ascendantly
@@ -975,7 +874,216 @@ public class Methods {
 		
 		return index;
 	}//public static int getArrayIndex(String[] targetArray, String targetString)
+	
+	public static long
+	convert_railsTimeLabel2MilSec(String createdAt) {
+		/***************************************
+		 * Get data
+		 ***************************************/
+		String[] dateTime = createdAt.split("T");
+		
+		String[] dateData = dateTime[0].split("-");
+		
+		String[] timeLabel = dateTime[1].split("Z");
+		
+		String[] timeData = timeLabel[0].split(":");
+		
+		/***************************************
+		 * Calendar
+		 ***************************************/
+		Calendar cal = Calendar.getInstance();
+		
+		cal.set(
+				Integer.parseInt(dateData[0]),
+				Integer.parseInt(dateData[1]) - 1,
+				Integer.parseInt(dateData[2]),
+				Integer.parseInt(timeData[0]),
+				Integer.parseInt(timeData[1]),
+				Integer.parseInt(timeData[2])
+				);
+		
+		return cal.getTimeInMillis();
+		
+	}//convert_railsTimeLabel2MilSec(String createdAt)
 
+	public static void
+	db_backup
+	(Activity actv,
+			Dialog dlg,
+			String dbPath, String dbName,
+			String dbBackupPath,
+			String dbBackupNameTrunk,
+			String dbBackupNameExt) {
+		/****************************
+		 * 1. Prep => File names
+		 * 2. Prep => Files
+		 * 2-2. Folder exists?
+		 * 
+		 * 2-3. Dst folder => Files within the limit?
+		 * 3. Copy
+			****************************/
+		String time_label = Methods.get_TimeLabel(Methods.getMillSeconds_now());
+		
+		String db_src = StringUtils.join(
+					new String[]{
+							dbPath,
+							dbName},
+					File.separator);
+		
+		String db_dst_folder = StringUtils.join(
+					new String[]{
+							dbBackupPath,
+							dbBackupNameTrunk},
+					File.separator);
+		
+//		// Log
+//		Log.d("Methods.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", "db_src: " + db_src + " * " + "db_dst: " + db_dst);
+//		
+		String db_dst = db_dst_folder + "_"
+				+ time_label
+//				+ MainActv.fileName_db_backup_ext;
+				+ dbBackupNameExt;
+//				+ MainActv.fname_db_backup_trunk;
+		
+//		// Log
+//		Log.d("Methods.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ "]", "db_src: " + db_src + " * " + "db_dst: " + db_dst);
+		
+		/****************************
+		 * 2. Prep => Files
+			****************************/
+		File src = new File(db_src);
+		File dst = new File(db_dst);
+		
+		/****************************
+		 * 2-2. Folder exists?
+			****************************/
+		File db_backup = new File(dbBackupPath);
+		
+		if (!db_backup.exists()) {
+			
+			try {
+				db_backup.mkdir();
+				
+				// Log
+				Log.d("Methods.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ "]", "Folder created: " + db_backup.getAbsolutePath());
+			} catch (Exception e) {
+				
+				// Log
+				Log.e("Methods.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", "Create folder => Failed");
+				
+				return;
+				
+			}
+			
+		} else {//if (!db_backup.exists())
+			
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Folder exists: ");
+			
+		}//if (!db_backup.exists())
+		
+		/*********************************
+		 * 2-3. Dst folder => Files within the limit?
+		 *********************************/
+		File[] files_dst_folder = new File(dbBackupPath).listFiles();
+		
+		int num_of_files = files_dst_folder.length;
+		
+		// Log
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", "num_of_files=" + num_of_files);
+		
+		/****************************
+		 * 3. Copy
+			****************************/
+		try {
+			FileChannel iChannel = new FileInputStream(src).getChannel();
+			FileChannel oChannel = new FileOutputStream(dst).getChannel();
+			iChannel.transferTo(0, iChannel.size(), oChannel);
+			iChannel.close();
+			oChannel.close();
+			
+			// Log
+			Log.d("ThumbnailActivity.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "File copied");
+			
+			// debug
+			Toast.makeText(actv, "DB backup => Done", Toast.LENGTH_LONG).show();
+
+			dlg.dismiss();
+			
+		} catch (FileNotFoundException e) {
+			// Log
+			Log.e("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception: " + e.toString());
+			
+		} catch (IOException e) {
+			// Log
+			Log.e("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception: " + e.toString());
+		}//try
+		
+	}//public static void db_backup(Activity actv, Dialog dlg, String item)
+
+	public static boolean
+	columnExists(Activity actv, String dbName, String tableName, String colName) {
+		
+		String[] cols = Methods.get_column_list(actv, dbName, tableName);
+		
+		for (String col_name : cols) {
+			
+			if (col_name.equals(colName)) {
+				
+				// debug
+				Toast.makeText(actv, "Column exists: " + colName, Toast.LENGTH_SHORT).show();
+				
+				// Log
+				Log.d("Methods.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", "Column exists: " + colName);
+				
+				return true;
+				
+			}
+			
+		}//for (String col_name : cols)
+
+		return false;
+		
+	}//columnExists(Activity actv, String dbName, String tableName, String colName)
+
+	/***************************************
+	 * REF=> http://www.coderanch.com/t/401142/java/java/check-String-numeric
+	 ***************************************/
+	public static boolean isNumeric(String label) {
+	
+		if (label.matches("((-|\\+)?[0-9]+(\\.[0-9]+)?)+")) {
+			
+            return true;
+            
+        } else {  
+            
+        	return false;
+        	
+        } 
+		
+	}//public static boolean isNumeric(String label)
 
 }//public class Methods
 
