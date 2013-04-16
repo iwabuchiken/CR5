@@ -895,6 +895,8 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 		
 		long lastRefreshedDate = dbu.getLastRefreshedDate(actv);
 		
+		
+		
 		String url = urls[0];
 		
 		if (lastRefreshedDate != -1) {

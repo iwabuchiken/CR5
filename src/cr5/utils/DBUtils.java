@@ -187,6 +187,8 @@ public class DBUtils extends SQLiteOpenHelper{
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "Table exists => " + tableName);
 			
+			wdb.close();
+			
 //			return false;
 			return true;
 			
