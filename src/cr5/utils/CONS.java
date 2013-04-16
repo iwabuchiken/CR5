@@ -21,16 +21,18 @@ public class CONS {
 		public static final String tname_texts = "texts";
 		
 		public static final String[] cols_texts = {
-			"text", "url",
-			"genreId", "subGenreId", "dbId", "langId",
-			"memo", "createdAt_mill"
+			"text", "url",			// 0 1
+			"genreId", "subGenreId", "dbId", "langId",	// 2, 3, 4, 5
+			"memo", "createdAt_mill",	// 6, 7
+			"title"					// 8
 			
 		};
 		
 		public static final String[] col_types_texts = {
-			"TEXT", "TEXT",
-			"INTEGER", "INTEGER", "INTEGER", "INTEGER",
-			"TEXT",	"INTEGER"
+			"TEXT", "TEXT",			// 0 1
+			"INTEGER", "INTEGER", "INTEGER", "INTEGER",	// 2, 3, 4, 5
+			"TEXT",	"INTEGER",	// 6, 7
+			"TEXT"					// 8
 		};
 
 		public static final String[] cols_texts_full = {
@@ -38,7 +40,8 @@ public class CONS {
 			"created_at", "modified_at",
 			"text", "url",
 			"genreId", "subGenreId", "dbId", "langId",
-			"memo"
+			"memo", "createdAt_mill",
+			"title"
 		};
 
 		/***************************************
@@ -81,6 +84,7 @@ public class CONS {
 		
 		public static final int RETURN_OK = 60;
 		public static final int RETURN_ERROR = -60;
+		public static final int RETURN_EXECUTION_ABORTED = -61;
 	}
 	
 	public static class Task_GetTexts {

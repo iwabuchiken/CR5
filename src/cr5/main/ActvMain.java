@@ -1,9 +1,12 @@
 package cr5.main;
 
+import cr5.utils.CONS;
+import cr5.utils.DBUtils;
 import cr5.utils.Methods_CR5;
 import cr5.utils.Methods_dlg;
 import android.os.Bundle;
 import android.app.Activity;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -16,7 +19,37 @@ public class ActvMain extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.actv_main);
+		
+		//debug
+//		_migrate();
+		
 	}
+
+	private void _migrate() {
+		// TODO Auto-generated method stub
+//		_migrate_20130416_132606_AddColumnToText();
+	}
+
+	private void _migrate_20130416_132606_AddColumnToText() {
+		// TODO Auto-generated method stub
+		DBUtils dbu = new DBUtils(this, CONS.DB.dbName);
+		
+		int res = dbu.addColumn(
+							this,
+							CONS.DB.tname_texts,
+							CONS.DB.cols_texts[8],
+							CONS.DB.col_types_texts[8]);
+		
+		// Log
+		Log.d("ActvMain.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "res => " + res);
+		
+//		SQLiteDatabase wdb = dbu.getWritableDatabase();
+		
+	}//_migrate_20130416_132606_AddColumnToText_()
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -25,6 +58,9 @@ public class ActvMain extends Activity {
 		return true;
 	}
 
+	/***************************************
+	 * memo
+	 ***************************************/
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub

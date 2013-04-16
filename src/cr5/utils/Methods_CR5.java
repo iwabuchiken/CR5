@@ -172,7 +172,7 @@ public class Methods_CR5 {
 			long	langId			= joText.getLong("lang_id");
 			String	memo			= joText.getString("memo");
 			long	createdAt_mill	= joText.getLong("created_at_mill");
-
+			String	title			= joText.getString("title");
 			
 			t = new Text.Builder()
 						.setCreatedAt(Methods.convert_railsTimeLabel2MilSec(createdAt))
@@ -185,6 +185,7 @@ public class Methods_CR5 {
 						.setLangId(langId)
 						.setMemo(memo)
 						.setCreatedAt_mill(createdAt_mill)
+						.setTitle(title)
 						.build();
 			
 			// Log

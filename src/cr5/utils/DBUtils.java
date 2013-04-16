@@ -982,11 +982,29 @@ public class DBUtils extends SQLiteOpenHelper{
 
 	addColumn(Activity actv, String tableName, String colName, String colType) {
 		/*********************************
-		 * memo
+		 * Column exists?
 		 *********************************/
+		SQLiteDatabase wdb = this.getWritableDatabase();
+
+		String[] colNames = Methods.get_column_list(actv, CONS.DB.dbName, CONS.DB.tname_texts);
+		
+		for (int i = 0; i < colNames.length; i++) {
+			
+			if (colNames[i].equals(CONS.DB.cols_texts[8])) {
+				
+				wdb.close();
+				
+				return CONS.ReturnValue.RETURN_EXECUTION_ABORTED;
+				
+			}//if (colNames[i].equals(CONS.DB.cols_texts[9]) == condition)
+			
+		}//for (int i = 0; i < colNames.length; i++)
+		
+		/***************************************
+		 * Execute
+		 ***************************************/
 //		DBUtils dbu = new DBUtils(actv, CONS.dbName);
 		
-		SQLiteDatabase wdb = this.getWritableDatabase();
 		
 		String sql = "ALTER TABLE " + tableName + " ADD COLUMN "
 					+ colName

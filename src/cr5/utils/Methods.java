@@ -333,6 +333,7 @@ public class Methods {
 	 * <Return> 1.
 	 * 
 	 * <Steps> 1.
+	 * 
 	 ****************************************/
 	public static long getMillSeconds_now() {
 		

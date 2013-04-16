@@ -11,6 +11,7 @@ public class Text {
 	long	dbId;
 	long	langId;
 	String	memo;
+	String	title;
 	long	createdAt_mill;
 	
 	public Text() {
@@ -18,6 +19,7 @@ public class Text {
 	}
 
 
+	
 	
 	public Text(Builder builder) {
 		// TODO Auto-generated constructor stub
@@ -31,6 +33,7 @@ public class Text {
 		langId			= builder.langId;
 		memo			= builder.memo;
 		createdAt_mill	= builder.createdAt_mill;
+		title			= builder.title;
 		
 	}//public Text(Builder builder)
 
@@ -45,12 +48,14 @@ public class Text {
 		private long	dbId;
 		private long	langId;
 		private String	memo;
+		private String	title;
 		private long	createdAt_mill;
 
 		public Text build() {
 			return new Text(this);
 		}
 
+		
 		
 		public Builder setCreatedAt_mill(long val) {
 			
@@ -110,6 +115,15 @@ public class Text {
 		public Builder setCreatedAt(long val) {
 			
 			createdAt = val;	return this;
+			
+		}
+
+
+
+		
+		public Builder setTitle(String title) {
+			
+			this.title = title;	return this;
 			
 		}
 
@@ -182,6 +196,20 @@ public class Text {
 
 	public void setCreatedAt_mill(long createdAt_mill) {
 		this.createdAt_mill = createdAt_mill;
+	}
+
+
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 	

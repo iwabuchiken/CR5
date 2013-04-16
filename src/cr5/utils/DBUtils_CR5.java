@@ -199,6 +199,8 @@ public class DBUtils_CR5 extends SQLiteOpenHelper{
 		
 		val.put("createdAt_mill", t.getCreatedAt_mill());
 
+		val.put("title", t.getTitle());
+		
 		return val;
 		
 	}//insertData_Text__1_getContentValues(Text t)
