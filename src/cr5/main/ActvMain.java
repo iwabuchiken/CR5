@@ -11,11 +11,14 @@ import cr5.utils.Methods_dlg;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class ActvMain extends ListActivity {
@@ -172,7 +175,7 @@ public class ActvMain extends ListActivity {
 		this.setListAdapter(adpTL);
 
 		//test
-		_test();
+//		_test();
 		
 	}//protected void onStart()
 
@@ -203,5 +206,49 @@ public class ActvMain extends ListActivity {
 		// TODO Auto-generated method stub
 		super.onStop();
 	}
+
+	@Override
+	protected void
+	onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+//		super.onListItemClick(l, v, position, id);
+		
+		/***************************************
+		 * Get: Item
+		 ***************************************/
+		Text text = (Text) l.getItemAtPosition(position);
+		
+		// Log
+		Log.d("ActvMain.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "title=" + text.getTitle());
+		
+		// Log
+		Log.d("ActvMain.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "dbId=" + text.getDbId());
+		
+		/****************************
+		 * 2. Intent
+		 * 		2.1. Set data
+			****************************/
+		Intent i = new Intent();
+		
+		i.setClass(this, ActvRead.class);
+		
+		i.putExtra("dbId", text.getDbId());
+		
+		i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		
+		/*********************************
+		 * 9. Start intent
+		 *********************************/
+		startActivity(i);
+
+	}//onListItemClick(ListView l, View v, int position, long id)
 
 }

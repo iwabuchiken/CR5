@@ -287,5 +287,15 @@ public class Methods_CR5 {
 //		SQLiteDatabase rdb = dbu.getReadableDatabase();
 //		return null;
 	}
+
+
+	
+//	public static Text get_TextFromDbId(Activity actv, long dbId) {
+//		
+//		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+//		
+//		return dbu.get_TextFromDbId(actv, dbId);
+//
+//	}//public static Text get_TextFromDbId(Activity actv, long dbId)
 	
 }//public class Methods_CM5

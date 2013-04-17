@@ -158,15 +158,15 @@ public class TLAdapter extends ArrayAdapter<Text> {
 		} else {//if (text.getTitle().equals(""))
 			
 //			createdAt = Methods.con
-			// Log
-			Log.d("TLAdapter.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ ":"
-					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-					+ "]",
-					"Date=" + Methods.convert_MillSec2DateLabel(text.getCreatedAt_mill())
-					+ "/"
-					+ "millSec=" + text.getCreatedAt_mill());
+//			// Log
+//			Log.d("TLAdapter.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]",
+//					"Date=" + Methods.convert_MillSec2DateLabel(text.getCreatedAt_mill())
+//					+ "/"
+//					+ "millSec=" + text.getCreatedAt_mill());
 			
 			createdAt = Methods.getTimeLabel_Japanese(text.getCreatedAt_mill());
 			

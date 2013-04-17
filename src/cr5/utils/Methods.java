@@ -1099,17 +1099,17 @@ public class Methods {
 		int month = cal.get(Calendar.DAY_OF_MONTH);
 		int day = cal.get(Calendar.DATE);
 
-		// Log
-		Log.d("Methods.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ ":"
-				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-				+ "]",
-				"year=" + year
-				+ "/"
-				+ "month=" + month
-				+ "/"
-				+ "day=" + day);
+//		// Log
+//		Log.d("Methods.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ ":"
+//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//				+ "]",
+//				"year=" + year
+//				+ "/"
+//				+ "month=" + month
+//				+ "/"
+//				+ "day=" + day);
 		
 		return String.format(Locale.JAPAN, "%d-%2d-%2d", year, month, day);
 		

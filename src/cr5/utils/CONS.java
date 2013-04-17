@@ -4,7 +4,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import cr5.items.Text;
+
 import android.content.SharedPreferences;
+import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -125,4 +128,23 @@ public class CONS {
 		
 	}
 
+	public static class Admin {
+	
+		public static Vibrator vib = null;
+		
+	}
+
+	public static class ActvRead {
+	
+		public static final int GET_INTENT_FAILED = -10;
+
+		public static final int GET_DBID_FAILED = -20;
+		
+		public static final int GET_TEXT_SUCCESSFUL = 10;
+		
+		public static final int GET_TEXT_FAILED = -30;
+		
+		public static Text text = null;
+		
+	}
 }//public class CONS

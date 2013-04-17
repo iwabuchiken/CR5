@@ -1160,5 +1160,91 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//public List<Text> getTexts(Activity actv)
 
+	
+	public Text get_TextFromDbId(Activity actv, long dbId) {
+		
+		SQLiteDatabase rdb = this.getReadableDatabase();
+		
+		/***************************************
+		 * Query
+		 ***************************************/
+//		String sql = "SELECT * FROM " + CONS.DB.tname_texts;
+
+		Cursor c = null;
+		
+		try {
+			
+//			c = rdb.rawQuery(sql, null);
+			c = rdb.query(
+					CONS.DB.tname_texts,
+					null,
+//					CONS.DB.cols_texts[0] + " like ?",
+					CONS.DB.cols_texts[4] + " like ?",	// "dbId"
+					new String[]{String.valueOf(dbId)},
+					null, null, null);
+			
+		} catch (Exception e) {
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception => " + e.toString());
+			
+			rdb.close();
+			
+			return null;
+		}
+
+		/***************************************
+		 * Build: Text
+		 ***************************************/
+//		android.provider.BaseColumns._ID,	// 0
+//		"created_at", "modified_at",		// 1, 2
+//		"text", "url",						// 3, 4
+//		"genreId", "subGenreId", "dbId", "langId",	// 5, 6, 7, 8
+//		"memo", "createdAt_mill",			// 9 10
+//		"title"								// 11
+
+		// Log
+		Log.d("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "c.getCount()=" + c.getCount());
+
+		if (c.getCount() < 1) {
+			
+			rdb.close();
+			
+			return null;
+			
+		}//if (c.getCount() < 1)
+		
+		c.moveToFirst();
+		
+		Text t = null;
+		
+		t = new Text.Builder()
+				.setCreatedAt(c.getLong(1))
+				.setModifiedAt(c.getLong(2))
+				.setText(c.getString(3))
+				.setUrl(c.getString(4))
+				.setGenreId(c.getInt(5))
+				.setSubGenreId(c.getInt(6))
+				.setDbId(c.getInt(7))
+				.setLangId(c.getInt(8))
+				.setMemo(c.getString(9))
+				.setCreatedAt_mill(c.getLong(10))
+				.setTitle(c.getString(11))
+				.build();
+		
+		/***************************************
+		 * Finish
+		 ***************************************/
+		rdb.close();
+		
+		return t;
+		
+	}//public Text get_TextFromDbId(Activity actv, long dbId)
+
 }//public class DBUtils
 
