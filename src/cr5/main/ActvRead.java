@@ -3,6 +3,7 @@ package cr5.main;
 import java.util.ArrayList;
 import java.util.List;
 
+import cr5.adapters.SenAdapter;
 import cr5.items.Text;
 import cr5.utils.CONS;
 import cr5.utils.DBUtils;
@@ -74,13 +75,28 @@ public class ActvRead extends ListActivity {
 		/***************************************
 		 * Get: Sentences list
 		 ***************************************/
-		String[] sens = CONS.ActvRead.text.getText().split("(,|。)");
+		
+//		String[] sens = CONS.ActvRead.text.getText().split("(,|。)");
+		String[] sens = CONS.ActvRead.text.getText().split("(，|。)");
 		
 		if (sens != null) {
 			
 			List<String> senList = new ArrayList<String>();
 			
+			for (int i = 0; i < sens.length; i++) {
+				
+				senList.add(sens[i]);
+				
+			}//for (int i = 0; i < sens.length; i++)
 			
+			CONS.ActvRead.adpSen = new SenAdapter(
+					this,
+					R.layout.listrow_actv_read,
+//					R.layout.actv_al,
+					senList
+			);
+			
+			this.setListAdapter(CONS.ActvRead.adpSen);
 			
 //			// Log
 //			Log.d("ActvRead.java" + "["

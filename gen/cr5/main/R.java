@@ -41,12 +41,13 @@ public final class R {
         public static final int lr_actv_main_tv_created_at=0x7f080005;
         public static final int lr_actv_main_tv_genre=0x7f080004;
         public static final int lr_actv_main_tv_title=0x7f080003;
-        public static final int lr_text_list_tv_created_at=0x7f080009;
-        public static final int lr_text_list_tv_genre=0x7f080007;
-        public static final int lr_text_list_tv_subgenre=0x7f080008;
-        public static final int lr_text_list_tv_title=0x7f080006;
-        public static final int opt_actvmain_get_texts=0x7f08000b;
-        public static final int opt_menu_actv_main_db_activity=0x7f08000a;
+        public static final int lr_actv_read_tv_sen=0x7f080006;
+        public static final int lr_text_list_tv_created_at=0x7f08000a;
+        public static final int lr_text_list_tv_genre=0x7f080008;
+        public static final int lr_text_list_tv_subgenre=0x7f080009;
+        public static final int lr_text_list_tv_title=0x7f080007;
+        public static final int opt_actvmain_get_texts=0x7f08000c;
+        public static final int opt_menu_actv_main_db_activity=0x7f08000b;
     }
     public static final class layout {
         public static final int actv_main=0x7f030000;

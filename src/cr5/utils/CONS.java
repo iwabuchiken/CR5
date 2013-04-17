@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import cr5.adapters.SenAdapter;
 import cr5.items.Text;
 
 import android.content.SharedPreferences;
@@ -145,6 +146,8 @@ public class CONS {
 		public static final int GET_TEXT_FAILED = -30;
 		
 		public static Text text = null;
+		
+		public static SenAdapter adpSen = null;
 		
 	}
 }//public class CONS
