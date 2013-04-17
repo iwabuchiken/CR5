@@ -5,6 +5,7 @@ import java.util.List;
 
 import cr5.items.Text;
 import cr5.main.R;
+import cr5.utils.Methods;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -102,8 +103,81 @@ public class TLAdapter extends ArrayAdapter<Text> {
     	Text text = (Text) getItem(position);
 
     	/***************************************
-		 * Set: Title
+		 * Set: Texts
 		 ***************************************/
+    	_setText_Title(v, text);
+    	
+    	_setText_CreatedAt(v, text);
+    	
+//    	TextView tvTitle =
+//    			(TextView) v.findViewById(R.id.lr_text_list_tv_title);
+//    	
+//    	String title = "";
+//    	
+//    	if (text.getTitle() == null
+//    			|| text.getTitle().equals("")) {
+//			
+//    		if (text.getText().length() > 30) {
+//				
+//    			title = text.getText().substring(0, 30);
+//    			
+//			} else {//if (text.getText().length() > 30)
+//				
+//				title = text.getText();
+//				
+//			}//if (text.getText().length() > 30)
+//			
+//    		
+//		} else {//if (text.getTitle().equals(""))
+//			
+//			title = text.getTitle();
+//			
+//		}//if (text.getTitle().equals(""))
+//		
+//    	tvTitle.setText(title);
+//    	
+    	/*********************************
+		 * 9. Return view
+		 *********************************/
+		return v;
+		
+    }//public View getView(int position, View convertView, ViewGroup parent)
+
+	private void _setText_CreatedAt(View v, Text text) {
+		// TODO Auto-generated method stub
+    	TextView tvCreatedAt =
+    			(TextView) v.findViewById(R.id.lr_text_list_tv_created_at);
+//    	(TextView) v.findViewById(R.id.lr_text_list_tv_title);
+    	
+    	String createdAt = "";
+    	
+    	if (text.getCreatedAt_mill() == 0) {
+    			
+    		createdAt = "No data";
+    		
+		} else {//if (text.getTitle().equals(""))
+			
+//			createdAt = Methods.con
+			// Log
+			Log.d("TLAdapter.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]",
+					"Date=" + Methods.convert_MillSec2DateLabel(text.getCreatedAt_mill())
+					+ "/"
+					+ "millSec=" + text.getCreatedAt_mill());
+			
+			createdAt = Methods.getTimeLabel_Japanese(text.getCreatedAt_mill());
+			
+		}//if (text.getTitle().equals(""))
+		
+    	tvCreatedAt.setText(createdAt);
+
+	}//private void _setText_CreatedAt(View v, Text text)
+
+	private void _setText_Title(View v, Text text) {
+		// TODO Auto-generated method stub
     	TextView tvTitle =
     			(TextView) v.findViewById(R.id.lr_text_list_tv_title);
     	
@@ -131,11 +205,6 @@ public class TLAdapter extends ArrayAdapter<Text> {
 		
     	tvTitle.setText(title);
     	
-    	/*********************************
-		 * 9. Return view
-		 *********************************/
-		return v;
-		
-    }//public View getView(int position, View convertView, ViewGroup parent)
+	}//private void _setText_title(View v, Text text)
 
 }//public class TLAdapter extends ArrayAdapter<Text>
