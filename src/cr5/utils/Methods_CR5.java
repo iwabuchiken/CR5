@@ -274,5 +274,18 @@ public class Methods_CR5 {
 					CONS.DB.col_types_texts);
 		
 	}//validateTableExists_texts(Activity actv)
+
+
+	public static List<Text> get_TextList(Activity actv) {
+		
+//		List<Text> textList = new ArrayList<Text>();
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		return dbu.getTexts(actv);
+		
+//		SQLiteDatabase rdb = dbu.getReadableDatabase();
+//		return null;
+	}
 	
 }//public class Methods_CM5
