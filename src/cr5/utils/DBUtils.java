@@ -5,6 +5,8 @@ package cr5.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import cr5.items.Text;
+
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -1081,6 +1083,82 @@ public class DBUtils extends SQLiteOpenHelper{
 		return num_of_entries;
 		
 	}//public int getNumOfEntries_BM(Activity actv, String table_name, long aiDbId)
+
+	public List<Text> getTexts(Activity actv) {
+		
+		List<Text> textList = new ArrayList<Text>();
+		
+		SQLiteDatabase rdb = this.getReadableDatabase();
+		
+		/***************************************
+		 * Query
+		 ***************************************/
+		String sql = "SELECT * FROM " + CONS.DB.tname_texts;
+	
+		Cursor c = null;
+		
+		try {
+			
+			c = rdb.rawQuery(sql, null);
+			
+		} catch (Exception e) {
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception => " + e.toString());
+			
+			rdb.close();
+			
+			return null;
+		}
+
+		/***************************************
+		 * Build list
+		 ***************************************/
+//		android.provider.BaseColumns._ID,	// 0
+//		"created_at", "modified_at",		// 1, 2
+//		"text", "url",						// 3, 4
+//		"genreId", "subGenreId", "dbId", "langId",	// 5, 6, 7, 8
+//		"memo", "createdAt_mill",			// 9 10
+//		"title"								// 11
+
+		Text t = null;
+		
+		c.moveToFirst();
+		
+		for (int i = 0; i < c.getCount(); i++) {
+			
+			t = new Text.Builder()
+					.setCreatedAt(c.getLong(1))
+					.setModifiedAt(c.getLong(2))
+					.setText(c.getString(3))
+					.setUrl(c.getString(4))
+					.setGenreId(c.getInt(5))
+					.setSubGenreId(c.getInt(6))
+					.setDbId(c.getInt(7))
+					.setLangId(c.getInt(8))
+					.setMemo(c.getString(9))
+					.setCreatedAt_mill(c.getLong(10))
+					.setTitle(c.getString(11))
+					.build();
+			
+			textList.add(t);
+			
+			c.moveToNext();
+			
+		}//for (int i = 0; i < c.getCount(); i++)
+		
+		
+		/***************************************
+		 * Finish
+		 ***************************************/
+		rdb.close();
+		
+		return textList;
+		
+//		return null;
+		
+	}//public List<Text> getTexts(Activity actv)
 
 }//public class DBUtils
 

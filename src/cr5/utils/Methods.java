@@ -1086,5 +1086,47 @@ public class Methods {
 		
 	}//public static boolean isNumeric(String label)
 
+	public static String convert_MillSec2DateLabel(long millSec) {
+		
+		Date d = new Date(millSec);
+		
+		Calendar cal = Calendar.getInstance();
+		
+//		cal.setTime(d);
+		cal.setTimeInMillis(millSec);
+		
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.DAY_OF_MONTH);
+		int day = cal.get(Calendar.DATE);
+
+		// Log
+		Log.d("Methods.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]",
+				"year=" + year
+				+ "/"
+				+ "month=" + month
+				+ "/"
+				+ "day=" + day);
+		
+		return String.format(Locale.JAPAN, "%d-%2d-%2d", year, month, day);
+		
+//		return null;
+	}
+
+	public static String getTimeLabel_Japanese(long millSec) {
+		
+		
+//		 SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd_HHmmss");
+//		SimpleDateFormat sdf1 = new SimpleDateFormat("MM月dd日", Locale.JAPAN);
+//		SimpleDateFormat sdf1 = new SimpleDateFormat("M月d日(E)", Locale.JAPAN);
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yy-MM-dd", Locale.JAPAN);
+		
+		return sdf1.format(new Date(millSec));
+		
+	}//public static String get_TimeLabel(long millSec)
+
 }//public class Methods
 

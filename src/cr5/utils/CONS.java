@@ -36,12 +36,12 @@ public class CONS {
 		};
 
 		public static final String[] cols_texts_full = {
-			android.provider.BaseColumns._ID,
-			"created_at", "modified_at",
-			"text", "url",
-			"genreId", "subGenreId", "dbId", "langId",
-			"memo", "createdAt_mill",
-			"title"
+			android.provider.BaseColumns._ID,	// 0
+			"created_at", "modified_at",		// 1, 2
+			"text", "url",						// 3, 4
+			"genreId", "subGenreId", "dbId", "langId",	// 5, 6, 7, 8
+			"memo", "createdAt_mill",			// 9 10
+			"title"								// 11
 		};
 
 		/***************************************

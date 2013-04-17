@@ -1,11 +1,16 @@
 package cr5.main;
 
+import java.util.List;
+
+import cr5.adapters.TLAdapter;
+import cr5.items.Text;
 import cr5.utils.CONS;
 import cr5.utils.DBUtils;
 import cr5.utils.Methods_CR5;
 import cr5.utils.Methods_dlg;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.ListActivity;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -13,7 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class ActvMain extends Activity {
+public class ActvMain extends ListActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +146,56 @@ public class ActvMain extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
+		
+		/***************************************
+		 * Build: Text list
+		 ***************************************/
+		List<Text> textList = Methods_CR5.get_TextList(this);
+		
+		// Log
+		Log.d("ActvMain.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "textList.size()=" + textList.size());
+		
+		TLAdapter adpTL = new TLAdapter(
+				this,
+				R.layout.listrow_text_list,
+//				R.layout.actv_al,
+				textList
+				);
+
+		/*********************************
+		 * Set adapter
+		 *********************************/
+		this.setListAdapter(adpTL);
+
+		//test
+		_test();
+		
+	}//protected void onStart()
+
+	private void _test() {
+		
+		List<Text> textList = Methods_CR5.get_TextList(this);
+		
+		_test_20130416_150452_list_titles(textList);
+		
+	}
+
+	private void _test_20130416_150452_list_titles(List<Text> textList) {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < textList.size(); i++) {
+			
+			// Log
+			Log.d("ActvMain.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "title=" + textList.get(i).getTitle());
+			
+		}//for (int i = 0; i < textList.size(); i++)
 	}
 
 	@Override
