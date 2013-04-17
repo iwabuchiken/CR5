@@ -13,13 +13,14 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class ActvRead extends ListActivity {
+public class ActvRead extends ListActivity implements TextToSpeech.OnInitListener{
 
 	@Override
 	protected void onDestroy() {
@@ -40,6 +41,12 @@ public class ActvRead extends ListActivity {
 			****************************/
 		CONS.Admin.vib.vibrate(Methods.vibLength_click);
 
+		/***************************************
+		 * Start: Speech
+		 ***************************************/
+		String text = (String) l.getItemAtPosition(position);
+		
+		Methods_CR5.start_speech(this, text);
 		
 	}//onListItemClick(ListView l, View v, int position, long id)
 
@@ -73,6 +80,11 @@ public class ActvRead extends ListActivity {
 				"CONS.ActvRead.text.getDbId()=" + CONS.ActvRead.text.getDbId());
 		
 		/***************************************
+		 * TTS
+		 ***************************************/
+		CONS.ActvRead.tts = new TextToSpeech(this, this);
+		
+		/***************************************
 		 * Get: Sentences list
 		 ***************************************/
 		
@@ -85,7 +97,7 @@ public class ActvRead extends ListActivity {
 			
 			for (int i = 0; i < sens.length; i++) {
 				
-				senList.add(sens[i]);
+				senList.add((i + 1) + ". " + sens[i]);
 				
 			}//for (int i = 0; i < sens.length; i++)
 			
@@ -244,6 +256,12 @@ public class ActvRead extends ListActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.actv_main, menu);
 		return true;
+	}
+
+	@Override
+	public void onInit(int arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }//public class ActvRead extends ListActivity

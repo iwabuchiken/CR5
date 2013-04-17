@@ -10,6 +10,7 @@ import cr5.items.Text;
 import android.content.SharedPreferences;
 import android.os.Vibrator;
 import android.provider.MediaStore;
+import android.speech.tts.TextToSpeech;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -148,6 +149,8 @@ public class CONS {
 		public static Text text = null;
 		
 		public static SenAdapter adpSen = null;
+
+		public static TextToSpeech tts = null;
 		
 	}
 }//public class CONS

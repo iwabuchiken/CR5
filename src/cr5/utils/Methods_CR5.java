@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -20,7 +22,10 @@ import cr5.tasks.Task_GetTexts;
 import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class Methods_CR5 {
@@ -288,6 +293,43 @@ public class Methods_CR5 {
 //		return null;
 	}
 
+
+	public static void
+	start_speech(Activity actv, String text) {
+		// TODO Auto-generated method stub
+		String textTrunk = Methods_CR5.find_text_trunk(text);
+		
+		if (textTrunk == null) {
+			
+			textTrunk = text;
+			
+		}//if (text_new == null)
+		
+		/*----------------------------
+		 * 2. Speak
+			----------------------------*/
+        if (CONS.ActvRead.tts.isSpeaking()) {
+        	
+        	CONS.ActvRead.tts.stop();
+        	
+        }
+
+        CONS.ActvRead.tts.speak(textTrunk, TextToSpeech.QUEUE_FLUSH, null);
+
+	}//start_speech(Activity actv, String text)
+
+	public static String find_text_trunk(String text) {
+		/*----------------------------
+		 * memo
+			----------------------------*/
+		String reg1 = "^\\d+\\.(.+)$";
+		Pattern p = Pattern.compile(reg1);
+		Matcher m = p.matcher(text);
+
+		return m.find() ? m.group(1) : null;
+		
+		
+	}//public static void find_text_trunk(String text)
 
 	
 //	public static Text get_TextFromDbId(Activity actv, long dbId) {
