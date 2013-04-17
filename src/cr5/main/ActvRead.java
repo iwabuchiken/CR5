@@ -27,9 +27,29 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		
+		if(CONS.ActvRead.tts != null && CONS.ActvRead.tts.isSpeaking()) {
+			// Log
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "tts != null && tts.isSpeaking()");
+			
+			CONS.ActvRead.tts.stop();
+			
+			CONS.ActvRead.tts.shutdown();
+//			tts = null;
+			
+		} else if(CONS.ActvRead.tts != null) {
+
+			// Log
+			Log.d("MainActv.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "tts != null");
+			
+			CONS.ActvRead.tts.shutdown();
+//			tts = null;
+		}//if(CONS.ActvRead.tts != null && CONS.ActvRead.tts.isSpeaking()) {
 		
-		
-	}
+	}//protected void onDestroy()
 
 	@Override
 	protected void
