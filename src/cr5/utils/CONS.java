@@ -82,8 +82,40 @@ public class CONS {
 		public static String fname_dbBackupTrunk = "cr5_backup";
 		public static String fname_dbBackupExt = ".bk";
 
+		/***************************************
+		 * Table: words
+		 ***************************************/
+		public static final String tname_Words = "words";
 		
-	}
+//	    t.integer  "text_id"
+//	    t.string   "text_ids"
+//	    t.integer  "lang_id"
+//	    t.datetime "created_at", :null => false
+//	    t.datetime "updated_at", :null => false
+
+		public static final String[] cols_Words = {
+			"w1",	"w2",	"w3",
+			"text_id", "text_ids", "lang_id",
+			"remoteDBId"
+			
+		};
+		
+		public static final String[] col_types_Words = {
+			"TEXT", "TEXT", "TEXT",
+			"INTEGER", "TEXT",		"INTEGER",
+			"INTEGER"
+			
+		};
+
+		public static final String[] cols_Words_full = {
+			android.provider.BaseColumns._ID,
+			"created_at", "modified_at",
+			"w1", "w2", "w3",
+			"text_id", "text_ids", "lang_id",
+			"remoteDBId"
+		};
+		
+	}//public static class DB
 	
 	public static class ReturnValue {
 		

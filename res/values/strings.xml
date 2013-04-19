@@ -38,5 +38,7 @@
     	    				Reset table: history</string>
     	<string name="dlg_db_admin_item_add_column_millsec_refresh">
     	    				Add column to table: refresh...</string>
+    	<string name="dlg_db_admin_item_migrate">
+    	    				Migrate</string>
 	    
 </resources>

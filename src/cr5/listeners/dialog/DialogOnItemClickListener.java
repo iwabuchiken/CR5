@@ -5,6 +5,7 @@ import cr5.main.R;
 import cr5.utils.CONS;
 import cr5.utils.DBUtils;
 import cr5.utils.Methods;
+import cr5.utils.Migrate;
 import cr5.utils.Tags;
 import android.app.Activity;
 import android.app.Dialog;
@@ -127,8 +128,35 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 				R.string.dlg_db_admin_item_add_column_millsec_refresh))) {//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
 
 			case_dlg_db_admin_lv__AddColRefresh();
-		
+
+		} else if (item.equals(actv.getString(
+				R.string.dlg_db_admin_item_migrate))) {//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
+
+			case_dlg_db_admin_lv__Migrate();
+			
 		}//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
+		
+	}
+
+	private void case_dlg_db_admin_lv__Migrate() {
+		// TODO Auto-generated method stub
+		boolean res = Migrate._20130419_100053_CreateTableWord(actv);
+//		boolean res = Migrate._20130419_102817_DropTableWord(actv);
+		
+		if (res == true) {
+			
+			// debug
+			Toast.makeText(actv, "Migration => Done", Toast.LENGTH_LONG).show();
+			
+			dlg1.dismiss();
+			
+		} else {//if (res == true)
+
+			// debug
+			Toast.makeText(actv, "Migration => Failed", Toast.LENGTH_LONG).show();
+
+		}//if (res == true)
+		
 		
 	}
 

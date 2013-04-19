@@ -8,6 +8,7 @@ import cr5.utils.CONS;
 import cr5.utils.DBUtils;
 import cr5.utils.Methods_CR5;
 import cr5.utils.Methods_dlg;
+import cr5.utils.Migrate;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
@@ -33,10 +34,11 @@ public class ActvMain extends ListActivity {
 		
 	}
 
-	private void _migrate() {
-		// TODO Auto-generated method stub
-//		_migrate_20130416_132606_AddColumnToText();
-	}
+//	private void _migrate() {
+//		// TODO Auto-generated method stub
+////		_migrate_20130416_132606_AddColumnToText();
+//		Migrate._20130419_100053_CreateTableWord(this);
+//	}
 
 	private void _migrate_20130416_132606_AddColumnToText() {
 		// TODO Auto-generated method stub

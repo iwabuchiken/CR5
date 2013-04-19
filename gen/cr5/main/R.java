@@ -65,6 +65,7 @@ public final class R {
         public static final int dlg_db_admin_item_add_column_millsec_refresh=0x7f050018;
         public static final int dlg_db_admin_item_backup_db=0x7f050012;
         public static final int dlg_db_admin_item_create_table_refresh_history=0x7f050015;
+        public static final int dlg_db_admin_item_migrate=0x7f050019;
         public static final int dlg_db_admin_item_refresh_db=0x7f050013;
         public static final int dlg_db_admin_item_reset_table_history=0x7f050017;
         public static final int dlg_db_admin_item_reset_table_texts=0x7f050016;
