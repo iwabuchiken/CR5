@@ -48,6 +48,7 @@ public final class R {
         public static final int lr_text_list_tv_title=0x7f080007;
         public static final int opt_actvmain_get_texts=0x7f08000c;
         public static final int opt_menu_actv_main_db_activity=0x7f08000b;
+        public static final int opt_menu_actv_read_get_word_list=0x7f08000d;
     }
     public static final class layout {
         public static final int actv_main=0x7f030000;
@@ -59,20 +60,21 @@ public final class R {
     }
     public static final class menu {
         public static final int actv_main=0x7f070000;
+        public static final int menu_actv_read=0x7f070001;
     }
     public static final class string {
         public static final int app_name=0x7f05000d;
-        public static final int dlg_db_admin_item_add_column_millsec_refresh=0x7f050018;
-        public static final int dlg_db_admin_item_backup_db=0x7f050012;
-        public static final int dlg_db_admin_item_create_table_refresh_history=0x7f050015;
-        public static final int dlg_db_admin_item_migrate=0x7f050019;
-        public static final int dlg_db_admin_item_refresh_db=0x7f050013;
-        public static final int dlg_db_admin_item_reset_table_history=0x7f050017;
-        public static final int dlg_db_admin_item_reset_table_texts=0x7f050016;
-        public static final int dlg_db_admin_item_restore_db=0x7f050014;
+        public static final int dlg_db_admin_item_add_column_millsec_refresh=0x7f050019;
+        public static final int dlg_db_admin_item_backup_db=0x7f050013;
+        public static final int dlg_db_admin_item_create_table_refresh_history=0x7f050016;
+        public static final int dlg_db_admin_item_migrate=0x7f05001a;
+        public static final int dlg_db_admin_item_refresh_db=0x7f050014;
+        public static final int dlg_db_admin_item_reset_table_history=0x7f050018;
+        public static final int dlg_db_admin_item_reset_table_texts=0x7f050017;
+        public static final int dlg_db_admin_item_restore_db=0x7f050015;
         /**  dlg_db_admin.xml 
          */
-        public static final int dlg_db_admin_title=0x7f050011;
+        public static final int dlg_db_admin_title=0x7f050012;
         public static final int generic_bt_back=0x7f050003;
         public static final int generic_bt_cancel=0x7f050002;
         /**  Generic items 
@@ -87,6 +89,9 @@ public final class R {
         public static final int generic_tv_no_data=0x7f050009;
         public static final int generic_tv_register=0x7f050006;
         public static final int hello=0x7f05000c;
+        /**  menu_actv_read.xml 
+         */
+        public static final int menu_actv_read_get_words=0x7f050011;
         public static final int menu_settings=0x7f050000;
         public static final int opt_menu_actv_main_db_activity=0x7f050010;
         /**  main_menu.xml 

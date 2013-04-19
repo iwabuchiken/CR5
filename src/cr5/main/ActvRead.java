@@ -16,6 +16,7 @@ import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -76,6 +77,8 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.actv_read);
+		
+		this.setTitle(this.getClass().getName());
 		
 		/***************************************
 		 * Get: Text object
@@ -274,14 +277,65 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.actv_main, menu);
+		getMenuInflater().inflate(R.menu.menu_actv_read, menu);
 		return true;
 	}
 
+	
 	@Override
 	public void onInit(int arg0) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		
+		case R.id.opt_menu_actv_read_get_word_list://------------------------------
+			
+			opt_menu_actv_read_get_word_list();
+			
+			break;
+			
+		}//switch (item.getItemId()) {
+
+		return super.onOptionsItemSelected(item);
+	}
+
+	private void opt_menu_actv_read_get_word_list() {
+		
+		boolean res = Methods_CR5.validateTableExists_Words(this);
+		
+		if (res == true) {
+			
+			Methods_CR5.getWords(this, CONS.ActvRead.text.getDbId());
+			// Log
+			Log.d("ActvRead.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "res => " + res);
+			
+		} else {//if (res == true)
+			
+			// Log
+			Log.d("ActvMain.java"
+					+ "["
+					+ Thread.currentThread().getStackTrace()[2]
+							.getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2]
+							.getMethodName() + "]",
+					"Validation: Table \"words\" => Failed");
+			
+			// debug
+			Toast.makeText(this, "Can't prepare the table \"words\"", Toast.LENGTH_LONG).show();
+			
+		}//if (res == true)
+		
+		
+	}//private void opt_menu_actv_read_get_word_list() {
 	
 }//public class ActvRead extends ListActivity

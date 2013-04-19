@@ -29,6 +29,7 @@ public class ActvMain extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.actv_main);
 		
+		this.setTitle(this.getClass().getName());
 		//debug
 //		_migrate();
 		

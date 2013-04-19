@@ -17,7 +17,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import cr5.items.Text;
+import cr5.items.Word;
 import cr5.tasks.Task_GetTexts;
+import cr5.tasks.Task_GetWords;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -40,76 +42,26 @@ public class Methods_CR5 {
 		Task_GetTexts task = new Task_GetTexts(actv);
 		
 		task.execute(url);
+	
+	}//public static void getTexts(Activity actv)
+
+	public static void getWords(Activity actv, long dbId) {
+		// TODO Auto-generated method stub
 		
-//		HttpPost httpPost = new HttpPost(url);
-//		
-//		httpPost.setHeader("Content-type", "application/json");
-//		
-//		HttpUriRequest postRequest = httpPost;
-//		
-//		DefaultHttpClient dhc = new DefaultHttpClient();
-//		
-//		HttpResponse hr = null;
-//		
-//		/***************************************
-//		 * Execute: Post
-//		 ***************************************/
-//		try {
-//			
-//			hr = dhc.execute(postRequest);
-//			
-//		} catch (ClientProtocolException e) {
-//			// Log
-//			Log.d("Methods_CR5.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", e.toString());
-//		} catch (IOException e) {
-//			// Log
-//			Log.d("Methods_CR5.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", e.toString());
-//		}
-//		
-//		/***************************************
-//		 * Validate: Return
-//		 ***************************************/
-//		if (hr == null) {
-//			
-////			// debug
-////			Toast.makeText(actv, "hr == null", 2000).show();
-//			
-//			// Log
-//			Log.d("Methods_CR5.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ "]", "hr == null");
-//			
-//			return;
-//			
-//		} else {//if (hr == null)
-//			
-//			// Log
-//			Log.d("Methods_CR5.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ ":"
-//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//					+ "]", "hr => Not null");
-//			
-//		}//if (hr == null)
-//
-//		/*********************************
-//		 * Status code
-//		 *********************************/
-//		int status = hr.getStatusLine().getStatusCode();
-//		
-//		// Log
-//		Log.d("Task_GetYomi.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ ":"
-//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//				+ "]", "status=" + status);
-//		
-
-
+		String url = "http://cosmos-cr5.herokuapp.com/texts/get_word_list/"
+					+ String.valueOf(dbId);
+		
+		// Log
+		Log.d("Methods_CR5.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "url=" + url);
+		
+		Task_GetWords task = new Task_GetWords(actv);
+		
+		task.execute(url);
+		
 	}//public static void getTexts(Activity actv)
 
 	
@@ -145,6 +97,42 @@ public class Methods_CR5 {
 //		return false;
 		
 	}//storeData_Text(Activity actv, JSONObject joText)
+
+	public static boolean
+	storeData_Word(Activity actv, JSONObject joWord) {
+		
+//		// Log
+//		Log.d("Methods_CR5.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ ":"
+//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//				+ "]", "joWord" + joWord);
+		
+		/***************************************
+		 * Build a Text instance
+		 ***************************************/
+//		Text t = storeData_Text__1__buildTextInstance(joWord);
+		Word w = storeData_Word__1__BuildInstance_Word(joWord);
+		
+		// Log
+		Log.d("Methods_CR5.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "w.getCreatedAt_mill()=" + w.getCreatedAt_mill());
+		
+		/***************************************
+		 * Store text
+		 ***************************************/
+//		return storeData_Text__2__StoreText(actv, w);
+		
+		return false;
+		
+//		boolean res = storeData_Text__2__StoreText(actv, t);
+//		
+//		return false;
+		
+	}//storeData_Word(Activity actv, JSONObject joWord)
 
 
 	
@@ -266,6 +254,72 @@ public class Methods_CR5 {
 //		return null;
 	}//Text storeData_Text__1__buildTextInstance(JSONObject joText)
 	
+	private static
+	Word storeData_Word__1__BuildInstance_Word(JSONObject joWord) {
+		
+		Word w = null;
+		
+		try {
+			
+			String	createdAt		= joWord.getString("created_at");
+			String	modifiedAt		= joWord.getString("updated_at");
+
+			String	textIds			= joWord.getString("text_ids");
+
+//			long	langId			= joWord.getLong("lang_id");
+			
+			w = new Word.Builder()
+						.setCreatedAt(Methods.convert_railsTimeLabel2MilSec(createdAt))
+						.setModifiedAt(Methods.convert_railsTimeLabel2MilSec(modifiedAt))
+						
+//						.setLangId(langId)
+						.build();
+			
+			// Log
+			Log.d("Methods_CR5.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "textIds=" + textIds);
+			// Log
+			Log.d("Methods_CR5.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "createdAt=" + createdAt);
+			
+			// Log
+			Log.d("Methods_CR5.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "time=" + Methods.convert_railsTimeLabel2MilSec(createdAt));
+			
+			// Log
+			Log.d("Methods_CR5.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]",
+					"Time label="
+					+ Methods.get_TimeLabel(Methods.convert_railsTimeLabel2MilSec(createdAt)));
+
+			return w;
+			
+		} catch (JSONException e) {
+			
+			// Log
+			Log.d("Methods_CR5.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", e.toString());
+			
+			return null;
+			
+		}//try
+//		return null;
+	}//Text storeData_Text__1__buildTextInstance(JSONObject joWord)
 
 
 	public static boolean
@@ -277,6 +331,20 @@ public class Methods_CR5 {
 					CONS.DB.tname_texts,
 					CONS.DB.cols_texts,
 					CONS.DB.col_types_texts);
+		
+	}//validateTableExists_texts(Activity actv)
+
+	public static boolean
+	validateTableExists_Words(Activity actv) {
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		return dbu.tableExists(CONS.DB.tname_Words);
+		
+//		return dbu.createTable(
+//					CONS.DB.tname_texts,
+//					CONS.DB.cols_texts,
+//					CONS.DB.col_types_texts);
 		
 	}//validateTableExists_texts(Activity actv)
 
