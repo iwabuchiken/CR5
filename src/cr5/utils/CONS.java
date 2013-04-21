@@ -167,6 +167,101 @@ public class CONS {
 		
 		
 		/***************************************
+		 * Table: updates_texts
+		 ***************************************/
+		public static final String tname_Updates_Texts= "updates_texts";
+		
+		public static final String[] cols_Updates_Texts = {
+			// 0				1
+			"num_of_items", "item_ids",
+			// 2					3
+			"created_at_mill", "updated_at_mill"
+		};
+		
+		public static final String[] col_types_Updates_Texts = {
+			// 0		1
+			"INTEGER", "INTEGER",
+			// 2		3
+			"INTEGER", "INTEGER"
+		};
+		
+		public static final String[] cols_Updates_Texts_full = {
+			// 0
+			android.provider.BaseColumns._ID,
+			// 1				2
+			"created_at", "modified_at",
+			// 3				4
+			"num_of_items", "item_ids",
+			// 5					6
+			"created_at_mill", "updated_at_mill"
+
+		};
+		
+		/***************************************
+		 * Table: updates_words
+		 ***************************************/
+		public static final String tname_Updates_Words= "updates_words";
+		
+		public static final String[] cols_Updates_Words = {
+			// 0				1
+			"num_of_items", "item_ids",
+			// 2					3
+			"created_at_mill", "updated_at_mill"
+		};
+		
+		public static final String[] col_types_Updates_Words = {
+			// 0		1
+			"INTEGER", "INTEGER",
+			// 2		3
+			"INTEGER", "INTEGER"
+		};
+		
+		public static final String[] cols_Updates_Words_full = {
+			// 0
+			android.provider.BaseColumns._ID,
+			// 1				2
+			"created_at", "modified_at",
+			// 3				4
+			"num_of_items", "item_ids",
+			// 5					6
+			"created_at_mill", "updated_at_mill"
+			
+		};
+		
+		
+		/***************************************
+		 * Table: updates_word_list
+		 ***************************************/
+		public static final String tname_Updates_WordList= "updates_word_list";
+		
+		public static final String[] cols_Updates_WordList = {
+			// 0				1
+			"num_of_items", "item_ids",
+			// 2					3
+			"created_at_mill", "updated_at_mill"
+		};
+		
+		public static final String[] col_types_Updates_WordList = {
+			// 0		1
+			"INTEGER", "INTEGER",
+			// 2		3
+			"INTEGER", "INTEGER"
+		};
+		
+		public static final String[] cols_Updates_WordList_full = {
+			// 0
+			android.provider.BaseColumns._ID,
+			// 1				2
+			"created_at", "modified_at",
+			// 3				4
+			"num_of_items", "item_ids",
+			// 5					6
+			"created_at_mill", "updated_at_mill"
+			
+		};
+		
+		
+		/***************************************
 		 * Backup
 		 ***************************************/
 		public static String dpath_storageSdcard = "/mnt/sdcard-ext";

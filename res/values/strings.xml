@@ -52,7 +52,22 @@
     <!-- Migrations -->
     	<string name="migrate_20130421_115608_ResetTableTexts">Reset table: texts</string>
     	<string name="migrate_20130421_120721_ResetTable_Words">Reset table: words</string>
+    	
     	<string name="migrate_20130421_131922_CreateTable_Word_list">
     	    					Create table: Word list</string>
+    	    					
+    	<string name="migrate_20130421_135728_CreateTable_Updates_Texts">
+    	    					Create table: updates_texts</string>
+    	<string name="migrate_20130421_135837_CreateTable_Updates_Words">
+    	    					Create table: updates_words</string>
+    	<string name="migrate_20130421_135941_CreateTable_Updates_WordList">
+    	    					Create table: updates_word_list</string>
+    	    					
+    	<string name="migrate_20130421_140108_ResetTable_Updates_Texts">
+    	    					Reset table: updates_texts</string>
+    	<string name="migrate_20130421_140147_ResetTable_Updates_Words">
+    	    					Reset table: updates_words</string>
+    	<string name="migrate_20130421_140149_ResetTable_Updates_WordList">
+    	    					Reset table: updates_word_list</string>
     	
 </resources>

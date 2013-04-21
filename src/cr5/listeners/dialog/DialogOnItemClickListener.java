@@ -129,6 +129,21 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 
 			Migrate._20130421_131922_CreateTable_Word_list(actv, dlg1);
 			
+		} else if (item.equals(actv.getString(
+				R.string.migrate_20130421_135728_CreateTable_Updates_Texts))) {
+			
+			Migrate._20130421_135728_CreateTable_Updates_Texts(actv, dlg1);
+			
+		} else if (item.equals(actv.getString(
+				R.string.migrate_20130421_135837_CreateTable_Updates_Words))) {
+			
+			Migrate._20130421_135837_CreateTable_Updates_Words(actv, dlg1);
+			
+		} else if (item.equals(actv.getString(
+				R.string.migrate_20130421_135941_CreateTable_Updates_WordList))) {
+			
+			Migrate._20130421_135941_CreateTable_Updates_WordList(actv, dlg1);
+			
 		}
 		
 	}//private void case_dlg_Migrate(String item)
@@ -334,6 +349,14 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 					actv.getString(R.string.migrate_20130421_115608_ResetTableTexts),
 					actv.getString(R.string.migrate_20130421_120721_ResetTable_Words),
 					actv.getString(R.string.migrate_20130421_131922_CreateTable_Word_list),
+					
+					actv.getString(
+							R.string.migrate_20130421_135728_CreateTable_Updates_Texts),
+					actv.getString(
+							R.string.migrate_20130421_135837_CreateTable_Updates_Words),
+					actv.getString(
+							R.string.migrate_20130421_135941_CreateTable_Updates_WordList),
+					
 		};
 		
 		List<String> list = new ArrayList<String>();
