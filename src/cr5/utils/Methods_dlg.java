@@ -60,6 +60,7 @@ public class Methods_dlg {
 			actv.getString(R.string.dlg_db_admin_item_reset_table_texts),
 			actv.getString(R.string.dlg_db_admin_item_add_column_millsec_refresh),
 			actv.getString(R.string.dlg_db_admin_item_reset_table_history),
+			actv.getString(R.string.dlg_db_admin_item_migrate),
 		};
 		
 		List<String> list = new ArrayList<String>();

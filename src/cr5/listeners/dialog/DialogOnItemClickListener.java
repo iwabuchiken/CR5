@@ -1,11 +1,15 @@
 package cr5.listeners.dialog;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cr5.main.R;
 import cr5.utils.CONS;
 import cr5.utils.DBUtils;
 import cr5.utils.Methods;
 import cr5.utils.Methods_CR5;
+import cr5.utils.Methods_dlg;
 import cr5.utils.Tags;
 import android.app.Activity;
 import android.app.Dialog;
@@ -18,8 +22,10 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class DialogOnItemClickListener implements OnItemClickListener {
@@ -88,11 +94,37 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 			
 			break;// case dlg_GetDataFromRemote_lv
 			
+		case migrate_lv://-----------------------------
+			
+			item = (String) parent.getItemAtPosition(position);
+			
+			case_dlg_Migrate(item);
+			
+			break;// case migrate_lv
+			
 		default:
 			break;
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+
+	private void case_dlg_Migrate(String item) {
+		// TODO Auto-generated method stub
+		if (item.equals(actv.getString(
+				R.string.migrate_20130421_115608_ResetTableTexts))) {
+			
+			migrate_20130421_115608_ResetTableTexts();
+			
+		}
+		
+	}//private void case_dlg_Migrate(String item)
+
+	private void migrate_20130421_115608_ResetTableTexts() {
+		// TODO Auto-generated method stub
+		
+		case_dlg_db_admin_lv__ResetTableTexts();
+		
+	}//private void migrate_20130421_115608()
 
 	private void case_dlg_GetDataFromRemote_lv(String item) {
 		// TODO Auto-generated method stub
@@ -187,9 +219,78 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 
 			case_dlg_db_admin_lv__AddColRefresh();
 		
+		} else if (item.equals(actv.getString(
+				R.string.dlg_db_admin_item_migrate))) {//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
+			
+			case_dlg_db_admin_lv__Migrate();
+			
 		}//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
 		
 	}
+
+	private void case_dlg_db_admin_lv__Migrate() {
+		// TODO Auto-generated method stub
+		dlg1.dismiss();
+		
+		Dialog dlg = Methods_dlg.dlg_template_cancel(
+				actv, R.layout.dlg_db_admin, 
+				R.string.dlg_db_admin_title, 
+				R.id.dlg_db_admin_bt_cancel, 
+				Tags.DialogTags.dlg_generic_dismiss);
+
+		/****************************
+		* 2. Prep => List
+		****************************/
+		String[] choices = {
+					actv.getString(R.string.migrate_20130421_115608_ResetTableTexts),
+		};
+		
+		List<String> list = new ArrayList<String>();
+		
+		for (String item : choices) {
+		
+			list.add(item);
+		
+		}
+		
+		// Log
+		Log.d("Methods_dlg.java" + "["
+		+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+		+ ":"
+		+ Thread.currentThread().getStackTrace()[2].getMethodName()
+		+ "]", "list.size()=" + list.size());
+		
+		/****************************
+		* 3. Adapter
+		****************************/
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+				actv,
+				//R.layout.dlg_db_admin,
+				android.R.layout.simple_list_item_1,
+				list
+		);
+		
+		/****************************
+		* 4. Set adapter
+		****************************/
+		ListView lv = (ListView) dlg.findViewById(R.id.dlg_db_admin_lv);
+		
+		lv.setAdapter(adapter);
+		
+		/****************************
+		* 5. Set listener to list
+		****************************/
+		lv.setTag(Tags.DialogItemTags.migrate_lv);
+		
+		lv.setOnItemClickListener(new DialogOnItemClickListener(actv, dlg));
+		
+		/****************************
+		* 6. Show dialog
+		****************************/
+		dlg.show();
+
+		
+	}//private void case_dlg_db_admin_lv__Migrate()
 
 	private void case_dlg_db_admin_lv__ResetTableHistory() {
 		// TODO Auto-generated method stub

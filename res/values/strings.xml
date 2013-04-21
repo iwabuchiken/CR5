@@ -36,6 +36,8 @@
     	    				Reset table: texts</string>
     	<string name="dlg_db_admin_item_reset_table_history">
     	    				Reset table: history</string>
+    	<string name="dlg_db_admin_item_migrate">
+    	    				Migrate</string>
     	
     	<!-- http://stackoverflow.com/questions/8536375/android-replace-with-ellipsis-character -->
     	<string name="dlg_db_admin_item_add_column_millsec_refresh">
@@ -46,5 +48,7 @@
     	<string name="dlg_GetDataFromRemote_texts">Texts</string>
     	<string name="dlg_GetDataFromRemote_words">Words</string>
     	<string name="dlg_GetDataFromRemote_word_lists">Word lists</string>
-    
+
+    <!-- Migrations -->
+    	<string name="migrate_20130421_115608_ResetTableTexts">Reset table: texts</string>
 </resources>

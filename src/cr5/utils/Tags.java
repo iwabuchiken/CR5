@@ -98,6 +98,8 @@ public class Tags {
 		// dlg_GetDataFromRemote_lv
 		dlg_GetDataFromRemote_lv,
 		
+		// Migrate
+		migrate_lv,
 		
 	}//public static enum DialogItemTags
 	
