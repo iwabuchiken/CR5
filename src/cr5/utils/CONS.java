@@ -134,6 +134,7 @@ public class CONS {
 	
 		public static Vibrator vib = null;
 		
+		public static final String remoteUrl = "http://cosmos-cr6.herokuapp.com/texts.json";
 	}
 
 	public static class ActvRead {

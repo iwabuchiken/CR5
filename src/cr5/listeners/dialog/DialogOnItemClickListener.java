@@ -5,6 +5,7 @@ import cr5.main.R;
 import cr5.utils.CONS;
 import cr5.utils.DBUtils;
 import cr5.utils.Methods;
+import cr5.utils.Methods_CR5;
 import cr5.utils.Tags;
 import android.app.Activity;
 import android.app.Dialog;
@@ -79,11 +80,69 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 			
 			break;// case dlg_db_admin_lv
 		
+		case dlg_GetDataFromRemote_lv://-----------------------------
+			
+			item = (String) parent.getItemAtPosition(position);
+			
+			case_dlg_GetDataFromRemote_lv(item);
+			
+			break;// case dlg_GetDataFromRemote_lv
+			
 		default:
 			break;
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+
+	private void case_dlg_GetDataFromRemote_lv(String item) {
+		// TODO Auto-generated method stub
+		if (item.equals(actv.getString(
+							R.string.dlg_GetDataFromRemote_texts))) {
+			
+			_GetDataFromRemote_lv_Texts();
+			
+		} else if (item.equals(actv.getString(
+				R.string.dlg_GetDataFromRemote_words))) {
+			
+			_GetDataFromRemote_lv_Words();
+			
+		}//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db))) {
+		
+	}//private void case_dlg_GetDataFromRemote_lv(String item)
+
+	private void _GetDataFromRemote_lv_Words() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void _GetDataFromRemote_lv_Texts() {
+		// TODO Auto-generated method stub
+		boolean res = Methods_CR5.validateTableExists_texts(actv);
+		
+		if (res == true) {
+			
+			Methods_CR5.getTexts(actv, CONS.Admin.remoteUrl);
+			
+			dlg1.dismiss();
+			
+		} else {//if (res == true)
+			
+			// Log
+			Log.d("ActvMain.java"
+					+ "["
+					+ Thread.currentThread().getStackTrace()[2]
+							.getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2]
+							.getMethodName() + "]",
+					"Validation: Table \"texts\" => Failed");
+			
+			// debug
+			Toast.makeText(actv, "Can't prepare the table \"texts\"", Toast.LENGTH_LONG).show();
+			
+		}//if (res == true)
+
+	}//private void _GetDataFromRemote_lv_Texts()
 
 	private void case_dlg_db_admin_lv(String item) {
 		// TODO Auto-generated method stub

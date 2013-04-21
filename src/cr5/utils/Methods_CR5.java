@@ -112,6 +112,21 @@ public class Methods_CR5 {
 
 	}//public static void getTexts(Activity actv)
 
+	public static void getTexts(Activity actv, String remoteUrl) {
+		// TODO Auto-generated method stub
+		
+		String url = remoteUrl;
+//		String url = "http://cosmos-cr5.herokuapp.com/texts.json";
+//		String url = "http://cosmos-cr5.herokuapp.com/texts/1";
+//		String url = "http://cosmos-cr5.herokuapp.com/texts/1.json";
+		
+		Task_GetTexts task = new Task_GetTexts(actv);
+		
+		task.execute(url);
+		
+
+	}//public static void getTexts(Activity actv)
+
 	
 	public static boolean
 	storeData_Text(Activity actv, JSONObject joText) {

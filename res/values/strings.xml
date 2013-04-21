@@ -36,6 +36,8 @@
     	    				Reset table: texts</string>
     	<string name="dlg_db_admin_item_reset_table_history">
     	    				Reset table: history</string>
+    	
+    	<!-- http://stackoverflow.com/questions/8536375/android-replace-with-ellipsis-character -->
     	<string name="dlg_db_admin_item_add_column_millsec_refresh">
     	    				Add column to table: refresh&#8230;</string>
 	    
