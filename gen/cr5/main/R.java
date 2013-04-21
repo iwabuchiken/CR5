@@ -100,6 +100,7 @@ public final class R {
          */
         public static final int migrate_20130421_115608_ResetTableTexts=0x7f05001e;
         public static final int migrate_20130421_120721_ResetTable_Words=0x7f05001f;
+        public static final int migrate_20130421_131922_CreateTable_Word_list=0x7f050020;
         public static final int opt_menu_actv_main_db_activity=0x7f050010;
         /**  main_menu.xml 
          */

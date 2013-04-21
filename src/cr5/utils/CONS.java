@@ -111,6 +111,42 @@ public class CONS {
 		};
 		
 		/***************************************
+		 * Table: word_list
+		 ***************************************/
+		public static final String tname_word_list = "word_list";
+		
+		public static final String[] cols_word_list = {
+			// 0		1			2
+			"text_id", "word_id", "lang_id",
+			// 3
+			"remote_db_id",
+			// 4					5
+			"created_at_mill", "updated_at_mill"
+		};
+		
+		public static final String[] col_types_word_list = {
+			// 0		1			2
+			"INTEGER", "INTEGER", "INTEGER",
+			// 3
+			"INTEGER",
+			// 4			5
+			"INTEGER", "INTEGER"
+		};
+		
+		public static final String[] cols_word_list_full = {
+			// 0
+			android.provider.BaseColumns._ID,
+			// 1			2
+			"created_at", "modified_at",
+			// 3			4		5
+			"text_id", "word_id", "lang_id",
+			// 6
+			"remote_db_id",
+			// 7					8
+			"created_at_mill", "updated_at_mill"
+		};
+		
+		/***************************************
 		 * Table: refresh_history
 		 ***************************************/
 		public static final String tname_RefreshHistory = "refresh_history";

@@ -52,5 +52,7 @@
     <!-- Migrations -->
     	<string name="migrate_20130421_115608_ResetTableTexts">Reset table: texts</string>
     	<string name="migrate_20130421_120721_ResetTable_Words">Reset table: words</string>
+    	<string name="migrate_20130421_131922_CreateTable_Word_list">
+    	    					Create table: Word list</string>
     	
 </resources>

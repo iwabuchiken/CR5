@@ -10,6 +10,7 @@ import cr5.utils.DBUtils;
 import cr5.utils.Methods;
 import cr5.utils.Methods_CR5;
 import cr5.utils.Methods_dlg;
+import cr5.utils.Migrate;
 import cr5.utils.Tags;
 import android.app.Activity;
 import android.app.Dialog;
@@ -113,12 +114,20 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 		if (item.equals(actv.getString(
 				R.string.migrate_20130421_115608_ResetTableTexts))) {
 			
-			migrate_20130421_115608_ResetTableTexts();
+//			migrate_20130421_115608_ResetTableTexts();
+			Migrate._20130421_115608_ResetTableTexts(actv, dlg1);
 
 		} else if (item.equals(actv.getString(
 				R.string.migrate_20130421_120721_ResetTable_Words))) {
 
-			migrate_20130421_120721_ResetTable_Words();
+			Migrate._20130421_120721_ResetTable_Words(actv, dlg1);
+			
+//			migrate_20130421_120721_ResetTable_Words();
+			
+		} else if (item.equals(actv.getString(
+				R.string.migrate_20130421_131922_CreateTable_Word_list))) {
+
+			Migrate._20130421_131922_CreateTable_Word_list(actv, dlg1);
 			
 		}
 		
@@ -300,6 +309,7 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 		String[] choices = {
 					actv.getString(R.string.migrate_20130421_115608_ResetTableTexts),
 					actv.getString(R.string.migrate_20130421_120721_ResetTable_Words),
+					actv.getString(R.string.migrate_20130421_131922_CreateTable_Word_list),
 		};
 		
 		List<String> list = new ArrayList<String>();
