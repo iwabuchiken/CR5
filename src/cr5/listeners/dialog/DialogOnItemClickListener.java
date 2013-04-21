@@ -144,6 +144,11 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 			
 			Migrate._20130421_135941_CreateTable_Updates_WordList(actv, dlg1);
 			
+		} else if (item.equals(actv.getString(
+				R.string.migrate_ResetTable_WordList))) {
+			
+			Migrate._ResetTable_WordList(actv, dlg1);
+			
 		}
 		
 	}//private void case_dlg_Migrate(String item)
@@ -383,6 +388,8 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 		String[] choices = {
 					actv.getString(R.string.migrate_20130421_115608_ResetTableTexts),
 					actv.getString(R.string.migrate_20130421_120721_ResetTable_Words),
+					actv.getString(R.string.migrate_ResetTable_WordList),
+					
 					actv.getString(R.string.migrate_20130421_131922_CreateTable_Word_list),
 					
 					actv.getString(
