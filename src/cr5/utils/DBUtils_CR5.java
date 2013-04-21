@@ -7,6 +7,7 @@ import java.util.List;
 
 import cr5.items.Text;
 import cr5.items.Word;
+import cr5.items.WordList;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -522,6 +523,97 @@ public class DBUtils_CR5 extends SQLiteOpenHelper{
 		return val;	
 		
 	}//insertData_Word__1_getContentValues(Word w)
+
+	
+	public boolean
+	insertData_WordList(Activity actv, WordList wl) {
+		SQLiteDatabase wdb = this.getWritableDatabase();
+		
+		try {
+			// Start transaction
+			wdb.beginTransaction();
+			
+			// ContentValues
+//			ContentValues val = new ContentValues();
+			ContentValues val = insertData_WordList__1_getContentValues(wl);
+
+			// Insert data
+			long res = wdb.insert(CONS.DB.tname_word_list, null, val);
+//			long res = wdb.insert(CONS.DB.tname_texts, null, val);
+			
+			if (res != -1) {
+			
+				// Log
+				Log.d("DBUtils_CR5.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]",
+						"Insertion => Successful: Remote db id=" + wl.getRemote_db_id());
+				
+				// Set as successful
+				wdb.setTransactionSuccessful();
+				
+				// End transaction
+				wdb.endTransaction();
+				
+//				// Log
+//				Log.d("DBUtils.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", "Data inserted => " + "(file_name => " + val.getAsString("file_name") + "), and others");
+
+				wdb.close();
+				
+				return true;
+
+			} else {//if (res != -1)
+				
+				// Log
+				Log.d("DBUtils_CR5.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]", "Insertion failed");
+				
+				wdb.close();
+				
+				return false;
+				
+			}//if (res != -1)
+			
+		} catch (Exception e) {
+			// Log
+			Log.e("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", e.toString());
+			
+			return false;
+		}//try	
+		
+	}//insertData_WordList(Activity actv, WordList wl)
+
+	private ContentValues
+	insertData_WordList__1_getContentValues(WordList wl) {
+		ContentValues val = new ContentValues();
+		
+		val.put("created_at", wl.getCreated_at());
+		val.put("modified_at", wl.getUpdated_at());
+		
+		val.put("text_id", wl.getText_id());
+		val.put("word_id", wl.getWord_id());
+		val.put("lang_id", wl.getLang_id());
+		
+		
+		val.put("remote_db_id", wl.getRemote_db_id());
+		val.put("created_at_mill", wl.getCreated_at_mill());
+		val.put("updated_at_mill", wl.getUpdated_at_mill());
+				
+		return val;
+	}//insertData_WordList__1_getContentValues(WordList wl)
 
 }//public class DBUtils
 

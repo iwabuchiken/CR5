@@ -18,7 +18,9 @@ import org.json.JSONObject;
 
 import cr5.items.Text;
 import cr5.items.Word;
+import cr5.items.WordList;
 import cr5.tasks.Task_GetTexts;
+import cr5.tasks.Task_GetWordList;
 import cr5.tasks.Task_GetWords;
 
 import android.app.Activity;
@@ -177,7 +179,7 @@ public class Methods_CR5 {
 	}
 
 	private static boolean
-	storeData_Word__2__StoreText(Activity actv, Word w) {
+	storeData_Word__2__StoreWord(Activity actv, Word w) {
 		
 		DBUtils_CR5 dbu = new DBUtils_CR5(actv, CONS.DB.dbName);
 		
@@ -420,6 +422,120 @@ public class Methods_CR5 {
 		}//try
 //		return null;
 	}//Word storeData_Word__1__buildWordInstance(JSONObject joWord)
+
+	private static
+	WordList storeData_WordList__1__buildWordListInstance(JSONObject joWordList) {
+		
+		WordList wl = null;
+		
+		try {
+			
+			String	createdAt		= joWordList.getString("created_at");
+			String	modifiedAt		= joWordList.getString("updated_at");
+			
+			
+			long	text_id			= joWordList.getLong("text_id");
+			long	word_id			= joWordList.getLong("word_id");
+			long	lang_id			= joWordList.getLong("lang_id");
+			
+			
+			long	remoteDbId		= joWordList.getLong("id");
+			
+			long	createdAt_mill	= joWordList.getLong("created_at_mill");
+			long	updatedAt_mill	= joWordList.getLong("updated_at_mill");
+			
+			wl = new WordList.Builder()
+						.setCreated_at(
+								Methods.convert_railsTimeLabel2MilSec(createdAt))
+			//			.setCreatedAt(Methods.convert_railsTimeLabel2MilSec(createdAt))
+						.setUpdated_at_mill(
+								Methods.convert_railsTimeLabel2MilSec(modifiedAt))
+			//			.setModifiedAt(Methods.convert_railsTimeLabel2MilSec(modifiedAt))
+						
+						.setText_id(text_id)
+						.setWord_id(word_id)
+						.setLang_id(lang_id)
+						
+						.setRemote_db_id(remoteDbId)
+						.setCreated_at_mill(createdAt_mill)
+						.setUpdated_at_mill(updatedAt_mill)
+			//			.setCreatedAt_mill(createdAt_mill)
+			//			.setUpdatedAt_mill(updatedAt_mill)
+						
+						.build();
+			
+			// Log
+			Log.d("Methods_CR5.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "createdAt=" + createdAt);
+			
+			// Log
+			Log.d("Methods_CR5.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "time=" + Methods.convert_railsTimeLabel2MilSec(createdAt));
+			
+			// Log
+			Log.d("Methods_CR5.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]",
+					"Time label="
+							+ Methods.get_TimeLabel(Methods.convert_railsTimeLabel2MilSec(createdAt)));
+			
+//			// Log
+//			Log.d("Methods_CR5.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "joWordList=" + joWordList);
+			
+			if (wl != null) {
+				
+				// Log
+				Log.d("Methods_CR5.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+								+ ":"
+								+ Thread.currentThread().getStackTrace()[2]
+										.getMethodName() + "]",
+								"wl.getRemote_db_id()=" + wl.getRemote_db_id());
+				
+			} else {//if (w != null)
+				
+				// Log
+				Log.d("Methods_CR5.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+								+ ":"
+								+ Thread.currentThread().getStackTrace()[2]
+										.getMethodName() + "]", "w == null");
+				
+			}//if (w != null)
+			
+			
+			return wl;
+			
+		} catch (JSONException e) {
+			
+			// Log
+			Log.d("Methods_CR5.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", e.toString());
+			
+			return null;
+			
+		}//try
+//		return null;
+	}//Word storeData_Word__1__buildWordInstance(JSONObject joWord)
 	
 
 
@@ -496,6 +612,16 @@ public class Methods_CR5 {
 //		return false;
 	}
 
+	public static boolean validateTableExists(Activity actv, String tableName) {
+		// TODO Auto-generated method stub
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		return dbu.tableExists(tableName);
+		
+//		return false;
+	}
+
 	public static void getWords(Activity actv, String remoteUrl) {
 		// TODO Auto-generated method stub
 
@@ -533,9 +659,52 @@ public class Methods_CR5 {
 		/***************************************
 		 * Store text
 		 ***************************************/
-		return storeData_Word__2__StoreText(actv, w);
+		return storeData_Word__2__StoreWord(actv, w);
 		
 	}//storeData_Word(Activity actv, JSONObject joWord)
+
+
+	public static void getWordList(Activity actv, String remoteUrl) {
+		// TODO Auto-generated method stub
+		String url = remoteUrl;
+		
+		Task_GetWordList task = new Task_GetWordList(actv);
+		
+		task.execute(url);
+		
+	}
+
+	public static boolean
+	storeData_WordList(Activity actv, JSONObject joWordList) {
+		// TODO Auto-generated method stub
+		/***************************************
+		 * Build a Text instance
+		 ***************************************/
+		WordList wl = storeData_WordList__1__buildWordListInstance(joWordList);
+		
+		// Log
+		Log.d("Methods_CR5.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "t.getCreatedAt_mill()=" + wl.getCreated_at_mill());
+		
+		/***************************************
+		 * Store text
+		 ***************************************/
+		return storeData_WordList__2__StoreWordList(actv, wl);
+		
+	}//storeData_WordList(Activity actv, JSONObject joWordList)
+
+	private static boolean
+	storeData_WordList__2__StoreWordList
+	(Activity actv, WordList wl) {
+
+		DBUtils_CR5 dbu = new DBUtils_CR5(actv, CONS.DB.dbName);
+		
+		return dbu.insertData_WordList(actv, wl);
+		
+	}//storeData_WordList__2__StoreText
 
 
 	

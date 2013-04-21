@@ -218,9 +218,44 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 			
 			_GetDataFromRemote_lv_Words();
 			
+		} else if (item.equals(actv.getString(
+				R.string.dlg_GetDataFromRemote_word_lists))) {
+			
+			_GetDataFromRemote_lv_WordList();
+			
 		}//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db))) {
 		
 	}//private void case_dlg_GetDataFromRemote_lv(String item)
+
+	private void _GetDataFromRemote_lv_WordList() {
+		// TODO Auto-generated method stub
+		boolean res = Methods_CR5.validateTableExists(actv, CONS.DB.tname_word_list);
+//		boolean res = Methods_CR5.validateTableExists_Words(actv);
+		
+		if (res == true) {
+			
+			Methods_CR5.getWordList(actv, CONS.Admin.remoteUrl_WordList);
+			
+			dlg1.dismiss();
+			
+		} else {//if (res == true)
+			
+			// Log
+			Log.d("ActvMain.java"
+					+ "["
+					+ Thread.currentThread().getStackTrace()[2]
+							.getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2]
+							.getMethodName() + "]",
+					"Validation: Table \"word_list\" => Failed");
+			
+			// debug
+			Toast.makeText(actv, "Can't prepare the table \"word_list\"", Toast.LENGTH_LONG).show();
+			
+		}//if (res == true)
+		
+	}//private void _GetDataFromRemote_lv_WordList()
 
 	private void _GetDataFromRemote_lv_Words() {
 		// TODO Auto-generated method stub
