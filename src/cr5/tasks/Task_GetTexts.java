@@ -893,7 +893,8 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 		 ***************************************/
 		DBUtils_CR5 dbu = new DBUtils_CR5(actv, CONS.DB.dbName);
 		
-		long lastRefreshedDate = dbu.getLastRefreshedDate(actv);
+		long lastRefreshedDate = dbu.getLastRefreshedDate(actv, CONS.DB.tname_Updates_Texts);
+//		long lastRefreshedDate = dbu.getLastRefreshedDate(actv);
 		
 		
 		

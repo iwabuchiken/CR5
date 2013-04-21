@@ -46,7 +46,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 	protected Integer doInBackground(String... urls) {
 		
 		// Log
-		Log.d("Task_GetTexts.java" + "["
+		Log.d("Task_GetWords.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -61,7 +61,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		if (hr == null) {
 		
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -72,7 +72,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		} else {//if (hr == null)
 			
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -100,7 +100,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		} else {//if (status == CONS.HTTP_Response.CREATED)
 			
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -122,6 +122,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", "entity.toString()=" + entity.toString());
 		
+		
 		/***************************************
 		 * Get: Json array
 		 ***************************************/
@@ -132,7 +133,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		if (jaRoot == null) {
 			
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -143,7 +144,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		} else if (jaRoot.length() == 0) {//if (jaRoot == null)
 			
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -153,62 +154,66 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 			
 		}//if (jaRoot == null)
 		
+
 		/***************************************
 		 * Store data
 		 ***************************************/
 		int numOfStoredItems = this.doInBackground__3__StoreData(jaRoot);
 		
 		// Log
-		Log.d("Task_GetTexts.java" + "["
+		Log.d("Task_GetWords.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", "numOfStoredItems=" + numOfStoredItems);
 
-		/***************************************
-		 * Store: history (Also, return)
-		 ***************************************/
-		if (numOfStoredItems == jaRoot.length()) {
-			
-			boolean res = this.doInBackground__4__StoreHistory(jaRoot, numOfStoredItems);
-			
-			if (res == true) {
-				
-				return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL_WITH_HISTORY;
-				
-			} else {//if (res == true)
-				
-				return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL_NO_HISTORY;
-				
-			}//if (res == true)
-			
-//			return CONS.ReturnValue.RETURN_OK;
-//			return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL;
-			
-		} else if (numOfStoredItems > 0) {
-			
-			boolean res = this.doInBackground__4__StoreHistory(jaRoot, numOfStoredItems);
-	
-			if (res == true) {
-				
-				return CONS.Task_GetTexts.STORE_DATA_PARTIAL_WITH_HISTORY;
-				
-			} else {//if (res == true)
-				
-				return CONS.Task_GetTexts.STORE_DATA_PARTIAL_NO_HISTORY;
-				
-//				return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL_NO_HISTORY;
-				
-			}//if (res == true)
-
-//			return CONS.Task_GetTexts.STORE_DATA_PARTIAL;
-			
-		} else {//if (res > 0)
-			
-			return CONS.Task_GetTexts.STORE_DATA_FAILED;
-			
-		}//if (res > 0)
+		//debug
+		return 0;
 		
+//		/***************************************
+//		 * Store: history (Also, return)
+//		 ***************************************/
+//		if (numOfStoredItems == jaRoot.length()) {
+//			
+//			boolean res = this.doInBackground__4__StoreHistory(jaRoot, numOfStoredItems);
+//			
+//			if (res == true) {
+//				
+//				return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL_WITH_HISTORY;
+//				
+//			} else {//if (res == true)
+//				
+//				return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL_NO_HISTORY;
+//				
+//			}//if (res == true)
+//			
+////			return CONS.ReturnValue.RETURN_OK;
+////			return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL;
+//			
+//		} else if (numOfStoredItems > 0) {
+//			
+//			boolean res = this.doInBackground__4__StoreHistory(jaRoot, numOfStoredItems);
+//	
+//			if (res == true) {
+//				
+//				return CONS.Task_GetTexts.STORE_DATA_PARTIAL_WITH_HISTORY;
+//				
+//			} else {//if (res == true)
+//				
+//				return CONS.Task_GetTexts.STORE_DATA_PARTIAL_NO_HISTORY;
+//				
+////				return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL_NO_HISTORY;
+//				
+//			}//if (res == true)
+//
+////			return CONS.Task_GetTexts.STORE_DATA_PARTIAL;
+//			
+//		} else {//if (res > 0)
+//			
+//			return CONS.Task_GetTexts.STORE_DATA_FAILED;
+//			
+//		}//if (res > 0)
+//		
 		
 		/***************************************
 		 * Return
@@ -229,7 +234,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 //			} catch (JSONException e) {
 //				
 //				// Log
-//				Log.d("Task_GetTexts.java"
+//				Log.d("Task_GetWords.java"
 //						+ "["
 //						+ Thread.currentThread().getStackTrace()[2]
 //								.getLineNumber()
@@ -267,7 +272,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		}//if (lastCreatedAt == -1)
 		
 		// Log
-		Log.d("Task_GetTexts.java" + "["
+		Log.d("Task_GetWords.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -279,7 +284,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		String idsString = __StoreHistory__2__GetIdsString(jaRoot);
 		
 		// Log
-		Log.d("Task_GetTexts.java" + "["
+		Log.d("Task_GetWords.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -327,7 +332,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 			} catch (JSONException e) {
 				
 				// Log
-				Log.d("Task_GetTexts.java"
+				Log.d("Task_GetWords.java"
 						+ "["
 						+ Thread.currentThread().getStackTrace()[2]
 								.getLineNumber()
@@ -376,7 +381,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 			} catch (JSONException e) {
 				
 				// Log
-				Log.d("Task_GetTexts.java"
+				Log.d("Task_GetWords.java"
 						+ "["
 						+ Thread.currentThread().getStackTrace()[2]
 								.getLineNumber()
@@ -402,7 +407,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 	private int
 	doInBackground__3__StoreData(JSONArray jaRoot) {
 		// TODO Auto-generated method stub
-		JSONObject joText = null;
+		JSONObject joWord = null;
 		
 		int counter = 0;
 		
@@ -410,12 +415,12 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 			
 			try {
 				
-				joText = jaRoot.getJSONObject(i);
+				joWord = jaRoot.getJSONObject(i);
 				
 			} catch (JSONException e) {
 				
 				// Log
-				Log.d("Task_GetTexts.java"
+				Log.d("Task_GetWords.java"
 						+ "["
 						+ Thread.currentThread().getStackTrace()[2]
 								.getLineNumber()
@@ -429,16 +434,16 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 			}
 			
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-					+ "]", "joText=" + joText);
+					+ "]", "joWord=" + joWord);
 			
 			/***************************************
 			 * Store: data
 			 ***************************************/
-			boolean res = Methods_CR5.storeData_Text(actv, joText);
+			boolean res = Methods_CR5.storeData_Word(actv, joWord);
 			
 			if (res == true) {
 				
@@ -467,7 +472,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 			jaRoot = new JSONArray(entityContent);
 			
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -531,14 +536,14 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		// TODO Auto-generated method stub
 		
 		// Log
-		Log.d("Task_GetTexts.java" + "["
+		Log.d("Task_GetWords.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", "JSONArray!");
 
 		// Log
-		Log.d("Task_GetTexts.java" + "["
+		Log.d("Task_GetWords.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -553,7 +558,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		} catch (JSONException e) {
 			
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -573,7 +578,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 			String key = (String) keys.next();
 			
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -585,7 +590,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 				if (key.equals("url")) {
 					
 					// Log
-					Log.d("Task_GetTexts.java"
+					Log.d("Task_GetWords.java"
 							+ "["
 							+ Thread.currentThread().getStackTrace()[2]
 									.getLineNumber()
@@ -597,7 +602,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 			} catch (JSONException e) {
 
 				// Log
-				Log.d("Task_GetTexts.java"
+				Log.d("Task_GetWords.java"
 						+ "["
 						+ Thread.currentThread().getStackTrace()[2]
 								.getLineNumber()
@@ -612,7 +617,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		}
 		
 		// Log
-		Log.d("Task_GetTexts.java" + "["
+		Log.d("Task_GetWords.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -627,7 +632,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 //		} catch (JSONException e) {
 //			
 //			// Log
-//			Log.d("Task_GetTexts.java" + "["
+//			Log.d("Task_GetWords.java" + "["
 //					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //					+ ":"
 //					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -638,7 +643,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 //		}
 		
 //		// Log
-//		Log.d("Task_GetTexts.java" + "["
+//		Log.d("Task_GetWords.java" + "["
 //				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //				+ ":"
 //				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -654,14 +659,14 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 	JSONArray doInBackground__2__getJsonArray(JSONObject joRoot) {
 		// TODO Auto-generated method stub
 
-		Log.d("Task_GetTexts.java" + "["
+		Log.d("Task_GetWords.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", "joRoot.length()=" + joRoot.length());
 		
 		// Log
-		Log.d("Task_GetTexts.java" + "["
+		Log.d("Task_GetWords.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -674,7 +679,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		while(it.hasNext()) {
 			
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -684,14 +689,14 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		}
 		
 		// Log
-		Log.d("Task_GetTexts.java" + "["
+		Log.d("Task_GetWords.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", "Number of keys => " + counter);
 		
 		// Log
-		Log.d("Task_GetTexts.java" + "["
+		Log.d("Task_GetWords.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -702,7 +707,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 			String url = joRoot.getString("url");
 			
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -729,7 +734,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 //		} catch (JSONException e) {
 //			
 //			// Log
-//			Log.e("Task_GetTexts.java" + "["
+//			Log.e("Task_GetWords.java" + "["
 //					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //					+ ":"
 //					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -740,7 +745,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 //		}
 //		
 //		// Log
-//		Log.d("Task_GetTexts.java" + "["
+//		Log.d("Task_GetWords.java" + "["
 //				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //				+ ":"
 //				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -756,7 +761,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 //		} catch (JSONException e) {
 //			
 //			// Log
-//			Log.e("Task_GetTexts.java" + "["
+//			Log.e("Task_GetWords.java" + "["
 //					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //					+ ":"
 //					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -773,7 +778,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 //				String url1 = joText.getString("url");
 //				
 //				// Log
-//				Log.d("Task_GetTexts.java"
+//				Log.d("Task_GetWords.java"
 //						+ "["
 //						+ Thread.currentThread().getStackTrace()[2]
 //								.getLineNumber()
@@ -792,7 +797,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 //		} else {//if (joText != null)
 //			
 //			// Log
-//			Log.d("Task_GetTexts.java" + "["
+//			Log.d("Task_GetWords.java" + "["
 //					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //					+ ":"
 //					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -831,12 +836,12 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 			
 		} catch (ClientProtocolException e) {
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", e.toString());
 		} catch (IOException e) {
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", e.toString());
 		}
@@ -850,7 +855,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 //			Toast.makeText(actv, "hr == null", 2000).show();
 			
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "hr == null");
 			
@@ -860,7 +865,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		} else {//if (hr == null)
 			
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -881,7 +886,8 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		 ***************************************/
 		DBUtils_CR5 dbu = new DBUtils_CR5(actv, CONS.DB.dbName);
 		
-		long lastRefreshedDate = dbu.getLastRefreshedDate(actv);
+		long lastRefreshedDate = dbu.getLastRefreshedDate(actv, CONS.DB.tname_Updates_Words);
+//		long lastRefreshedDate = dbu.getLastRefreshedDate(actv);
 		
 		
 		
@@ -892,7 +898,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 			String param = __getHttpResponse_v2_GET__1_BuildParam(lastRefreshedDate);
 			
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -901,7 +907,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 			url += "?" + param;
 			
 //			// Log
-//			Log.d("Task_GetTexts.java" + "["
+//			Log.d("Task_GetWords.java" + "["
 //					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //					+ ":"
 //					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -912,7 +918,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 //		String url = 
 		
 		// Log
-		Log.d("Task_GetTexts.java" + "["
+		Log.d("Task_GetWords.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -947,12 +953,12 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 			
 		} catch (ClientProtocolException e) {
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", e.toString());
 		} catch (IOException e) {
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", e.toString());
 		}
@@ -966,7 +972,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 //			Toast.makeText(actv, "hr == null", 2000).show();
 			
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "hr == null");
 			
@@ -976,7 +982,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		} else {//if (hr == null)
 			
 			// Log
-			Log.d("Task_GetTexts.java" + "["
+			Log.d("Task_GetWords.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -1006,14 +1012,14 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 	doInBackground__1__getHttpResponse__debug_1(HttpUriRequest postRequest) {
 		// TODO Auto-generated method stub
 		// Log
-		Log.d("Task_GetTexts.java" + "["
+		Log.d("Task_GetWords.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", "getRawPath=" + postRequest.getURI().getRawPath());
 
 		// Log
-		Log.d("Task_GetTexts.java" + "["
+		Log.d("Task_GetWords.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -1036,7 +1042,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		super.onPostExecute(result);
 		
 		// Log
-		Log.d("Task_GetTexts.java" + "["
+		Log.d("Task_GetWords.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()

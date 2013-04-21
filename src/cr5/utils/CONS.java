@@ -77,7 +77,7 @@ public class CONS {
 			// 0	1	2
 			"w1", "w2", "w3",
 			// 3			4			5
-			"text_id", "text_ids", "langId",
+			"text_id", "text_ids", "lang_id",
 			// 6
 			"remote_db_id",
 			// 7					8
@@ -103,7 +103,7 @@ public class CONS {
 			// 3	4	5
 			"w1", "w2", "w3",
 			// 6			7		8
-			"text_id", "text_ids", "langId",
+			"text_id", "text_ids", "lang_id",
 			// 9
 			"remote_db_id",
 			// 10					11

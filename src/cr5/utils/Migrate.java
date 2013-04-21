@@ -68,8 +68,8 @@ public class Migrate {
 			
 		res = dbu.createTable(
 				CONS.DB.tname_words,
-				CONS.DB.cols_texts,
-				CONS.DB.col_types_texts);
+				CONS.DB.cols_words,
+				CONS.DB.col_types_words);
 		
 		if (res == true) {
 			
@@ -125,7 +125,7 @@ public class Migrate {
 			
 			// debug
 			Toast.makeText(actv,
-					"Table created => " + CONS.DB.tname_words,
+					"Table created => " + CONS.DB.tname_word_list,
 					Toast.LENGTH_LONG).show();
 			
 			// Log
@@ -134,7 +134,7 @@ public class Migrate {
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
 					+ "]",
-					"Table created => " + CONS.DB.tname_words);
+					"Table created => " + CONS.DB.tname_word_list);
 			
 			dlg1.dismiss();
 			
@@ -143,7 +143,7 @@ public class Migrate {
 			// debug
 			Toast.makeText(actv,
 					"Sorry. Table creation failed. Now you don't have the table:"
-						+ CONS.DB.tname_words,
+						+ CONS.DB.tname_word_list,
 					Toast.LENGTH_LONG).show();
 			
 			// Log
@@ -153,7 +153,7 @@ public class Migrate {
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
 					+ "]",
 					"Sorry. Table creation failed. Now you don't have the table:"
-							+ CONS.DB.tname_words);
+							+ CONS.DB.tname_word_list);
 			
 		}//if (res == true)
 		

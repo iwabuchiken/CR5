@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cr5.items.Text;
+import cr5.items.Word;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -362,6 +363,165 @@ public class DBUtils_CR5 extends SQLiteOpenHelper{
 		return largestDate;
 		
 	}//public long getLastRefreshedDate(Activity actv)
+
+	public long getLastRefreshedDate(Activity actv, String tableName) {
+		// TODO Auto-generated method stub
+		SQLiteDatabase rdb = this.getReadableDatabase();
+		
+//		String sql = "SELECT * FROM " + CONS.DB.tname_RefreshHistory;
+		String sql = "SELECT * FROM " + tableName;
+		
+		Cursor c = null;
+		
+		try {
+			
+			c = rdb.rawQuery(sql, null);
+			
+		} catch (Exception e) {
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception => " + e.toString());
+			
+			rdb.close();
+			
+			return -1;
+		}
+		
+		/***************************************
+		 * Search: The largest
+		 ***************************************/
+		long largestDate = -1;
+		
+		while(c.moveToNext()) {
+			
+			long createdAt_mill = c.getLong(c.getColumnIndex("created_at_mill"));
+//			long createdAt_mill = c.getLong(c.getColumnIndex("createdAt_mill"));
+			
+			if (createdAt_mill > largestDate) {
+				
+				largestDate = createdAt_mill;
+				
+			}//if (createdAt_mill == condition)
+			
+		}
+		
+		/***************************************
+		 * Finish
+		 ***************************************/
+		rdb.close();
+		
+		return largestDate;
+		
+	}//public long getLastRefreshedDate(Activity actv)
+
+	
+	public boolean insertData_Word(Activity actv, Word w) {
+		/*----------------------------
+		* 1. Insert data
+		----------------------------*/
+		SQLiteDatabase wdb = this.getWritableDatabase();
+		
+		try {
+			// Start transaction
+			wdb.beginTransaction();
+			
+			// ContentValues
+//			ContentValues val = new ContentValues();
+			ContentValues val = insertData_Word__1_getContentValues(w);
+
+			// Insert data
+			long res = wdb.insert(CONS.DB.tname_words, null, val);
+//			long res = wdb.insert(CONS.DB.tname_texts, null, val);
+			
+			if (res != -1) {
+			
+				// Log
+				Log.d("DBUtils_CR5.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]",
+						"Insertion => Successful: Db id=" + w.getRemoteDbId());
+				
+				// Set as successful
+				wdb.setTransactionSuccessful();
+				
+				// End transaction
+				wdb.endTransaction();
+				
+//				// Log
+//				Log.d("DBUtils.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ "]", "Data inserted => " + "(file_name => " + val.getAsString("file_name") + "), and others");
+
+				wdb.close();
+				
+				return true;
+
+			} else {//if (res != -1)
+				
+				// Log
+				Log.d("DBUtils_CR5.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]", "Insertion failed");
+				
+				wdb.close();
+				
+				return false;
+				
+			}//if (res != -1)
+			
+		} catch (Exception e) {
+			// Log
+			Log.e("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ "]", e.toString());
+			
+			return false;
+		}//try
+		
+	}//public boolean insertData_Word(Activity actv, Word w)
+
+	private ContentValues
+	insertData_Word__1_getContentValues(Word w) {
+		ContentValues val = new ContentValues();
+		
+//		android.provider.BaseColumns._ID,
+//		"created_at", "modified_at",
+//		"text", "url",
+//		"genreId", "subGenreId", "dbId", "langId",
+//		"memo"
+		
+		val.put("created_at", w.getCreatedAt());
+		val.put("modified_at", w.getModifiedAt());
+		
+		val.put("w1", w.getW1());
+		val.put("w2", w.getW2());
+		val.put("w3", w.getW3());
+		
+		val.put("text_ids", w.getText_ids());
+		val.put("text_id", w.getText_id());
+		val.put("lang_id", w.getLang_id());
+		
+		
+		val.put("remote_db_id", w.getRemoteDbId());
+		
+		
+		val.put("created_at_mill", w.getCreatedAt_mill());
+		val.put("updated_at_mill", w.getUpdatedAt_mill());
+		
+
+		
+		return val;	
+		
+	}//insertData_Word__1_getContentValues(Word w)
 
 }//public class DBUtils
 
