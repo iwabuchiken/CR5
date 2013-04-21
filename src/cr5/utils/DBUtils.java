@@ -1131,15 +1131,22 @@ public class DBUtils extends SQLiteOpenHelper{
 			t = new Text.Builder()
 					.setCreatedAt(c.getLong(1))
 					.setModifiedAt(c.getLong(2))
+					
 					.setText(c.getString(3))
 					.setUrl(c.getString(4))
-					.setGenreId(c.getInt(5))
-					.setSubGenreId(c.getInt(6))
-					.setDbId(c.getInt(7))
-					.setLangId(c.getInt(8))
-					.setMemo(c.getString(9))
-					.setCreatedAt_mill(c.getLong(10))
-					.setTitle(c.getString(11))
+					.setTitle(c.getString(5))
+					.setMemo(c.getString(6))
+					
+					.setGenreId(c.getInt(7))
+					.setSubGenreId(c.getInt(8))
+					.setLangId(c.getInt(9))
+					
+					.setWordIds(c.getString(10))
+					
+					.setRemoteDbId(c.getInt(11))
+					.setCreatedAt_mill(c.getLong(12))
+					.setUpdatedAt_mill(c.getLong(13))
+					
 					.build();
 			
 			textList.add(t);
@@ -1179,7 +1186,8 @@ public class DBUtils extends SQLiteOpenHelper{
 					CONS.DB.tname_texts,
 					null,
 //					CONS.DB.cols_texts[0] + " like ?",
-					CONS.DB.cols_texts[4] + " like ?",	// "dbId"
+//					CONS.DB.cols_texts[4] + " like ?",	// "dbId"
+					CONS.DB.cols_texts[8] + " like ?",	// "remote_db_id"	=> As of: B7/v-3.1
 					new String[]{String.valueOf(dbId)},
 					null, null, null);
 			
@@ -1230,7 +1238,7 @@ public class DBUtils extends SQLiteOpenHelper{
 				.setUrl(c.getString(4))
 				.setGenreId(c.getInt(5))
 				.setSubGenreId(c.getInt(6))
-				.setDbId(c.getInt(7))
+				.setRemoteDbId(c.getInt(7))
 				.setLangId(c.getInt(8))
 				.setMemo(c.getString(9))
 				.setCreatedAt_mill(c.getLong(10))

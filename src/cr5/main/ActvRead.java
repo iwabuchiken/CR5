@@ -97,7 +97,7 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]",
-				"CONS.ActvRead.text.getDbId()=" + CONS.ActvRead.text.getDbId());
+				"CONS.ActvRead.text.getDbId()=" + CONS.ActvRead.text.getRemoteDbId());
 		
 		/***************************************
 		 * TTS

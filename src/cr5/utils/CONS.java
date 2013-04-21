@@ -26,29 +26,90 @@ public class CONS {
 		public static final String tname_texts = "texts";
 		
 		public static final String[] cols_texts = {
-			"text", "url",			// 0 1
-			"genreId", "subGenreId", "dbId", "langId",	// 2, 3, 4, 5
-			"memo", "createdAt_mill",	// 6, 7
-			"title"					// 8
-			
+			// 0	1		2			3
+			"text", "url", "title", "memo", 
+			// 4			5			6
+			"genreId", "subGenreId", "langId",	// 2, 3, 4, 5
+			// 7
+			"word_ids",
+			// 8
+			"remote_db_id",
+			// 9					10
+			"created_at_mill", "updated_at_mill",
 		};
 		
 		public static final String[] col_types_texts = {
-			"TEXT", "TEXT",			// 0 1
-			"INTEGER", "INTEGER", "INTEGER", "INTEGER",	// 2, 3, 4, 5
-			"TEXT",	"INTEGER",	// 6, 7
-			"TEXT"					// 8
+			// 0	1		2			3
+			"TEXT", "TEXT", "TEXT", "TEXT", 
+			// 4			5			6
+			"INTEGER", "INTEGER", "INTEGER",	// 2, 3, 4, 5
+			// 7
+			"TEXT",
+			// 8
+			"INTEGER",
+			// 9		10
+			"INTEGER", "INTEGER",
 		};
 
 		public static final String[] cols_texts_full = {
+			// 0
 			android.provider.BaseColumns._ID,	// 0
+			// 1			2
 			"created_at", "modified_at",		// 1, 2
-			"text", "url",						// 3, 4
-			"genreId", "subGenreId", "dbId", "langId",	// 5, 6, 7, 8
-			"memo", "createdAt_mill",			// 9 10
-			"title"								// 11
+			// 3	4		5			6
+			"text", "url", "title", "memo", 
+			// 7			8			9
+			"genreId", "subGenreId", "langId",	// 2, 3, 4, 5
+			// 10
+			"word_ids",
+			// 11
+			"remote_db_id",
+			// 12					13
+			"created_at_mill", "updated_at_mill",
 		};
 
+		/***************************************
+		 * Table: words
+		 ***************************************/
+		public static final String tname_words = "words";
+		
+		public static final String[] cols_words = {
+			// 0	1	2
+			"w1", "w2", "w3",
+			// 3			4			5
+			"text_id", "text_ids", "langId",
+			// 6
+			"remote_db_id",
+			// 7					8
+			"created_at_mill", "updated_at_mill"
+		};
+		
+		public static final String[] col_types_words = {
+			// 0	1		2
+			"TEXT", "TEXT", "TEXT",
+			// 3			4			5
+			"INTEGER", "TEXT",		"INTEGER",
+			// 6
+			"INTEGER",
+			// 7			8
+			"INTEGER", "INTEGER"
+		};
+		
+		public static final String[] cols_words_full = {
+			// 0
+			android.provider.BaseColumns._ID,
+			// 1			2
+			"created_at", "modified_at",
+			// 3	4	5
+			"w1", "w2", "w3",
+			// 6			7		8
+			"text_id", "text_ids", "langId",
+			// 9
+			"remote_db_id",
+			// 10					11
+			"created_at_mill", "updated_at_mill"
+		};
+		
 		/***************************************
 		 * Table: refresh_history
 		 ***************************************/

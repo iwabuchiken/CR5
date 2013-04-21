@@ -114,10 +114,66 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 				R.string.migrate_20130421_115608_ResetTableTexts))) {
 			
 			migrate_20130421_115608_ResetTableTexts();
+
+		} else if (item.equals(actv.getString(
+				R.string.migrate_20130421_120721_ResetTable_Words))) {
+
+			migrate_20130421_120721_ResetTable_Words();
 			
 		}
 		
 	}//private void case_dlg_Migrate(String item)
+
+	private void migrate_20130421_120721_ResetTable_Words() {
+		// TODO Auto-generated method stub
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		boolean res = dbu.dropTable(actv, CONS.DB.tname_words);
+		
+//		if (res == true) {
+			
+		res = dbu.createTable(
+				CONS.DB.tname_words,
+				CONS.DB.cols_texts,
+				CONS.DB.col_types_texts);
+		
+		if (res == true) {
+			
+			// debug
+			Toast.makeText(actv,
+					"Table reset => " + CONS.DB.tname_words,
+					Toast.LENGTH_LONG).show();
+			
+			// Log
+			Log.d("DialogOnItemClickListener.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]",
+					"Table reset => " + CONS.DB.tname_words);
+			
+			dlg1.dismiss();
+			
+		} else {//if (res == true)
+
+			// debug
+			Toast.makeText(actv,
+					"Sorry. Table creation failed. Now you don't have the table:"
+						+ CONS.DB.tname_words,
+					Toast.LENGTH_LONG).show();
+			
+			// Log
+			Log.d("DialogOnItemClickListener.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]",
+					"Sorry. Table creation failed. Now you don't have the table:"
+							+ CONS.DB.tname_words);
+			
+		}//if (res == true)
+			
+	}//private void migrate_20130421_120721_ResetTable_Words()
 
 	private void migrate_20130421_115608_ResetTableTexts() {
 		// TODO Auto-generated method stub
@@ -243,6 +299,7 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 		****************************/
 		String[] choices = {
 					actv.getString(R.string.migrate_20130421_115608_ResetTableTexts),
+					actv.getString(R.string.migrate_20130421_120721_ResetTable_Words),
 		};
 		
 		List<String> list = new ArrayList<String>();

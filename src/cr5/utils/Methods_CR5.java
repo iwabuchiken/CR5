@@ -184,28 +184,41 @@ public class Methods_CR5 {
 			
 			String	createdAt		= joText.getString("created_at");
 			String	modifiedAt		= joText.getString("updated_at");
+			
 			String	text			= joText.getString("text");
 			String	url				= joText.getString("url");
+			String	title			= joText.getString("title");
+			String	memo			= joText.getString("memo");
+			
 			long	genreId			= joText.getLong("genre_id");
 			long	subGenreId		= joText.getLong("subgenre_id");
-			long	dbId			= joText.getLong("id");
 			long	langId			= joText.getLong("lang_id");
-			String	memo			= joText.getString("memo");
+
+			String	wordIds			= joText.getString("word_ids");
+			
+			long	remoteDbId		= joText.getLong("id");
 			long	createdAt_mill	= joText.getLong("created_at_mill");
-			String	title			= joText.getString("title");
+			long	updatedAt_mill	= joText.getLong("updated_at_mill");
 			
 			t = new Text.Builder()
 						.setCreatedAt(Methods.convert_railsTimeLabel2MilSec(createdAt))
 						.setModifiedAt(Methods.convert_railsTimeLabel2MilSec(modifiedAt))
+						
 						.setText(text)
 						.setUrl(url)
+						.setTitle(title)
+						.setMemo(memo)
+						
 						.setGenreId(genreId)
 						.setSubGenreId(subGenreId)
-						.setDbId(dbId)
 						.setLangId(langId)
-						.setMemo(memo)
+						
+						.setWordIds(wordIds)
+						
+						.setRemoteDbId(remoteDbId)
 						.setCreatedAt_mill(createdAt_mill)
-						.setTitle(title)
+						.setUpdatedAt_mill(updatedAt_mill)
+						
 						.build();
 			
 			// Log

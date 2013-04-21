@@ -232,7 +232,7 @@ public class ActvMain extends ListActivity {
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-				+ "]", "dbId=" + text.getDbId());
+				+ "]", "dbId=" + text.getRemoteDbId());
 		
 		/****************************
 		 * 2. Intent
@@ -242,7 +242,7 @@ public class ActvMain extends ListActivity {
 		
 		i.setClass(this, ActvRead.class);
 		
-		i.putExtra("dbId", text.getDbId());
+		i.putExtra("dbId", text.getRemoteDbId());
 		
 		i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 		

@@ -114,7 +114,7 @@ public class DBUtils_CR5 extends SQLiteOpenHelper{
 						+ ":"
 						+ Thread.currentThread().getStackTrace()[2]
 								.getMethodName() + "]",
-						"Insertion => Successful: Db id=" + t.getDbId());
+						"Insertion => Successful: Db id=" + t.getRemoteDbId());
 				
 				// Set as successful
 				wdb.setTransactionSuccessful();
@@ -189,17 +189,22 @@ public class DBUtils_CR5 extends SQLiteOpenHelper{
 
 		val.put("text", t.getText());
 		val.put("url", t.getUrl());
+		val.put("title", t.getTitle());
+		val.put("memo", t.getMemo());
 		
 		val.put("genreId", t.getGenreId());
 		val.put("subGenreId", t.getSubGenreId());
-		val.put("dbId", t.getDbId());
 		val.put("langId", t.getLangId());
 		
-		val.put("memo", t.getMemo());
+		val.put("word_ids", t.getWordIds());
 		
-		val.put("createdAt_mill", t.getCreatedAt_mill());
+		val.put("remote_db_id", t.getRemoteDbId());
+		
+		
+		val.put("created_at_mill", t.getCreatedAt_mill());
+		val.put("updated_at_mill", t.getUpdatedAt_mill());
+		
 
-		val.put("title", t.getTitle());
 		
 		return val;
 		
