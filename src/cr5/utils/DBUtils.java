@@ -273,6 +273,32 @@ public class DBUtils extends SQLiteOpenHelper{
 		}//if (cursor.getCount() > 0)
 	}//public boolean tableExists(String tableName)
 
+	public boolean tableExists(String tableName) {
+		// The table exists?
+		SQLiteDatabase rdb = this.getReadableDatabase();
+		
+		Cursor cursor = rdb.query(
+					"sqlite_master",
+					null,
+					"tbl_name like ?",
+					new String[]{tableName},
+					null, null, null);
+		
+//		Cursor cursor = db.rawQuery(
+//				"SELECT * FROM sqlite_master WHERE tbl_name = '" + 
+//						tableName + "'", null);
+//		
+		((Activity) context).startManagingCursor(cursor);
+//		actv.startManagingCursor(cursor);
+		
+		// Judge
+		if (cursor.getCount() > 0) {
+			return true;
+		} else {//if (cursor.getCount() > 0)
+			return false;
+		}//if (cursor.getCount() > 0)
+	}//public boolean tableExists(String tableName)
+
 	public boolean dropTable(Activity actv, SQLiteDatabase db, String tableName) {
 		// Log
 		Log.d("DBUtils.java" + "["

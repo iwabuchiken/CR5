@@ -22,7 +22,7 @@
     <string name="v1_tv_dir_path">Directory path</string>
     
     <!-- main_menu.xml -->
-	    <string name="opt_menu_actv_main_get_texts">Get texts</string>
+	    <string name="opt_menu_actv_main_get_texts">Get data</string>
 	    <string name="opt_menu_actv_main_db_activity">データベース</string>
 
 	<!-- dlg_db_admin.xml -->

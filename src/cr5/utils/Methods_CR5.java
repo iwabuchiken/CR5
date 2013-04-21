@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import cr5.items.Text;
 import cr5.tasks.Task_GetTexts;
+import cr5.tasks.Task_GetWords;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -358,6 +359,27 @@ public class Methods_CR5 {
 		
 		
 	}//public static void find_text_trunk(String text)
+
+	public static boolean validateTableExists_Words(Activity actv) {
+		// TODO Auto-generated method stub
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		return dbu.tableExists(CONS.DB.tname_words);
+		
+//		return false;
+	}
+
+	public static void getWords(Activity actv, String remoteUrl) {
+		// TODO Auto-generated method stub
+
+		String url = remoteUrl;
+		
+		Task_GetWords task = new Task_GetWords(actv);
+		
+		task.execute(url);
+
+	}
 
 	
 //	public static Text get_TextFromDbId(Activity actv, long dbId) {

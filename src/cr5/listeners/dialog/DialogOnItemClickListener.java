@@ -209,8 +209,32 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 
 	private void _GetDataFromRemote_lv_Words() {
 		// TODO Auto-generated method stub
+		boolean res = Methods_CR5.validateTableExists_Words(actv);
 		
-	}
+		if (res == true) {
+			
+			Methods_CR5.getWords(actv, CONS.Admin.remoteUrl_Words);
+			
+			dlg1.dismiss();
+			
+		} else {//if (res == true)
+			
+			// Log
+			Log.d("ActvMain.java"
+					+ "["
+					+ Thread.currentThread().getStackTrace()[2]
+							.getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2]
+							.getMethodName() + "]",
+					"Validation: Table \"texts\" => Failed");
+			
+			// debug
+			Toast.makeText(actv, "Can't prepare the table \"texts\"", Toast.LENGTH_LONG).show();
+			
+		}//if (res == true)
+
+	}//private void _GetDataFromRemote_lv_Words()
 
 	private void _GetDataFromRemote_lv_Texts() {
 		// TODO Auto-generated method stub
@@ -218,7 +242,7 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 		
 		if (res == true) {
 			
-			Methods_CR5.getTexts(actv, CONS.Admin.remoteUrl);
+			Methods_CR5.getTexts(actv, CONS.Admin.remoteUrl_Texts);
 			
 			dlg1.dismiss();
 			
