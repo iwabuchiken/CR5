@@ -155,4 +155,77 @@ public class Methods_dlg {
 	
 	}//public static Dialog dlg_template_okCancel()
 
+	
+	public static void dlg_GetDataFromRemote(Activity actv) {
+		// TODO Auto-generated method stub
+		/****************************
+		 * 1. Dialog
+		 * 2. Prep => List
+		 * 3. Adapter
+		 * 4. Set adapter
+		 * 
+		 * 5. Set listener to list
+		 * 6. Show dialog
+			****************************/
+		Dialog dlg = Methods_dlg.dlg_template_cancel(
+									actv, R.layout.dlg_db_admin, 
+									R.string.dlg_GetDataFromRemote_title, 
+									R.id.dlg_db_admin_bt_cancel, 
+									Tags.DialogTags.dlg_generic_dismiss);
+		
+		/****************************
+		 * 2. Prep => List
+			****************************/
+		String[] choices = {
+			actv.getString(R.string.dlg_GetDataFromRemote_texts),
+			actv.getString(R.string.dlg_GetDataFromRemote_words),
+			actv.getString(R.string.dlg_GetDataFromRemote_word_lists),
+		};
+		
+		List<String> list = new ArrayList<String>();
+		
+		for (String item : choices) {
+			
+			list.add(item);
+			
+		}
+		
+		// Log
+		Log.d("Methods_dlg.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "list.size()=" + list.size());
+		
+		/****************************
+		 * 3. Adapter
+			****************************/
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+				actv,
+//				R.layout.dlg_db_admin,
+				android.R.layout.simple_list_item_1,
+				list
+				);
+
+		/****************************
+		 * 4. Set adapter
+			****************************/
+		ListView lv = (ListView) dlg.findViewById(R.id.dlg_db_admin_lv);
+		
+		lv.setAdapter(adapter);
+		
+		/****************************
+		 * 5. Set listener to list
+			****************************/
+		lv.setTag(Tags.DialogItemTags.dlg_GetDataFromRemote_lv);
+		
+		lv.setOnItemClickListener(new DialogOnItemClickListener(actv, dlg));
+		
+		/****************************
+		 * 6. Show dialog
+			****************************/
+		dlg.show();
+		
+	}//public static void dlg_GetDataFromRemote(Activity actv)
+
 }//public class Methods_dialog

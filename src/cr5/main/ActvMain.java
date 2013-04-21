@@ -88,31 +88,33 @@ public class ActvMain extends ListActivity {
 		
 		case R.id.opt_actvmain_get_texts://------------------------------
 			
-			boolean res = Methods_CR5.validateTableExists_texts(this);
-			
-			if (res == true) {
-				
-				Methods_CR5.getTexts(this);
-				
-			} else {//if (res == true)
-				
-				// Log
-				Log.d("ActvMain.java"
-						+ "["
-						+ Thread.currentThread().getStackTrace()[2]
-								.getLineNumber()
-						+ ":"
-						+ Thread.currentThread().getStackTrace()[2]
-								.getMethodName() + "]",
-						"Validation: Table \"texts\" => Failed");
-				
-				// debug
-				Toast.makeText(this, "Can't prepare the table \"texts\"", Toast.LENGTH_LONG).show();
-				
-			}//if (res == true)
-			
-//			Methods_CR5.getTexts(this);
-			
+			Methods_dlg.dlg_GetDataFromRemote(this);
+//			
+//			boolean res = Methods_CR5.validateTableExists_texts(this);
+//			
+//			if (res == true) {
+//				
+//				Methods_CR5.getTexts(this);
+//				
+//			} else {//if (res == true)
+//				
+//				// Log
+//				Log.d("ActvMain.java"
+//						+ "["
+//						+ Thread.currentThread().getStackTrace()[2]
+//								.getLineNumber()
+//						+ ":"
+//						+ Thread.currentThread().getStackTrace()[2]
+//								.getMethodName() + "]",
+//						"Validation: Table \"texts\" => Failed");
+//				
+//				// debug
+//				Toast.makeText(this, "Can't prepare the table \"texts\"", Toast.LENGTH_LONG).show();
+//				
+//			}//if (res == true)
+//			
+////			Methods_CR5.getTexts(this);
+//			
 			break;// case R.id.opt_actvmain_get_texts
 			
 		case R.id.opt_menu_actv_main_db_activity://----------------------------

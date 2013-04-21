@@ -62,6 +62,12 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f05000d;
+        public static final int dlg_GetDataFromRemote_texts=0x7f05001a;
+        /**  dlg_GetDataFromRemote(Activity actv) 
+         */
+        public static final int dlg_GetDataFromRemote_title=0x7f050019;
+        public static final int dlg_GetDataFromRemote_word_lists=0x7f05001c;
+        public static final int dlg_GetDataFromRemote_words=0x7f05001b;
         public static final int dlg_db_admin_item_add_column_millsec_refresh=0x7f050018;
         public static final int dlg_db_admin_item_backup_db=0x7f050012;
         public static final int dlg_db_admin_item_create_table_refresh_history=0x7f050015;
