@@ -1,0 +1,1 @@
+04-21 12:52:35.248: E/Database(16260): android.database.sqlite.SQLiteException: table texts has no column named dbId: , while compiling: INSERT INTO texts(dbId, subGenreId, title, text, memo, word_ids, langId, created_at, created_at_mill, url, modified_at, updated_at_mill, genreId) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);

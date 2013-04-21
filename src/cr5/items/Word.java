@@ -2,70 +2,118 @@ package cr5.items;
 
 public class Word {
 
-	String	w1;
-	String	w2;
-	String	w3;
-	
+	long	db_id;
 	long	createdAt;
 	long	modifiedAt;
+	
+	String w1;
+	String w2;
+	String w3;
+	
+	String text_ids;
+	long text_id;
+	long lang_id;
+	
+	long	remoteDbId;
 	long	createdAt_mill;
-
-	long	textId;
-	String	textIds;
-	long	langId;
-	
-	long	remoteDBId;
-	long	localDBId;
-	
-	public Word() {
-		
-	}
-
-	
-
-	
+	long	updatedAt_mill;
 	
 	public Word(Builder builder) {
-		// TODO Auto-generated constructor stub
+		
+		db_id = builder.db_id;
+		createdAt = builder.createdAt;
+		modifiedAt = builder.modifiedAt;
+		
 		w1 = builder.w1;
 		w2 = builder.w2;
 		w3 = builder.w3;
 		
-		createdAt = builder.createdAt;
-		modifiedAt = builder.modifiedAt;
-		createdAt_mill = builder.createdAt_mill;
-
-		textId = builder.textId;
-		textIds = builder.textIds;
-		langId = builder.langId;
+		text_ids = builder.text_ids;
+		text_id = builder.text_id;
+		lang_id = builder.lang_id;
 		
-		remoteDBId = builder.remoteDBId;
-		localDBId = builder.localDBId;
+		remoteDbId = builder.remoteDbId;
+		createdAt_mill = builder.createdAt_mill;
+		updatedAt_mill = builder.updatedAt_mill;
 
 		
 	}//public Text(Builder builder)
 
+	public long getDb_id() {
+		return db_id;
+	}
+	public long getCreatedAt() {
+		return createdAt;
+	}
+	public long getModifiedAt() {
+		return modifiedAt;
+	}
+	public String getW1() {
+		return w1;
+	}
+	public String getW2() {
+		return w2;
+	}
+	public String getW3() {
+		return w3;
+	}
+	public String getText_ids() {
+		return text_ids;
+	}
+	public long getText_id() {
+		return text_id;
+	}
+	public long getLang_id() {
+		return lang_id;
+	}
+	public long getRemoteDbId() {
+		return remoteDbId;
+	}
+	public long getCreatedAt_mill() {
+		return createdAt_mill;
+	}
+	public long getUpdatedAt_mill() {
+		return updatedAt_mill;
+	}
+
 	public static class Builder {
 
-		private String	w1;
-		private String	w2;
-		private String	w3;
-		
+		private long	db_id;
 		private long	createdAt;
 		private long	modifiedAt;
-		private long	createdAt_mill;
-
-		private long	textId;
-		private String	textIds;
-		private long	langId;
 		
-		private long	remoteDBId;
-		private long	localDBId;
+		private String w1;
+		private String w2;
+		private String w3;
+		
+		private String text_ids;
+		private long text_id;
+		private long lang_id;
+		
+		private long	remoteDbId;
+		private long	createdAt_mill;
+		private long	updatedAt_mill;
 
-
+		
 		public Word build() {
 			return new Word(this);
 		}
+
+
+		public Builder setDb_id(long db_id) {
+			this.db_id = db_id;	return this;
+		}
+
+
+		public Builder setCreatedAt(long createdAt) {
+			this.createdAt = createdAt;	return this;
+		}
+
+
+		public Builder setModifiedAt(long modifiedAt) {
+			this.modifiedAt = modifiedAt;	return this;
+		}
+
 
 
 		public Builder setW1(String w1) {
@@ -83,13 +131,23 @@ public class Word {
 		}
 
 
-		public Builder setCreatedAt(long createdAt) {
-			this.createdAt = createdAt;	return this;
+		public Builder setText_ids(String text_ids) {
+			this.text_ids = text_ids;	return this;
 		}
 
 
-		public Builder setModifiedAt(long modifiedAt) {
-			this.modifiedAt = modifiedAt;	return this;
+		public Builder setText_id(long text_id) {
+			this.text_id = text_id;	return this;
+		}
+
+
+		public Builder setLang_id(long lang_id) {
+			this.lang_id = lang_id;	return this;
+		}
+
+
+		public Builder setRemoteDbId(long remoteDbId) {
+			this.remoteDbId = remoteDbId;	return this;
 		}
 
 
@@ -98,118 +156,11 @@ public class Word {
 		}
 
 
-		public Builder setTextId(long textId) {
-			this.textId = textId;	return this;
-		}
-
-
-		public Builder setTextIds(String textIds) {
-			this.textIds = textIds;	return this;
-		}
-
-
-		public Builder setLangId(long langId) {
-			this.langId = langId;	return this;
-		}
-
-
-		public Builder setRemoteDBId(long remoteDBId) {
-			this.remoteDBId = remoteDBId;	return this;
-		}
-
-
-		public Builder setLocalDBId(long localDBId) {
-			this.localDBId = localDBId;	return this;
+		public Builder setUpdatedAt_mill(long updatedAt_mill) {
+			this.updatedAt_mill = updatedAt_mill;	return this;
 		}
 
 		
 	}//public static class Builder
-
-
-	public String getW1() {
-		return w1;
-	}
-
-
-
-
-
-	public String getW2() {
-		return w2;
-	}
-
-
-
-
-
-	public String getW3() {
-		return w3;
-	}
-
-
-
-
-
-	public long getCreatedAt() {
-		return createdAt;
-	}
-
-
-
-
-
-	public long getModifiedAt() {
-		return modifiedAt;
-	}
-
-
-
-
-
-	public long getCreatedAt_mill() {
-		return createdAt_mill;
-	}
-
-
-
-
-
-	public long getTextId() {
-		return textId;
-	}
-
-
-
-
-
-	public String getTextIds() {
-		return textIds;
-	}
-
-
-
-
-
-	public long getLangId() {
-		return langId;
-	}
-
-
-
-
-
-	public long getRemoteDBId() {
-		return remoteDBId;
-	}
-
-
-
-
-
-	public long getLocalDBId() {
-		return localDBId;
-	}
-	
-	
 	
 }

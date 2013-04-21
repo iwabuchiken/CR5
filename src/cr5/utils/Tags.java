@@ -95,6 +95,12 @@ public class Tags {
 		// dlg_bmactv_list_long_click
 		dlg_bmactv_list_long_click,
 		
+		// dlg_GetDataFromRemote_lv
+		dlg_GetDataFromRemote_lv,
+		
+		// Migrate
+		migrate_lv,
+		
 	}//public static enum DialogItemTags
 	
 	

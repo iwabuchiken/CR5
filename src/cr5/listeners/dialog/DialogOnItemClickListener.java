@@ -1,10 +1,15 @@
 package cr5.listeners.dialog;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import cr5.main.R;
 import cr5.utils.CONS;
 import cr5.utils.DBUtils;
 import cr5.utils.Methods;
+import cr5.utils.Methods_CR5;
+import cr5.utils.Methods_dlg;
 import cr5.utils.Migrate;
 import cr5.utils.Tags;
 import android.app.Activity;
@@ -18,8 +23,10 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class DialogOnItemClickListener implements OnItemClickListener {
@@ -80,11 +87,233 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 			
 			break;// case dlg_db_admin_lv
 		
+		case dlg_GetDataFromRemote_lv://-----------------------------
+			
+			item = (String) parent.getItemAtPosition(position);
+			
+			case_dlg_GetDataFromRemote_lv(item);
+			
+			break;// case dlg_GetDataFromRemote_lv
+			
+		case migrate_lv://-----------------------------
+			
+			item = (String) parent.getItemAtPosition(position);
+			
+			case_dlg_Migrate(item);
+			
+			break;// case migrate_lv
+			
 		default:
 			break;
 		}//switch (tag)
 		
 	}//public void onItemClick(AdapterView<?> parent, View v, int position, long id)
+
+	private void case_dlg_Migrate(String item) {
+		// TODO Auto-generated method stub
+		if (item.equals(actv.getString(
+				R.string.migrate_20130421_115608_ResetTableTexts))) {
+			
+//			migrate_20130421_115608_ResetTableTexts();
+			Migrate._20130421_115608_ResetTableTexts(actv, dlg1);
+
+		} else if (item.equals(actv.getString(
+				R.string.migrate_20130421_120721_ResetTable_Words))) {
+
+			Migrate._20130421_120721_ResetTable_Words(actv, dlg1);
+			
+//			migrate_20130421_120721_ResetTable_Words();
+			
+		} else if (item.equals(actv.getString(
+				R.string.migrate_20130421_131922_CreateTable_Word_list))) {
+
+			Migrate._20130421_131922_CreateTable_Word_list(actv, dlg1);
+			
+		} else if (item.equals(actv.getString(
+				R.string.migrate_20130421_135728_CreateTable_Updates_Texts))) {
+			
+			Migrate._20130421_135728_CreateTable_Updates_Texts(actv, dlg1);
+			
+		} else if (item.equals(actv.getString(
+				R.string.migrate_20130421_135837_CreateTable_Updates_Words))) {
+			
+			Migrate._20130421_135837_CreateTable_Updates_Words(actv, dlg1);
+			
+		} else if (item.equals(actv.getString(
+				R.string.migrate_20130421_135941_CreateTable_Updates_WordList))) {
+			
+			Migrate._20130421_135941_CreateTable_Updates_WordList(actv, dlg1);
+			
+		}
+		
+	}//private void case_dlg_Migrate(String item)
+
+	private void migrate_20130421_120721_ResetTable_Words() {
+		// TODO Auto-generated method stub
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		boolean res = dbu.dropTable(actv, CONS.DB.tname_words);
+		
+//		if (res == true) {
+			
+		res = dbu.createTable(
+				CONS.DB.tname_words,
+				CONS.DB.cols_texts,
+				CONS.DB.col_types_texts);
+		
+		if (res == true) {
+			
+			// debug
+			Toast.makeText(actv,
+					"Table reset => " + CONS.DB.tname_words,
+					Toast.LENGTH_LONG).show();
+			
+			// Log
+			Log.d("DialogOnItemClickListener.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]",
+					"Table reset => " + CONS.DB.tname_words);
+			
+			dlg1.dismiss();
+			
+		} else {//if (res == true)
+
+			// debug
+			Toast.makeText(actv,
+					"Sorry. Table creation failed. Now you don't have the table:"
+						+ CONS.DB.tname_words,
+					Toast.LENGTH_LONG).show();
+			
+			// Log
+			Log.d("DialogOnItemClickListener.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]",
+					"Sorry. Table creation failed. Now you don't have the table:"
+							+ CONS.DB.tname_words);
+			
+		}//if (res == true)
+			
+	}//private void migrate_20130421_120721_ResetTable_Words()
+
+	private void migrate_20130421_115608_ResetTableTexts() {
+		// TODO Auto-generated method stub
+		
+		case_dlg_db_admin_lv__ResetTableTexts();
+		
+	}//private void migrate_20130421_115608()
+
+	private void case_dlg_GetDataFromRemote_lv(String item) {
+		// TODO Auto-generated method stub
+		if (item.equals(actv.getString(
+							R.string.dlg_GetDataFromRemote_texts))) {
+			
+			_GetDataFromRemote_lv_Texts();
+			
+		} else if (item.equals(actv.getString(
+				R.string.dlg_GetDataFromRemote_words))) {
+			
+			_GetDataFromRemote_lv_Words();
+			
+		} else if (item.equals(actv.getString(
+				R.string.dlg_GetDataFromRemote_word_lists))) {
+			
+			_GetDataFromRemote_lv_WordList();
+			
+		}//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db))) {
+		
+	}//private void case_dlg_GetDataFromRemote_lv(String item)
+
+	private void _GetDataFromRemote_lv_WordList() {
+		// TODO Auto-generated method stub
+		boolean res = Methods_CR5.validateTableExists(actv, CONS.DB.tname_word_list);
+//		boolean res = Methods_CR5.validateTableExists_Words(actv);
+		
+		if (res == true) {
+			
+			Methods_CR5.getWordList(actv, CONS.Admin.remoteUrl_WordList);
+			
+			dlg1.dismiss();
+			
+		} else {//if (res == true)
+			
+			// Log
+			Log.d("ActvMain.java"
+					+ "["
+					+ Thread.currentThread().getStackTrace()[2]
+							.getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2]
+							.getMethodName() + "]",
+					"Validation: Table \"word_list\" => Failed");
+			
+			// debug
+			Toast.makeText(actv, "Can't prepare the table \"word_list\"", Toast.LENGTH_LONG).show();
+			
+		}//if (res == true)
+		
+	}//private void _GetDataFromRemote_lv_WordList()
+
+	private void _GetDataFromRemote_lv_Words() {
+		// TODO Auto-generated method stub
+		boolean res = Methods_CR5.validateTableExists_Words(actv);
+		
+		if (res == true) {
+			
+			Methods_CR5.getWords(actv, CONS.Admin.remoteUrl_Words);
+			
+			dlg1.dismiss();
+			
+		} else {//if (res == true)
+			
+			// Log
+			Log.d("ActvMain.java"
+					+ "["
+					+ Thread.currentThread().getStackTrace()[2]
+							.getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2]
+							.getMethodName() + "]",
+					"Validation: Table \"texts\" => Failed");
+			
+			// debug
+			Toast.makeText(actv, "Can't prepare the table \"texts\"", Toast.LENGTH_LONG).show();
+			
+		}//if (res == true)
+
+	}//private void _GetDataFromRemote_lv_Words()
+
+	private void _GetDataFromRemote_lv_Texts() {
+		// TODO Auto-generated method stub
+		boolean res = Methods_CR5.validateTableExists_texts(actv);
+		
+		if (res == true) {
+			
+			Methods_CR5.getTexts(actv, CONS.Admin.remoteUrl_Texts);
+			
+			dlg1.dismiss();
+			
+		} else {//if (res == true)
+			
+			// Log
+			Log.d("ActvMain.java"
+					+ "["
+					+ Thread.currentThread().getStackTrace()[2]
+							.getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2]
+							.getMethodName() + "]",
+					"Validation: Table \"texts\" => Failed");
+			
+			// debug
+			Toast.makeText(actv, "Can't prepare the table \"texts\"", Toast.LENGTH_LONG).show();
+			
+		}//if (res == true)
+
+	}//private void _GetDataFromRemote_lv_Texts()
 
 	private void case_dlg_db_admin_lv(String item) {
 		// TODO Auto-generated method stub
@@ -128,10 +357,10 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 				R.string.dlg_db_admin_item_add_column_millsec_refresh))) {//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
 
 			case_dlg_db_admin_lv__AddColRefresh();
-
+		
 		} else if (item.equals(actv.getString(
 				R.string.dlg_db_admin_item_migrate))) {//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
-
+			
 			case_dlg_db_admin_lv__Migrate();
 			
 		}//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
@@ -140,25 +369,77 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 
 	private void case_dlg_db_admin_lv__Migrate() {
 		// TODO Auto-generated method stub
-		boolean res = Migrate._20130419_100053_CreateTableWord(actv);
-//		boolean res = Migrate._20130419_102817_DropTableWord(actv);
+		dlg1.dismiss();
 		
-		if (res == true) {
-			
-			// debug
-			Toast.makeText(actv, "Migration => Done", Toast.LENGTH_LONG).show();
-			
-			dlg1.dismiss();
-			
-		} else {//if (res == true)
+		Dialog dlg = Methods_dlg.dlg_template_cancel(
+				actv, R.layout.dlg_db_admin, 
+				R.string.dlg_db_admin_title, 
+				R.id.dlg_db_admin_bt_cancel, 
+				Tags.DialogTags.dlg_generic_dismiss);
 
-			// debug
-			Toast.makeText(actv, "Migration => Failed", Toast.LENGTH_LONG).show();
+		/****************************
+		* 2. Prep => List
+		****************************/
+		String[] choices = {
+					actv.getString(R.string.migrate_20130421_115608_ResetTableTexts),
+					actv.getString(R.string.migrate_20130421_120721_ResetTable_Words),
+					actv.getString(R.string.migrate_20130421_131922_CreateTable_Word_list),
+					
+					actv.getString(
+							R.string.migrate_20130421_135728_CreateTable_Updates_Texts),
+					actv.getString(
+							R.string.migrate_20130421_135837_CreateTable_Updates_Words),
+					actv.getString(
+							R.string.migrate_20130421_135941_CreateTable_Updates_WordList),
+					
+		};
+		
+		List<String> list = new ArrayList<String>();
+		
+		for (String item : choices) {
+		
+			list.add(item);
+		
+		}
+		
+		// Log
+		Log.d("Methods_dlg.java" + "["
+		+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+		+ ":"
+		+ Thread.currentThread().getStackTrace()[2].getMethodName()
+		+ "]", "list.size()=" + list.size());
+		
+		/****************************
+		* 3. Adapter
+		****************************/
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+				actv,
+				//R.layout.dlg_db_admin,
+				android.R.layout.simple_list_item_1,
+				list
+		);
+		
+		/****************************
+		* 4. Set adapter
+		****************************/
+		ListView lv = (ListView) dlg.findViewById(R.id.dlg_db_admin_lv);
+		
+		lv.setAdapter(adapter);
+		
+		/****************************
+		* 5. Set listener to list
+		****************************/
+		lv.setTag(Tags.DialogItemTags.migrate_lv);
+		
+		lv.setOnItemClickListener(new DialogOnItemClickListener(actv, dlg));
+		
+		/****************************
+		* 6. Show dialog
+		****************************/
+		dlg.show();
 
-		}//if (res == true)
 		
-		
-	}
+	}//private void case_dlg_db_admin_lv__Migrate()
 
 	private void case_dlg_db_admin_lv__ResetTableHistory() {
 		// TODO Auto-generated method stub

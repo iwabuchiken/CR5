@@ -27,7 +27,6 @@ import cr5.utils.CONS;
 import cr5.utils.DBUtils_CR5;
 import cr5.utils.Methods;
 import cr5.utils.Methods_CR5;
-
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -38,12 +37,10 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 
 	Activity actv;
 	
-	
 	public Task_GetWords(Activity actv) {
 		// TODO Auto-generated constructor stub
 		this.actv = actv;
 	}
-
 
 	/***************************************
 	 * @return -2 ... HTTP_RESPONSE_NULL<br>
@@ -101,7 +98,8 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 				|| status == CONS.HTTP_Response.OK) {
 
 			// Log
-			Log.d("Task_GetWords.java" + "["
+
+			Log.d("Task_GetYomi.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -128,7 +126,8 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		HttpEntity entity = hr.getEntity();
 		
 		// Log
-		Log.d("Task_GetWords.java" + "["
+
+		Log.d("Task_GetYomi.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -141,6 +140,8 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		/***************************************
 		 * Get: Json array
 		 ***************************************/
+//		JSONObject joRoot = null;
+//		JSONArray jaRoot = null;
 		JSONArray jaRoot = this.doInBackground__2__GetJsonArray(entity);
 		
 		if (jaRoot == null) {
@@ -166,7 +167,6 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 			return CONS.Task_GetTexts.JSONARRAY_LENGTH_0;
 			
 		}//if (jaRoot == null)
-		
 		
 		/***************************************
 		 * Store data
@@ -226,7 +226,6 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 //			return CONS.Task_GetTexts.STORE_DATA_FAILED;
 //			
 //		}//if (res > 0)
-		
 		
 		/***************************************
 		 * Return
@@ -494,7 +493,8 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		} catch (ParseException e) {
 			
 			// Log
-			Log.e("Task_GetWords.java" + "["
+
+			Log.e("Task_GetYomi.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -506,7 +506,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		} catch (JSONException e) {
 
 			// Log
-			Log.e("Task_GetWords.java" + "["
+			Log.e("Task_GetYomi.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -518,7 +518,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		} catch (IOException e) {
 
 			// Log
-			Log.e("Task_GetWords.java" + "["
+			Log.e("Task_GetYomi.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -530,7 +530,7 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		}//try
 		
 		// Log
-		Log.d("Task_GetWords.java" + "["
+		Log.d("Task_GetYomi.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
@@ -899,33 +899,34 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 		 ***************************************/
 		DBUtils_CR5 dbu = new DBUtils_CR5(actv, CONS.DB.dbName);
 		
+		long lastRefreshedDate = dbu.getLastRefreshedDate(actv, CONS.DB.tname_Updates_Words);
 //		long lastRefreshedDate = dbu.getLastRefreshedDate(actv);
 		
 		
 		
 		String url = urls[0];
 		
-//		if (lastRefreshedDate != -1) {
-//			
-//			String param = __getHttpResponse_v2_GET__1_BuildParam(lastRefreshedDate);
-//			aa
+		if (lastRefreshedDate != -1) {
+			
+			String param = __getHttpResponse_v2_GET__1_BuildParam(lastRefreshedDate);
+			
+			// Log
+			Log.d("Task_GetWords.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "param=" + param);
+			
+			url += "?" + param;
+			
 //			// Log
 //			Log.d("Task_GetWords.java" + "["
 //					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 //					+ ":"
 //					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//					+ "]", "param=" + param);
-//			
-//			url += "?" + param;
-//			
-////			// Log
-////			Log.d("Task_GetWords.java" + "["
-////					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-////					+ ":"
-////					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-////					+ "]", "url=" + url);
-//			
-//		}//if (lastRefreshedDate == condition)
+//					+ "]", "url=" + url);
+			
+		}//if (lastRefreshedDate == condition)
 //		String param = __getHttpResponse_v2_GET__1_BuildParam(lastRefreshedDate);
 //		String url = 
 		
@@ -1084,4 +1085,4 @@ Task_GetWords extends AsyncTask<String, Integer, Integer> {
 	}
 
 	
-}//Task_GetTexts extends AsyncTask<String, Integer, Integer>
+}//Task_GetWords extends AsyncTask<String, Integer, Integer>

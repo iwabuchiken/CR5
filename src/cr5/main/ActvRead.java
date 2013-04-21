@@ -100,7 +100,7 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]",
-				"CONS.ActvRead.text.getDbId()=" + CONS.ActvRead.text.getDbId());
+				"CONS.ActvRead.text.getDbId()=" + CONS.ActvRead.text.getRemoteDbId());
 		
 		/***************************************
 		 * TTS
@@ -310,7 +310,8 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 		
 		if (res == true) {
 			
-			Methods_CR5.getWords(this, CONS.ActvRead.text.getDbId());
+			Methods_CR5.getWords(this, CONS.ActvRead.text.getRemoteDbId());
+//			Methods_CR5.getWords(this, CONS.ActvRead.text.getDbId());
 			// Log
 			Log.d("ActvRead.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()

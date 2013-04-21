@@ -22,7 +22,7 @@
     <string name="v1_tv_dir_path">Directory path</string>
     
     <!-- main_menu.xml -->
-	    <string name="opt_menu_actv_main_get_texts">Get texts</string>
+	    <string name="opt_menu_actv_main_get_texts">Get data</string>
 	    <string name="opt_menu_actv_main_db_activity">データベース</string>
 
 	<!-- menu_actv_read.xml -->
@@ -39,9 +39,38 @@
     	    				Reset table: texts</string>
     	<string name="dlg_db_admin_item_reset_table_history">
     	    				Reset table: history</string>
-    	<string name="dlg_db_admin_item_add_column_millsec_refresh">
-    	    				Add column to table: refresh...</string>
     	<string name="dlg_db_admin_item_migrate">
     	    				Migrate</string>
+    	
+    	<!-- http://stackoverflow.com/questions/8536375/android-replace-with-ellipsis-character -->
+    	<string name="dlg_db_admin_item_add_column_millsec_refresh">
+    	    				Add column to table: refresh&#8230;</string>
 	    
+    <!-- dlg_GetDataFromRemote(Activity actv) -->
+    	<string name="dlg_GetDataFromRemote_title">Get data from remote</string>
+    	<string name="dlg_GetDataFromRemote_texts">Texts</string>
+    	<string name="dlg_GetDataFromRemote_words">Words</string>
+    	<string name="dlg_GetDataFromRemote_word_lists">Word lists</string>
+
+    <!-- Migrations -->
+    	<string name="migrate_20130421_115608_ResetTableTexts">Reset table: texts</string>
+    	<string name="migrate_20130421_120721_ResetTable_Words">Reset table: words</string>
+    	
+    	<string name="migrate_20130421_131922_CreateTable_Word_list">
+    	    					Create table: Word list</string>
+    	    					
+    	<string name="migrate_20130421_135728_CreateTable_Updates_Texts">
+    	    					Create table: updates_texts</string>
+    	<string name="migrate_20130421_135837_CreateTable_Updates_Words">
+    	    					Create table: updates_words</string>
+    	<string name="migrate_20130421_135941_CreateTable_Updates_WordList">
+    	    					Create table: updates_word_list</string>
+    	    					
+    	<string name="migrate_20130421_140108_ResetTable_Updates_Texts">
+    	    					Reset table: updates_texts</string>
+    	<string name="migrate_20130421_140147_ResetTable_Updates_Words">
+    	    					Reset table: updates_words</string>
+    	<string name="migrate_20130421_140149_ResetTable_Updates_WordList">
+    	    					Reset table: updates_word_list</string>
+    	
 </resources>

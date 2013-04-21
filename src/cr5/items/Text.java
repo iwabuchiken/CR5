@@ -4,15 +4,21 @@ public class Text {
 
 	long	createdAt;
 	long	modifiedAt;
+
 	String	text;
 	String	url;
+	String	title;
+	String	memo;
+	
 	long	genreId;
 	long	subGenreId;
-	long	dbId;
 	long	langId;
-	String	memo;
-	String	title;
+	
+	String	wordIds;
+	
+	long	remoteDbId;
 	long	createdAt_mill;
+	long	updatedAt_mill;
 	
 	public Text() {
 		
@@ -29,7 +35,7 @@ public class Text {
 		url				= builder.url;
 		genreId			= builder.genreId;
 		subGenreId		= builder.subGenreId;
-		dbId			= builder.dbId;
+		remoteDbId			= builder.remoteDbId;
 		langId			= builder.langId;
 		memo			= builder.memo;
 		createdAt_mill	= builder.createdAt_mill;
@@ -41,16 +47,23 @@ public class Text {
 
 		private long	createdAt;
 		private long	modifiedAt;
+		
 		private String	text;
 		private String	url;
+		private String	title;
+		private String	memo;
+		
 		private long	genreId;
 		private long	subGenreId;
-		private long	dbId;
 		private long	langId;
-		private String	memo;
-		private String	title;
+		
+		private String	wordIds;
+		
+		private long	remoteDbId;
 		private long	createdAt_mill;
+		private long	updatedAt_mill;
 
+		
 		public Text build() {
 			return new Text(this);
 		}
@@ -76,9 +89,9 @@ public class Text {
 			
 		}
 
-		public Builder setDbId(long val) {
+		public Builder setRemoteDbId(long val) {
 			
-			dbId = val;	return this;
+			remoteDbId = val;	return this;
 			
 		}
 
@@ -127,6 +140,18 @@ public class Text {
 			
 		}
 
+
+
+		public Builder setUpdatedAt_mill(long updatedAt_mill) {
+			this.updatedAt_mill = updatedAt_mill;	return this;
+		}
+
+
+
+		public Builder setWordIds(String wordIds) {
+			this.wordIds = wordIds;	return this;
+		}
+
 	}//public static class Builder
 	
 	
@@ -148,9 +173,6 @@ public class Text {
 	}
 	public long getSubGenreId() {
 		return subGenreId;
-	}
-	public long getDbId() {
-		return dbId;
 	}
 	public long getLangId() {
 		return langId;
@@ -175,9 +197,6 @@ public class Text {
 	}
 	public void setSubGenreId(long subGenreId) {
 		this.subGenreId = subGenreId;
-	}
-	public void setDbId(long dbId) {
-		this.dbId = dbId;
 	}
 	public void setLangId(long langId) {
 		this.langId = langId;
@@ -210,6 +229,27 @@ public class Text {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+
+
+
+	public long getRemoteDbId() {
+		return remoteDbId;
+	}
+
+
+
+
+	public long getUpdatedAt_mill() {
+		return updatedAt_mill;
+	}
+
+
+
+
+	public String getWordIds() {
+		return wordIds;
 	}
 	
 	

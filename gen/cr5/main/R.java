@@ -64,10 +64,18 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f05000d;
-        public static final int dlg_db_admin_item_add_column_millsec_refresh=0x7f050019;
+        public static final int dlg_GetDataFromRemote_texts=0x7f05001c;
+        /**  dlg_GetDataFromRemote(Activity actv) 
+         */
+        public static final int dlg_GetDataFromRemote_title=0x7f05001b;
+        public static final int dlg_GetDataFromRemote_word_lists=0x7f05001e;
+        public static final int dlg_GetDataFromRemote_words=0x7f05001d;
+        /**  http://stackoverflow.com/questions/8536375/android-replace-with-ellipsis-character 
+         */
+        public static final int dlg_db_admin_item_add_column_millsec_refresh=0x7f05001a;
         public static final int dlg_db_admin_item_backup_db=0x7f050013;
         public static final int dlg_db_admin_item_create_table_refresh_history=0x7f050016;
-        public static final int dlg_db_admin_item_migrate=0x7f05001a;
+        public static final int dlg_db_admin_item_migrate=0x7f050019;
         public static final int dlg_db_admin_item_refresh_db=0x7f050014;
         public static final int dlg_db_admin_item_reset_table_history=0x7f050018;
         public static final int dlg_db_admin_item_reset_table_texts=0x7f050017;
@@ -93,6 +101,17 @@ public final class R {
          */
         public static final int menu_actv_read_get_words=0x7f050011;
         public static final int menu_settings=0x7f050000;
+        /**  Migrations 
+         */
+        public static final int migrate_20130421_115608_ResetTableTexts=0x7f05001f;
+        public static final int migrate_20130421_120721_ResetTable_Words=0x7f050020;
+        public static final int migrate_20130421_131922_CreateTable_Word_list=0x7f050021;
+        public static final int migrate_20130421_135728_CreateTable_Updates_Texts=0x7f050022;
+        public static final int migrate_20130421_135837_CreateTable_Updates_Words=0x7f050023;
+        public static final int migrate_20130421_135941_CreateTable_Updates_WordList=0x7f050024;
+        public static final int migrate_20130421_140108_ResetTable_Updates_Texts=0x7f050025;
+        public static final int migrate_20130421_140147_ResetTable_Updates_Words=0x7f050026;
+        public static final int migrate_20130421_140149_ResetTable_Updates_WordList=0x7f050027;
         public static final int opt_menu_actv_main_db_activity=0x7f050010;
         /**  main_menu.xml 
          */
