@@ -217,6 +217,15 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 		
 		CONS.ActvRead.text = dbu.get_TextFromDbId(this, dbId);
 		
+		// Log
+		Log.d("ActvRead.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]",
+				"CONS.ActvRead.text.getRemoteDbId()="
+						+ CONS.ActvRead.text.getRemoteDbId());
+		
 //		CONS.ActvRead.text = Methods_CR5.get_TextFromDbId(this, dbId);
 
 		/***************************************
@@ -314,6 +323,14 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 	private void opt_menu_actv_read_dict() {
 		// TODO Auto-generated method stub
 		Methods_dlg.dlg_word_list(this, CONS.ActvRead.text);
+		
+		// Log
+		Log.d("ActvRead.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]",
+				"CONS.ActvRead.text.getRemoteDbId()=" + CONS.ActvRead.text.getRemoteDbId());
 	}
 
 	private void opt_menu_actv_read_get_word_list() {

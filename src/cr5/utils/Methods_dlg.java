@@ -14,6 +14,7 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 
 import cr5.items.Text;
+import cr5.items.Word;
 import cr5.listeners.dialog.DialogButtonOnClickListener;
 import cr5.listeners.dialog.DialogButtonOnTouchListener;
 import cr5.listeners.dialog.DialogOnItemClickListener;
@@ -260,11 +261,24 @@ public class Methods_dlg {
 //	    dlg.getWindow().setAttributes(lp);  
 	    
 		/***************************************
+		 * Build: Word list
+		 ***************************************/
+		List<Word> wList = dlg_word_list__2_GetWordList(actv, text);
+
+		// Log
+		Log.d("Methods_dlg.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "wList.size()=" + wList.size());
+		
+		/***************************************
 		 * Set word list
 		 ***************************************/
 		TableLayout tl = (TableLayout) dlg.findViewById(R.id.dlg_word_list_xml_tl);
 		
-		for (int i = 0; i < 4; i++) {
+//		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < wList.size(); i++) {
 		
 			TableRow tr = new TableRow(actv);
 
@@ -274,6 +288,7 @@ public class Methods_dlg {
 //									100,
 									LayoutParams.WRAP_CONTENT);
 
+			// REF	http://stackoverflow.com/questions/4814124/how-to-change-margin-of-textview
 			trParams.setMargins(10, 1, 10, 1);
 			
 			tr.setLayoutParams(trParams);
@@ -281,41 +296,83 @@ public class Methods_dlg {
 			/***************************************
 			 * Layout: TableRow
 			 ***************************************/
+			TextView[] tvWs = new TextView[3];
+			
+			for (int j = 0; j < 3; j++) {
+				
+				tvWs[j] = new TextView(actv);
+
+//				tvWs[j].setTextSize(25);
+				tvWs[j].setTextSize(20);
+				tvWs[j].setTextColor(Color.BLACK);
+				tvWs[j].setBackgroundColor(Color.WHITE);
+				tvWs[j].setPadding(3, 5, 3, 5);
+
+//			LinearLayout.LayoutParams params =
+//			new LinearLayout.LayoutParams(
+	// http://stackoverflow.com/questions/3224193/set-the-layout-weight-of-a-textview-programmatically ## "answered Jul 31 '12 at 16:06"
+				TableRow.LayoutParams tvParams =
+						new TableRow.LayoutParams(
+			//							LayoutParams.WRAP_CONTENT,
+										100,
+										LayoutParams.WRAP_CONTENT);
+
+//				tvParams.setMargins(5, 1, 5, 1);
+				
+				tvWs[j].setLayoutParams(tvParams);
+//				tvWs[i].setLayoutParams(tvParams);
+				
+				
+
+
+			}//for (int j = 0; j < 3; j++)
+			
+			tvWs[0].setText(wList.get(i).getW1());
+			tvWs[1].setText(wList.get(i).getW2());
+			tvWs[2].setText(wList.get(i).getW3());
+			
+			for (int j = 0; j < 3; j++) {
+				
+				tr.addView(tvWs[j]);
+				
+			}//for (int j = 0; j < 3; j++)
+			
 			
 			
 //			TextView tv = new TextView(actv);
 			
-			for (int j = 0; j < 3; j++) {
-				
-				TextView tv = new TextView(actv);
-				
-				tv = new TextView(actv);
-		
-				/***************************************
-				 * Layout: TextView
-				 ***************************************/
-				tv.setTextSize(25);
-				tv.setTextColor(Color.BLACK);
-				tv.setBackgroundColor(Color.WHITE);
-				tv.setPadding(3, 5, 3, 5);
-				
-//				LinearLayout.LayoutParams params =
-//						new LinearLayout.LayoutParams(
-				// http://stackoverflow.com/questions/3224193/set-the-layout-weight-of-a-textview-programmatically ## "answered Jul 31 '12 at 16:06"
-				TableRow.LayoutParams tvParams =
-						new TableRow.LayoutParams(
-//										LayoutParams.WRAP_CONTENT,
-										100,
-										LayoutParams.WRAP_CONTENT);
-
-				tv.setLayoutParams(tvParams);
-				
-				tv.setText("j=" + String.valueOf(j));
-				
-				
-				tr.addView(tv);
-				
-			}//for (int j = 0; j < 3; j++)
+//			for (int j = 0; j < 3; j++) {
+//				
+//				TextView tv = new TextView(actv);
+//				
+//				tv = new TextView(actv);
+//		
+//				/***************************************
+//				 * Layout: TextView
+//				 ***************************************/
+//				tv.setTextSize(25);
+//				tv.setTextColor(Color.BLACK);
+//				tv.setBackgroundColor(Color.WHITE);
+//				tv.setPadding(3, 5, 3, 5);
+//				
+////				LinearLayout.LayoutParams params =
+////						new LinearLayout.LayoutParams(
+//				// http://stackoverflow.com/questions/3224193/set-the-layout-weight-of-a-textview-programmatically ## "answered Jul 31 '12 at 16:06"
+//				TableRow.LayoutParams tvParams =
+//						new TableRow.LayoutParams(
+////										LayoutParams.WRAP_CONTENT,
+//										100,
+//										LayoutParams.WRAP_CONTENT);
+//
+//				tv.setLayoutParams(tvParams);
+//				
+////				tv.setText(wList.get(i).get);
+//				tv.setText("j=" + String.valueOf(j));
+//				
+//				
+//				tr.addView(tv);
+//				
+//			}//for (int j = 0; j < 3; j++)
 			
 			
 			tl.addView(tr);
@@ -355,6 +412,113 @@ public class Methods_dlg {
 		//dlg.show();
 		
 	}//public static void dlg_word_list(Activity actv, Text text)
+
+	private static List<Word>
+	dlg_word_list__2_GetWordList(Activity actv, Text text) {
+		// TODO Auto-generated method stub
+		List<Word> wList = new ArrayList<Word>();
+		
+		/***************************************
+		 * Build: Word id list
+		 ***************************************/
+		long remoteDbId = text.getRemoteDbId();
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		SQLiteDatabase rdb = dbu.getReadableDatabase();
+		
+		Cursor c = rdb.query(
+				CONS.DB.tname_word_list,
+				null,
+				"text_id like ?",
+				new String[]{String.valueOf(remoteDbId)},
+				null, null, null);
+
+		// Log
+		Log.d("Methods_dlg.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "c.getCount()=" + c.getCount());
+		
+		// Log
+		Log.d("Methods_dlg.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "remoteDbId=" + remoteDbId);
+		
+		/***************************************
+		 * Got any item?
+		 ***************************************/
+		if (c.getCount() < 1) {
+			
+			// Log
+			Log.d("Methods_dlg.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "c < 1");
+			
+			rdb.close();
+			
+			return null;
+			
+		}//if (c == null || c.getCount() < 1)
+		
+		/***************************************
+		 * Build: List: Word id list
+		 ***************************************/
+		c.moveToFirst();
+		
+		List<Long> wordIdList = new ArrayList<Long>();
+		
+		for (int i = 0; i < c.getCount(); i++) {
+			
+			wordIdList.add(Long.valueOf(c.getLong(4)));
+			
+			c.moveToNext();
+			
+		}//for (int i = 0; i < c.getCount(); i++)
+		
+		// Log
+		Log.d("Methods_dlg.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "wordIdList.size()=" + wordIdList.size());
+		
+		/***************************************
+		 * Build: List: Word list
+		 ***************************************/
+//		wList
+		for (int i = 0; i < wordIdList.size(); i++) {
+			
+			long wordId = wordIdList.get(i).longValue();
+			
+			Word w = dbu.get_WordFromDbId(actv, wordId);
+			
+			// Log
+			Log.d("Methods_dlg.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "w.getW1()=" + w.getW1());
+			
+			wList.add(w);
+			
+			
+		}//for (int i = 0; i < wordIdList.size(); i++)
+		
+		/***************************************
+		 * Finish
+		 ***************************************/
+		rdb.close();
+		
+		return wList;
+		
+	}//dlg_word_list__2_GetWordList(Activity actv)
+	
 
 	private static Dialog
 	dlg_word_list__1_GetDialog(Activity actv) {
