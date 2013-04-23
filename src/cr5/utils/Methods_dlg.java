@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
+import cr5.items.Text;
 import cr5.listeners.dialog.DialogButtonOnClickListener;
 import cr5.listeners.dialog.DialogButtonOnTouchListener;
 import cr5.listeners.dialog.DialogOnItemClickListener;
@@ -22,12 +23,19 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.WindowManager;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -228,5 +236,160 @@ public class Methods_dlg {
 		dlg.show();
 		
 	}//public static void dlg_GetDataFromRemote(Activity actv)
+
+	
+	public static void dlg_word_list(Activity actv, Text text) {
+		// TODO Auto-generated method stub
+		/***************************************
+		 * Dialog
+		 ***************************************/
+		Dialog dlg = dlg_word_list__1_GetDialog(actv);
+		
+		/***************************************
+		 * Layout: Window
+		 ***************************************/
+		// REF	http://y-anz-m.blogspot.jp/2012/05/androiddialog.html
+//		DisplayMetrics metrics = actv.getResources().getDisplayMetrics();
+//		
+//	    int dialogWidth = (int) (metrics.widthPixels * 0.8); 
+//		
+//	    WindowManager.LayoutParams lp = dlg.getWindow().getAttributes();
+//	    
+//	    lp.width = dialogWidth;
+//	    
+//	    dlg.getWindow().setAttributes(lp);  
+	    
+		/***************************************
+		 * Set word list
+		 ***************************************/
+		TableLayout tl = (TableLayout) dlg.findViewById(R.id.dlg_word_list_xml_tl);
+		
+		for (int i = 0; i < 4; i++) {
+		
+			TableRow tr = new TableRow(actv);
+
+			TableLayout.LayoutParams trParams =
+					new TableLayout.LayoutParams(
+									LayoutParams.WRAP_CONTENT,
+//									100,
+									LayoutParams.WRAP_CONTENT);
+
+			trParams.setMargins(10, 1, 10, 1);
+			
+			tr.setLayoutParams(trParams);
+			
+			/***************************************
+			 * Layout: TableRow
+			 ***************************************/
+			
+			
+//			TextView tv = new TextView(actv);
+			
+			for (int j = 0; j < 3; j++) {
+				
+				TextView tv = new TextView(actv);
+				
+				tv = new TextView(actv);
+		
+				/***************************************
+				 * Layout: TextView
+				 ***************************************/
+				tv.setTextSize(25);
+				tv.setTextColor(Color.BLACK);
+				tv.setBackgroundColor(Color.WHITE);
+				tv.setPadding(3, 5, 3, 5);
+				
+//				LinearLayout.LayoutParams params =
+//						new LinearLayout.LayoutParams(
+				// http://stackoverflow.com/questions/3224193/set-the-layout-weight-of-a-textview-programmatically ## "answered Jul 31 '12 at 16:06"
+				TableRow.LayoutParams tvParams =
+						new TableRow.LayoutParams(
+//										LayoutParams.WRAP_CONTENT,
+										100,
+										LayoutParams.WRAP_CONTENT);
+
+				tv.setLayoutParams(tvParams);
+				
+				tv.setText("j=" + String.valueOf(j));
+				
+				
+				tr.addView(tv);
+				
+			}//for (int j = 0; j < 3; j++)
+			
+			
+			tl.addView(tr);
+			
+			
+		}//for (int i = 0; i < 4; i++)
+		
+		dlg.show();
+		
+//		Dialog dlg = new Dialog(actv);
+//		
+//		//
+//		dlg.setContentView(R.layout.dlg_word_list);
+//		
+//		// Title
+//		dlg.setTitle(R.string.dlg_word_list_title);
+//		
+//		/****************************
+//		* 2. Add listeners => OnTouch
+//		****************************/
+//		//
+//		Button btn_ok = (Button) dlg.findViewById(R.id.dlg_word_list_xml_bt_ok);
+//		
+//		//
+//		btn_ok.setTag(Tags.DialogTags.dlg_generic_dismiss);
+//		
+//		//
+//		btn_ok.setOnTouchListener(new DialogButtonOnTouchListener(actv, dlg));
+//		
+//		/****************************
+//		* 3. Add listeners => OnClick
+//		****************************/
+//		//
+//		btn_ok.setOnClickListener(new DialogButtonOnClickListener(actv, dlg));
+		
+		//
+		//dlg.show();
+		
+	}//public static void dlg_word_list(Activity actv, Text text)
+
+	private static Dialog
+	dlg_word_list__1_GetDialog(Activity actv) {
+		// TODO Auto-generated method stub
+		Dialog dlg = new Dialog(actv);
+		
+		//
+		dlg.setContentView(R.layout.dlg_word_list);
+		
+		// Title
+		dlg.setTitle(R.string.dlg_word_list_title);
+		
+		/****************************
+		* 2. Add listeners => OnTouch
+		****************************/
+		//
+		Button btn_ok = (Button) dlg.findViewById(R.id.dlg_word_list_xml_bt_ok);
+		
+		//
+		btn_ok.setTag(Tags.DialogTags.dlg_generic_dismiss);
+		
+		//
+		btn_ok.setOnTouchListener(new DialogButtonOnTouchListener(actv, dlg));
+		
+		/****************************
+		* 3. Add listeners => OnClick
+		****************************/
+		//
+		btn_ok.setOnClickListener(new DialogButtonOnClickListener(actv, dlg));
+
+		/***************************************
+		 * Return
+		 ***************************************/
+		return dlg;
+		
+	}//dlg_word_list__1_GetDialog(Activity actv)
 
 }//public class Methods_dialog

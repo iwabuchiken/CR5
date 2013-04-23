@@ -9,6 +9,7 @@ import cr5.utils.CONS;
 import cr5.utils.DBUtils;
 import cr5.utils.Methods;
 import cr5.utils.Methods_CR5;
+import cr5.utils.Methods_dlg;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -297,11 +298,22 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 			
 			opt_menu_actv_read_get_word_list();
 			
-			break;
+			break;// case R.id.opt_menu_actv_read_get_word_list
+			
+		case R.id.opt_menu_actv_read_dict://------------------------------
+			
+			opt_menu_actv_read_dict();
+			
+			break;// case R.id.opt_menu_actv_read_dict
 			
 		}//switch (item.getItemId()) {
 
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void opt_menu_actv_read_dict() {
+		// TODO Auto-generated method stub
+		Methods_dlg.dlg_word_list(this, CONS.ActvRead.text);
 	}
 
 	private void opt_menu_actv_read_get_word_list() {

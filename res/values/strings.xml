@@ -27,6 +27,7 @@
 
 	<!-- menu_actv_read.xml -->
 	    <string name="menu_actv_read_get_words">Get words</string>
+	    <string name="menu_actv_read_dict">Dictionary</string>
 	    
 	<!-- dlg_db_admin.xml -->
     	<string name="dlg_db_admin_title">DB Admin</string>
@@ -75,5 +76,7 @@
     	    					Reset table: updates_word_list</string>
     	<string name="migrate__ResetTable_Updates_WordList">
     	    					Reset table: updates_word_list</string>
+	<!-- dlg_word_list.xml -->
+    	<string name="dlg_word_list_title">Word list</string>
     	
 </resources>
