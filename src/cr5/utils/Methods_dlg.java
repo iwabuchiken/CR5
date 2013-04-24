@@ -275,6 +275,7 @@ public class Methods_dlg {
 		/***************************************
 		 * Set word list
 		 ***************************************/
+		// TableLayout => http://www.javadrive.jp/android/tablelayout/index4.html
 		TableLayout tl = (TableLayout) dlg.findViewById(R.id.dlg_word_list_xml_tl);
 		
 //		for (int i = 0; i < 4; i++) {
@@ -296,6 +297,7 @@ public class Methods_dlg {
 			/***************************************
 			 * Layout: TableRow
 			 ***************************************/
+			// Array of views => http://youinfo.sitemix.jp/uncategorized/705.html
 			TextView[] tvWs = new TextView[3];
 			
 			for (int j = 0; j < 3; j++) {

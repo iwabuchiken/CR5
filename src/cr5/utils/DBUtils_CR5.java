@@ -215,7 +215,9 @@ public class DBUtils_CR5 extends SQLiteOpenHelper{
 	
 	public boolean
 	storeData_History
-	(Activity actv, int numOfStoredItems, String idsString, long lastCreatedAt) {
+	(Activity actv, 
+			int numOfStoredItems, String idsString,
+			long lastCreatedAt, long lastUpdatedAt) {
 		// TODO Auto-generated method stub
 		/*----------------------------
 		* 1. Insert data
@@ -232,7 +234,8 @@ public class DBUtils_CR5 extends SQLiteOpenHelper{
 					insertData_History__1_getContentValues(
 								numOfStoredItems,
 								idsString,
-								lastCreatedAt
+								lastCreatedAt,
+								lastUpdatedAt
 					);
 			
 //			val.put(android.provider.BaseColumns._ID, ai.getDb_id());
@@ -244,7 +247,8 @@ public class DBUtils_CR5 extends SQLiteOpenHelper{
 			
 			// Insert data
 //			long res = wdb.insert(CONS.DB.tname_texts, null, val);
-			long res = wdb.insert(CONS.DB.tname_RefreshHistory, null, val);
+//			long res = wdb.insert(CONS.DB.tname_RefreshHistory, null, val);
+			long res = wdb.insert(CONS.DB.tname_Updates_Texts, null, val);
 			
 			if (res != -1) {
 			
@@ -295,9 +299,97 @@ public class DBUtils_CR5 extends SQLiteOpenHelper{
 		}//try
 	}//storeData_History()
 
+	public boolean
+	storeData_History
+	(Activity actv,
+			String tableName,
+			int numOfStoredItems, String idsString,
+			long lastCreatedAt, long lastUpdatedAt) {
+		// TODO Auto-generated method stub
+		/*----------------------------
+		 * 1. Insert data
+		----------------------------*/
+		SQLiteDatabase wdb = this.getWritableDatabase();
+		
+		try {
+			// Start transaction
+			wdb.beginTransaction();
+			
+			// ContentValues
+//			ContentValues val = new ContentValues();
+			ContentValues val =
+					insertData_History__1_getContentValues(
+							numOfStoredItems,
+							idsString,
+							lastCreatedAt,
+							lastUpdatedAt
+							);
+			
+//			val.put(android.provider.BaseColumns._ID, ai.getDb_id());
+			
+//			val.put("created_at", t.getCreatedAt());
+//			val.put("modified_at", t.getModifiedAt());
+			
+			
+			
+			// Insert data
+//			long res = wdb.insert(CONS.DB.tname_texts, null, val);
+//			long res = wdb.insert(CONS.DB.tname_RefreshHistory, null, val);
+//			long res = wdb.insert(CONS.DB.tname_Updates_Texts, null, val);
+			long res = wdb.insert(tableName, null, val);
+			
+			if (res != -1) {
+				
+				// Log
+				Log.d("DBUtils_CR5.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+								+ ":"
+								+ Thread.currentThread().getStackTrace()[2]
+										.getMethodName() + "]",
+										"Insertion => Successful: idsString=" + idsString);
+				
+				// Set as successful
+				wdb.setTransactionSuccessful();
+				
+				// End transaction
+				wdb.endTransaction();
+				
+				wdb.close();
+				
+				return true;
+				
+			} else {//if (res != -1)
+				
+				// Log
+				Log.d("DBUtils_CR5.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+								+ ":"
+								+ Thread.currentThread().getStackTrace()[2]
+										.getMethodName() + "]", "Insertion failed");
+				
+				wdb.close();
+				
+				return false;
+				
+			}//if (res != -1)
+			
+		} catch (Exception e) {
+			// Log
+			Log.e("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", e.toString());
+			
+			return false;
+		}//try
+	}//storeData_History()
+
 	private ContentValues
 	insertData_History__1_getContentValues
-	(int numOfStoredItems, String idsString, long lastCreatedAt) {
+	(int numOfStoredItems, String idsString, long lastCreatedAt, long lastUpdatedAt) {
 		ContentValues val = new ContentValues();
 
 //		android.provider.BaseColumns._ID,
@@ -310,7 +402,8 @@ public class DBUtils_CR5 extends SQLiteOpenHelper{
 		val.put("num_of_items", numOfStoredItems);
 		val.put("item_ids", idsString);
 		
-		val.put("createdAt_mill", lastCreatedAt);
+		val.put("created_at_mill", lastCreatedAt);
+		val.put("updated_at_mill", lastUpdatedAt);
 
 		return val;
 

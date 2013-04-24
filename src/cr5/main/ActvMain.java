@@ -1,11 +1,13 @@
 package cr5.main;
 
+
 import java.util.List;
 
 import cr5.adapters.TLAdapter;
 import cr5.items.Text;
 import cr5.utils.CONS;
 import cr5.utils.DBUtils;
+import cr5.utils.Methods;
 import cr5.utils.Methods_CR5;
 import cr5.utils.Methods_dlg;
 import cr5.utils.Migrate;
@@ -81,6 +83,8 @@ public class ActvMain extends ListActivity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		// TODO Auto-generated method stub
+		Methods.confirm_quit(this, keyCode);
+
 		return super.onKeyDown(keyCode, event);
 	}
 
@@ -256,4 +260,5 @@ public class ActvMain extends ListActivity {
 
 	}//onListItemClick(ListView l, View v, int position, long id)
 
+	
 }

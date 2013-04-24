@@ -270,6 +270,9 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 		 * 		=> No data in any of JSONObject in jaRoot
 		 * 			==> Set the current time
 		 ***************************************/
+		/***************************************
+		 * Get: lastCreatedAt
+		 ***************************************/
 		long lastCreatedAt = __StoreHistory__1__GetLastCreatedAt(jaRoot);
 		
 		if (lastCreatedAt == -1) {
@@ -284,6 +287,11 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", "lastCreatedAt=" + lastCreatedAt);
+		
+		/***************************************
+		 * Get: lastCreatedAt
+		 ***************************************/
+		long lastUpdatedAt = __StoreHistory__3__GetLastUpdatedAt(jaRoot);
 		
 		/***************************************
 		 * Get: Ids string
@@ -307,7 +315,8 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 								actv,
 								numOfStoredItems,
 								idsString,
-								lastCreatedAt);
+								lastCreatedAt,
+								lastUpdatedAt);
 		
 
 //		return 0;
@@ -406,6 +415,51 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 		return lastCreatedAt;
 		
 	}//__StoreHistory__1__GetLastCreatedAt(JSONArray jaRoot)
+
+	private long
+	__StoreHistory__3__GetLastUpdatedAt(JSONArray jaRoot) {
+		// TODO Auto-generated method stub
+		long lastUpdatedAt = -1;
+		
+		JSONObject joText = null;
+		
+//		for (int i = 1; i < jaRoot.length(); i++) {
+		for (int i = 0; i < jaRoot.length(); i++) {
+			
+			try {
+				
+				joText = jaRoot.getJSONObject(i);
+				
+				long currentUpdatedAt = joText.getLong("updated_at_mill");
+//				long currentCreatedAt = joText.getLong("created_at_mill");
+				
+				if (currentUpdatedAt > lastUpdatedAt) {
+					
+					lastUpdatedAt = currentUpdatedAt;
+					
+				}//if (currentUpdatedAt == condition)
+				
+			} catch (JSONException e) {
+				
+				// Log
+				Log.d("Task_GetTexts.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+								+ ":"
+								+ Thread.currentThread().getStackTrace()[2]
+										.getMethodName() + "]",
+										"item=" + i + " => " + e.toString());
+				
+				continue;
+				
+			}
+			
+		}//for (int i = 1; i < jaRoot.length(); i++)
+		
+		return lastUpdatedAt;
+		
+	}//__StoreHistory__1__GetLastUpdatedAt(JSONArray jaRoot)
 
 
 	/***************************************

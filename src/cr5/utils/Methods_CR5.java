@@ -183,19 +183,41 @@ public class Methods_CR5 {
 						
 						.build();
 			
-			// Log
-			Log.d("Methods_CR5.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ ":"
-					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-					+ "]", "createdAt=" + createdAt);
+//			// Log
+//			Log.d("Methods_CR5.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "createdAt=" + createdAt);
 			
+//			// Log
+//			Log.d("Methods_CR5.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "time=" + Methods.convert_railsTimeLabel2MilSec(createdAt));
+			
+//			// Log
+//			Log.d("Methods_CR5.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]",
+//					"Time label="
+//					+ Methods.get_TimeLabel(Methods.convert_railsTimeLabel2MilSec(createdAt)));
+
 			// Log
 			Log.d("Methods_CR5.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-					+ "]", "time=" + Methods.convert_railsTimeLabel2MilSec(createdAt));
+					+ "]", "t.getUpdatedAt_mill()=" + t.getUpdatedAt_mill());
+//			// Log
+//			Log.d("Methods_CR5.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "joText=" + joText);
 			
 			// Log
 			Log.d("Methods_CR5.java" + "["
@@ -203,15 +225,15 @@ public class Methods_CR5 {
 					+ ":"
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
 					+ "]",
-					"Time label="
-					+ Methods.get_TimeLabel(Methods.convert_railsTimeLabel2MilSec(createdAt)));
-
-//			// Log
-//			Log.d("Methods_CR5.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ ":"
-//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//					+ "]", "joText=" + joText);
+					"joText.getLong(\"updated_at_mill\")="
+							+ joText.getLong("updated_at_mill"));
+			
+			// Log
+			Log.d("Methods_CR5.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "updatedAt_mill=" + updatedAt_mill);
 			
 			if (t != null) {
 				
@@ -225,18 +247,19 @@ public class Methods_CR5 {
 								.getMethodName() + "]",
 						"t.getUrl()=" + t.getUrl());
 				
-			} else {//if (t != null)
-				
-				// Log
-				Log.d("Methods_CR5.java"
-						+ "["
-						+ Thread.currentThread().getStackTrace()[2]
-								.getLineNumber()
-						+ ":"
-						+ Thread.currentThread().getStackTrace()[2]
-								.getMethodName() + "]", "t == null");
-				
-			}//if (t != null)
+			}
+//			else {//if (t != null)
+//				
+//				// Log
+//				Log.d("Methods_CR5.java"
+//						+ "["
+//						+ Thread.currentThread().getStackTrace()[2]
+//								.getLineNumber()
+//						+ ":"
+//						+ Thread.currentThread().getStackTrace()[2]
+//								.getMethodName() + "]", "t == null");
+//				
+//			}//if (t != null)
 			
 			
 			return t;

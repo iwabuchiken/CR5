@@ -167,52 +167,52 @@ Task_GetWordList extends AsyncTask<String, Integer, Integer> {
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", "numOfStoredItems=" + numOfStoredItems);
 
-		//debug
-		return 0;
+//		//debug
+//		return 0;
 		
-//		/***************************************
-//		 * Store: history (Also, return)
-//		 ***************************************/
-//		if (numOfStoredItems == jaRoot.length()) {
-//			
-//			boolean res = this.doInBackground__4__StoreHistory(jaRoot, numOfStoredItems);
-//			
-//			if (res == true) {
-//				
-//				return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL_WITH_HISTORY;
-//				
-//			} else {//if (res == true)
-//				
+		/***************************************
+		 * Store: history (Also, return)
+		 ***************************************/
+		if (numOfStoredItems == jaRoot.length()) {
+			
+			boolean res = this.doInBackground__4__StoreHistory(jaRoot, numOfStoredItems);
+			
+			if (res == true) {
+				
+				return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL_WITH_HISTORY;
+				
+			} else {//if (res == true)
+				
+				return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL_NO_HISTORY;
+				
+			}//if (res == true)
+			
+//			return CONS.ReturnValue.RETURN_OK;
+//			return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL;
+			
+		} else if (numOfStoredItems > 0) {
+			
+			boolean res = this.doInBackground__4__StoreHistory(jaRoot, numOfStoredItems);
+	
+			if (res == true) {
+				
+				return CONS.Task_GetTexts.STORE_DATA_PARTIAL_WITH_HISTORY;
+				
+			} else {//if (res == true)
+				
+				return CONS.Task_GetTexts.STORE_DATA_PARTIAL_NO_HISTORY;
+				
 //				return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL_NO_HISTORY;
-//				
-//			}//if (res == true)
-//			
-////			return CONS.ReturnValue.RETURN_OK;
-////			return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL;
-//			
-//		} else if (numOfStoredItems > 0) {
-//			
-//			boolean res = this.doInBackground__4__StoreHistory(jaRoot, numOfStoredItems);
-//	
-//			if (res == true) {
-//				
-//				return CONS.Task_GetTexts.STORE_DATA_PARTIAL_WITH_HISTORY;
-//				
-//			} else {//if (res == true)
-//				
-//				return CONS.Task_GetTexts.STORE_DATA_PARTIAL_NO_HISTORY;
-//				
-////				return CONS.Task_GetTexts.STORE_DATA_SUCCESSFUL_NO_HISTORY;
-//				
-//			}//if (res == true)
-//
-////			return CONS.Task_GetTexts.STORE_DATA_PARTIAL;
-//			
-//		} else {//if (res > 0)
-//			
-//			return CONS.Task_GetTexts.STORE_DATA_FAILED;
-//			
-//		}//if (res > 0)
+				
+			}//if (res == true)
+
+//			return CONS.Task_GetTexts.STORE_DATA_PARTIAL;
+			
+		} else {//if (res > 0)
+			
+			return CONS.Task_GetTexts.STORE_DATA_FAILED;
+			
+		}//if (res > 0)
 //		
 		
 		/***************************************
@@ -279,6 +279,11 @@ Task_GetWordList extends AsyncTask<String, Integer, Integer> {
 				+ "]", "lastCreatedAt=" + lastCreatedAt);
 		
 		/***************************************
+		 * Get: lastCreatedAt
+		 ***************************************/
+		long lastUpdatedAt = __StoreHistory__3__GetLastUpdatedAt(jaRoot);
+
+		/***************************************
 		 * Get: Ids string
 		 ***************************************/
 		String idsString = __StoreHistory__2__GetIdsString(jaRoot);
@@ -298,15 +303,61 @@ Task_GetWordList extends AsyncTask<String, Integer, Integer> {
 //		boolean res = dbu.storeData_History(
 		return dbu.storeData_History(
 								actv,
+								CONS.DB.tname_Updates_WordList,
 								numOfStoredItems,
 								idsString,
-								lastCreatedAt);
+								lastCreatedAt,
+								lastUpdatedAt);
 		
 
 //		return 0;
 		
 	}//doInBackground__4__StoreHistory(JSONArray jaRoot)
 
+	private long
+	__StoreHistory__3__GetLastUpdatedAt(JSONArray jaRoot) {
+		// TODO Auto-generated method stub
+		long lastUpdatedAt = -1;
+		
+		JSONObject joText = null;
+		
+//		for (int i = 1; i < jaRoot.length(); i++) {
+		for (int i = 0; i < jaRoot.length(); i++) {
+			
+			try {
+				
+				joText = jaRoot.getJSONObject(i);
+				
+				long currentUpdatedAt = joText.getLong("updated_at_mill");
+//				long currentCreatedAt = joText.getLong("created_at_mill");
+				
+				if (currentUpdatedAt > lastUpdatedAt) {
+					
+					lastUpdatedAt = currentUpdatedAt;
+					
+				}//if (currentUpdatedAt == condition)
+				
+			} catch (JSONException e) {
+				
+				// Log
+				Log.d("Task_GetTexts.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+								+ ":"
+								+ Thread.currentThread().getStackTrace()[2]
+										.getMethodName() + "]",
+										"item=" + i + " => " + e.toString());
+				
+				continue;
+				
+			}
+			
+		}//for (int i = 1; i < jaRoot.length(); i++)
+		
+		return lastUpdatedAt;
+		
+	}//__StoreHistory__1__GetLastUpdatedAt(JSONArray jaRoot)
 
 	private String __StoreHistory__2__GetIdsString(JSONArray jaRoot) {
 		// TODO Auto-generated method stub
