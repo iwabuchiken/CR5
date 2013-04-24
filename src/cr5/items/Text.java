@@ -31,15 +31,20 @@ public class Text {
 		// TODO Auto-generated constructor stub
 		createdAt		= builder.createdAt;
 		modifiedAt		= builder.modifiedAt;
+		
 		text			= builder.text;
 		url				= builder.url;
+		title			= builder.title;
+		memo			= builder.memo;
+		
 		genreId			= builder.genreId;
 		subGenreId		= builder.subGenreId;
-		remoteDbId			= builder.remoteDbId;
 		langId			= builder.langId;
-		memo			= builder.memo;
+		
+		remoteDbId		= builder.remoteDbId;
 		createdAt_mill	= builder.createdAt_mill;
-		title			= builder.title;
+		updatedAt_mill	= builder.updatedAt_mill;
+		
 		
 	}//public Text(Builder builder)
 

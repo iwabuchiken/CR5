@@ -58,6 +58,9 @@ import android.os.AsyncTask;
 // Apache
 import org.apache.commons.lang.StringUtils;
 
+import cr5.listeners.dialog.DialogListener;
+import cr5.main.R;
+
 public class Methods {
 
 	static int counter;		// Used => sortFileList()
@@ -1127,6 +1130,31 @@ public class Methods {
 		return sdf1.format(new Date(millSec));
 		
 	}//public static String get_TimeLabel(long millSec)
+
+	public static void confirm_quit(Activity actv, int keyCode) {
+		
+		// TODO �����������ꂽ���\�b�h�E�X�^�u
+		if (keyCode==KeyEvent.KEYCODE_BACK) {
+			
+			AlertDialog.Builder dialog=new AlertDialog.Builder(actv);
+			
+	        dialog.setTitle(actv.getString(R.string.generic_tv_confirm));
+	        dialog.setMessage("終了しますか？");
+	        
+	        dialog.setPositiveButton(
+	        				actv.getString(R.string.generic_bt_ok),
+	        				new DialogListener(actv, dialog, 0));
+	        
+	        dialog.setNegativeButton(
+	        				actv.getString(R.string.generic_bt_cancel),
+	        				new DialogListener(actv, dialog, 1));
+	        
+	        dialog.create();
+	        dialog.show();
+			
+		}//if (keyCode==KeyEvent.KEYCODE_BACK)
+		
+	}//public static void confirm_quit(Activity actv, int keyCode)
 
 }//public class Methods
 

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cr5.items.Text;
+import cr5.items.Word;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -1260,16 +1261,43 @@ public class DBUtils extends SQLiteOpenHelper{
 		t = new Text.Builder()
 				.setCreatedAt(c.getLong(1))
 				.setModifiedAt(c.getLong(2))
+				
 				.setText(c.getString(3))
 				.setUrl(c.getString(4))
-				.setGenreId(c.getInt(5))
-				.setSubGenreId(c.getInt(6))
-				.setRemoteDbId(c.getInt(7))
-				.setLangId(c.getInt(8))
-				.setMemo(c.getString(9))
-				.setCreatedAt_mill(c.getLong(10))
-				.setTitle(c.getString(11))
+				.setTitle(c.getString(5))
+				.setMemo(c.getString(6))
+				
+				.setGenreId(c.getInt(7))
+				.setSubGenreId(c.getInt(8))
+				.setLangId(c.getInt(9))
+				
+				.setWordIds(c.getString(10))
+				
+				.setRemoteDbId(c.getInt(11))
+				
+				.setCreatedAt_mill(c.getLong(12))
+				.setUpdatedAt_mill(c.getLong(13))
+				
 				.build();
+		
+		// Log
+		Log.d("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]",
+				"t.getRemoteDbId()=" + t.getRemoteDbId()
+				+ "/"
+				+ "t.getTitle()" + t.getTitle());
+		
+		// Log
+		Log.d("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "c.getInt(7)=" + c.getInt(7));
+		
+		
 		
 		/***************************************
 		 * Finish
@@ -1279,6 +1307,122 @@ public class DBUtils extends SQLiteOpenHelper{
 		return t;
 		
 	}//public Text get_TextFromDbId(Activity actv, long dbId)
+
+	public Word get_WordFromDbId(Activity actv, long wordId) {
+		
+		SQLiteDatabase rdb = this.getReadableDatabase();
+		
+		/***************************************
+		 * Query
+		 ***************************************/
+		Cursor c = null;
+		
+		try {
+			
+//			c = rdb.rawQuery(sql, null);
+			c = rdb.query(
+					CONS.DB.tname_words,
+					null,
+//					CONS.DB.cols_texts[0] + " like ?",
+//					CONS.DB.cols_texts[4] + " like ?",	// "dbId"
+					CONS.DB.cols_words[6] + " like ?",	// "remote_db_id"	=> As of: B7/v-3.1
+					new String[]{String.valueOf(wordId)},
+					null, null, null);
+			
+		} catch (Exception e) {
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception => " + e.toString());
+			
+			rdb.close();
+			
+			return null;
+		}
+
+		/***************************************
+		 * Build: Text
+		 ***************************************/
+		// Log
+		Log.d("DBUtils.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "c.getCount()=" + c.getCount());
+
+		if (c.getCount() < 1) {
+			
+			rdb.close();
+			
+			return null;
+			
+		}//if (c.getCount() < 1)
+		
+		c.moveToFirst();
+		
+//		Text t = null;
+//		
+//		t = new Text.Builder()
+//				.setCreatedAt(c.getLong(1))
+//				.setModifiedAt(c.getLong(2))
+//				
+//				.setText(c.getString(3))
+//				.setUrl(c.getString(4))
+//				.setTitle(c.getString(5))
+//				.setMemo(c.getString(6))
+//				
+//				.setGenreId(c.getInt(7))
+//				.setSubGenreId(c.getInt(8))
+//				.setLangId(c.getInt(9))
+//				
+//				.setWordIds(c.getString(10))
+//				
+//				.setRemoteDbId(c.getInt(11))
+//				
+//				.setCreatedAt_mill(c.getLong(12))
+//				.setUpdatedAt_mill(c.getLong(13))
+//				
+//				.build();
+
+//		// 0
+//		android.provider.BaseColumns._ID,
+//		// 1			2
+//		"created_at", "modified_at",
+//		// 3	4	5
+//		"w1", "w2", "w3",
+//		// 6			7		8
+//		"text_id", "text_ids", "lang_id",
+//		// 9
+//		"remote_db_id",
+//		// 10					11
+//		"created_at_mill", "updated_at_mill"
+
+		Word w = new Word.Builder()
+					.setCreatedAt(c.getLong(1))
+					.setModifiedAt(c.getLong(2))
+					
+					.setW1(c.getString(3))
+					.setW2(c.getString(4))
+					.setW3(c.getString(5))
+					
+					.setText_id(c.getLong(6))
+					.setText_ids(c.getString(7))
+					.setLang_id(c.getLong(8))
+					
+					.setRemoteDbId(c.getLong(9))
+					.setCreatedAt_mill(c.getLong(10))
+					.setUpdatedAt_mill(c.getLong(11))
+					
+					.build();
+		
+		/***************************************
+		 * Finish
+		 ***************************************/
+		rdb.close();
+		
+		return w;
+		
+	}//public Word get_WordFromDbId(Activity actv, long wordId)
 
 }//public class DBUtils
 
