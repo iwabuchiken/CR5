@@ -112,6 +112,9 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 
 	private void case_dlg_Migrate(String item) {
 		// TODO Auto-generated method stub
+		/***************************************
+		 * Reset tables: Main
+		 ***************************************/
 		if (item.equals(actv.getString(
 				R.string.migrate_20130421_115608_ResetTableTexts))) {
 			
@@ -123,13 +126,53 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 
 			Migrate._20130421_120721_ResetTable_Words(actv, dlg1);
 			
-//			migrate_20130421_120721_ResetTable_Words();
+		} else if (item.equals(actv.getString(
+				R.string.migrate_ResetTable_WordList))) {
 			
+			Migrate._ResetTable_WordList(actv, dlg1);
+//			migrate_20130421_120721_ResetTable_Words();
+		
+		/***************************************
+		 * Reset tables: Updates
+		 ***************************************/
+		} else if (item.equals(actv.getString(
+				R.string.migrate__ResetTable_Updates_Text))) {
+
+			Migrate.migrate__ResetTable_Updates(
+					actv, dlg1,
+					CONS.DB.tname_Updates_Texts,
+					CONS.DB.cols_Updates_Texts,
+					CONS.DB.col_types_Updates_Texts);
+			
+		} else if (item.equals(actv.getString(
+				R.string.migrate_ResetTable_Updates_Words))) {
+			
+			Migrate.migrate__ResetTable_Updates(
+					actv, dlg1,
+					CONS.DB.tname_Updates_Words,
+					CONS.DB.cols_Updates_Words,
+					CONS.DB.col_types_Updates_Words);
+			
+		} else if (item.equals(actv.getString(
+				R.string.migrate_ResetTable_Updates_WordList))) {
+			
+			Migrate.migrate__ResetTable_Updates(
+					actv, dlg1,
+					CONS.DB.tname_Updates_WordList,
+					CONS.DB.cols_Updates_WordList,
+					CONS.DB.col_types_Updates_WordList);
+			
+		/***************************************
+		 * Create tables: Main
+		 ***************************************/
 		} else if (item.equals(actv.getString(
 				R.string.migrate_20130421_131922_CreateTable_Word_list))) {
 
 			Migrate._20130421_131922_CreateTable_Word_list(actv, dlg1);
-			
+
+		/***************************************
+		 * Create tables: Updates
+		 ***************************************/
 		} else if (item.equals(actv.getString(
 				R.string.migrate_20130421_135728_CreateTable_Updates_Texts))) {
 			
@@ -145,10 +188,6 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 			
 			Migrate._20130421_135941_CreateTable_Updates_WordList(actv, dlg1);
 			
-		} else if (item.equals(actv.getString(
-				R.string.migrate_ResetTable_WordList))) {
-			
-			Migrate._ResetTable_WordList(actv, dlg1);
 			
 		}
 		
@@ -450,6 +489,10 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 					actv.getString(R.string.migrate_20130421_115608_ResetTableTexts),
 					actv.getString(R.string.migrate_20130421_120721_ResetTable_Words),
 					actv.getString(R.string.migrate_ResetTable_WordList),
+					
+					actv.getString(R.string.migrate__ResetTable_Updates_Text),
+					actv.getString(R.string.migrate_ResetTable_Updates_Words),
+					actv.getString(R.string.migrate_ResetTable_Updates_WordList),
 					
 					actv.getString(R.string.migrate_20130421_131922_CreateTable_Word_list),
 					

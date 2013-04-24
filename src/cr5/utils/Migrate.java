@@ -374,4 +374,58 @@ public class Migrate {
 		
 	}//_ResetTable_Updates_WordList(Activity actv, Dialog dlg1)
 
+	public static void
+	migrate__ResetTable_Updates
+	(Activity actv, Dialog dlg1,
+			String tableName, String[] colNames, String[] colTypes) {
+		// TODO Auto-generated method stub
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		boolean res = dbu.dropTable(actv, tableName);
+		
+//		if (res == true) {
+			
+			res = dbu.createTable(
+					tableName,
+					colNames,
+					colTypes);
+			
+			if (res == true) {
+				
+				// debug
+				Toast.makeText(actv,
+						"Table reset => " + tableName,
+						Toast.LENGTH_LONG).show();
+				
+				// Log
+				Log.d("Migrate.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2].getMethodName()
+						+ "]",
+						"Table reset => " + tableName);
+				
+				dlg1.dismiss();
+				
+			} else {//if (res == true)
+
+				// debug
+				Toast.makeText(actv,
+						"Sorry. Table creation failed. Now you don't have the table:"
+							+ tableName,
+						Toast.LENGTH_LONG).show();
+				
+				// Log
+				Log.d("Migrate.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2].getMethodName()
+						+ "]",
+						"Sorry. Table creation failed. Now you don't have the table:"
+								+ tableName);
+				
+			}//if (res == true)
+
+	}//migrate__ResetTable_Updates_Text
+
 }//public class Migrate
