@@ -1424,5 +1424,132 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 	}//public Word get_WordFromDbId(Activity actv, long wordId)
 
+	/***************************************
+	 * @return -62 ... Exception<br>
+	 * 			-60 ... Error<br>
+	 * 			-1 ... Obtained data has no value for "created_at_mill"
+	 ***************************************/
+	public long get_LastCreatedAt(Activity actv, String tableName) {
+		// TODO Auto-generated method stub
+		SQLiteDatabase rdb = this.getReadableDatabase();
+		
+		/***************************************
+		 * Query
+		 ***************************************/
+//		String sql = "SELECT * FROM " + CONS.DB.tname_texts;
+
+		/***************************************
+		 * Get: Id of the last inserted item
+		 * 
+		 ***************************************/
+		// REF => http://stackoverflow.com/questions/4017903/get-last-inserted-value-from-sqlite-database-android
+		Cursor c = null;
+		
+		try {
+			
+//			c = rdb.rawQuery(sql, null);
+			c = rdb.query(
+//			c = rdb.query(
+					"sqlite_sequence",
+					null,
+					"name = ?",
+//					CONS.DB.cols_texts[0] + " like ?",
+//					CONS.DB.cols_texts[4] + " like ?",	// "dbId"
+					new String[]{tableName},
+					null,
+					null, null, null);
+			
+		} catch (Exception e) {
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception => " + e.toString());
+			
+			rdb.close();
+			
+			return (long) CONS.ReturnValue.RETURN_EXCEPTION;
+		}
+
+		long lastId = 0;
+		
+		if (c.moveToFirst()) {
+
+			lastId = c.getLong(c.getColumnIndex("seq"));
+			
+		} else {//if (c.moveToFirst())
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "c.moveToFirst() => null");
+			
+			rdb.close();
+			
+			return (long) CONS.ReturnValue.RETURN_ERROR;
+			
+		}//if (c.moveToFirst())
+		
+		/***************************************
+		 * Get: The last item
+		 ***************************************/
+		try {
+			
+//			c = rdb.rawQuery(sql, null);
+			c = rdb.query(
+//			c = rdb.query(
+					tableName,
+					null,
+					CONS.DB.cols_texts_full[0] + " = ?",
+//					CONS.DB.cols_texts[0] + " like ?",
+//					CONS.DB.cols_texts[4] + " like ?",	// "dbId"
+					new String[]{String.valueOf(lastId)},
+					null,
+					null, null, null);
+			
+		} catch (Exception e) {
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception => " + e.toString());
+			
+			rdb.close();
+			
+			return (long) CONS.ReturnValue.RETURN_EXCEPTION;
+		}
+		
+		long lastCreatedAt = -1;
+		
+		if (c.moveToFirst()) {
+
+			lastCreatedAt = c.getLong(c.getColumnIndex("created_at_mill"));
+			
+		} else {//if (c.moveToFirst())
+			
+			// Log
+			Log.d("DBUtils.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "c.moveToFirst() => null");
+			
+			rdb.close();
+			
+			return (long) CONS.ReturnValue.RETURN_ERROR;
+			
+		}//if (c.moveToFirst())
+
+		
+		
+		/***************************************
+		 * Finish
+		 ***************************************/
+		rdb.close();
+		
+		return lastCreatedAt;
+		
+	}//public void get_LastCreatedAt(Activity actv, String tableName)
+
 }//public class DBUtils
 

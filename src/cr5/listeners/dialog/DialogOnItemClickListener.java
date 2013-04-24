@@ -16,6 +16,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.Display;
@@ -297,6 +298,16 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 		
 		if (res == true) {
 			
+			String url = _GetDataFromRemote_lv_Texts__1__BuildUrl(actv);
+			
+			// Log
+			Log.d("DialogOnItemClickListener.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "url=" + url);
+			
+			
 			Methods_CR5.getTexts(actv, CONS.Admin.remoteUrl_Texts);
 			
 			dlg1.dismiss();
@@ -319,6 +330,56 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 		}//if (res == true)
 
 	}//private void _GetDataFromRemote_lv_Texts()
+
+	private String
+	_GetDataFromRemote_lv_Texts__1__BuildUrl(Activity actv) {
+		// TODO Auto-generated method stub
+//		CONS.Admin.remoteUrl_Texts
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		long lastCreatedAt = dbu.get_LastCreatedAt(actv, CONS.DB.tname_Updates_Texts);
+		
+		// Log
+		Log.d("DialogOnItemClickListener.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "lastCreatedAt=" + lastCreatedAt);
+		
+		/***************************************
+		 * Return
+		 ***************************************/
+		if (lastCreatedAt > 0) {
+			
+			Uri.Builder ub = Uri.parse(CONS.Admin.remoteUrl_Texts).buildUpon();
+			
+			ub.appendQueryParameter("since", String.valueOf(lastCreatedAt));
+			
+//			// Log
+//			Log.d("DialogOnItemClickListener.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "ub.build().toString()=" + ub.build().toString());
+			
+			return ub.build().toString();
+			
+		} else {//if (condition)
+			
+			// Log
+			Log.d("DialogOnItemClickListener.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "lastCreatedAt <= 0");
+			
+			return CONS.Admin.remoteUrl_Texts;
+			
+		}//if (condition)
+		
+		
+//		return null;
+	}//_GetDataFromRemote_lv_Texts__1__BuildUrl(Activity actv)
 
 	private void case_dlg_db_admin_lv(String item) {
 		// TODO Auto-generated method stub

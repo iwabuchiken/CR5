@@ -312,8 +312,10 @@ public class CONS {
 	public static class ReturnValue {
 		
 		public static final int RETURN_OK = 60;
+
 		public static final int RETURN_ERROR = -60;
 		public static final int RETURN_EXECUTION_ABORTED = -61;
+		public static final int RETURN_EXCEPTION = -62;
 	}
 	
 	public static class Task_GetTexts {
