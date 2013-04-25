@@ -38,20 +38,21 @@ public final class R {
         public static final int actv_read_bt_back=0x7f080000;
         public static final int dlg_db_admin_bt_cancel=0x7f080002;
         public static final int dlg_db_admin_lv=0x7f080001;
-        public static final int dlg_word_list_xml_bt_ok=0x7f080004;
-        public static final int dlg_word_list_xml_tl=0x7f080003;
-        public static final int lr_actv_main_tv_created_at=0x7f080007;
-        public static final int lr_actv_main_tv_genre=0x7f080006;
-        public static final int lr_actv_main_tv_title=0x7f080005;
-        public static final int lr_actv_read_tv_sen=0x7f080008;
-        public static final int lr_text_list_tv_created_at=0x7f08000c;
-        public static final int lr_text_list_tv_genre=0x7f08000a;
-        public static final int lr_text_list_tv_subgenre=0x7f08000b;
-        public static final int lr_text_list_tv_title=0x7f080009;
-        public static final int opt_actvmain_get_texts=0x7f08000e;
-        public static final int opt_menu_actv_main_db_activity=0x7f08000d;
-        public static final int opt_menu_actv_read_dict=0x7f080010;
-        public static final int opt_menu_actv_read_get_word_list=0x7f08000f;
+        public static final int dlg_word_list_xml_bt_ok=0x7f080005;
+        public static final int dlg_word_list_xml_tl=0x7f080004;
+        public static final int lr_actv_main_tv_created_at=0x7f080008;
+        public static final int lr_actv_main_tv_genre=0x7f080007;
+        public static final int lr_actv_main_tv_title=0x7f080006;
+        public static final int lr_actv_read_tv_sen=0x7f080009;
+        public static final int lr_text_list_tv_created_at=0x7f08000d;
+        public static final int lr_text_list_tv_genre=0x7f08000b;
+        public static final int lr_text_list_tv_subgenre=0x7f08000c;
+        public static final int lr_text_list_tv_title=0x7f08000a;
+        public static final int opt_actvmain_get_texts=0x7f08000f;
+        public static final int opt_menu_actv_main_db_activity=0x7f08000e;
+        public static final int opt_menu_actv_read_dict=0x7f080011;
+        public static final int opt_menu_actv_read_get_word_list=0x7f080010;
+        public static final int scrollView1=0x7f080003;
     }
     public static final class layout {
         public static final int actv_main=0x7f030000;
