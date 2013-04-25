@@ -428,4 +428,37 @@ public class Migrate {
 
 	}//migrate__ResetTable_Updates_Text
 
+	public static void
+	mig_ResetTable_All(Activity actv, Dialog dlg1) {
+		// TODO Auto-generated method stub
+		/***************************************
+		 * Tables: Main
+		 ***************************************/
+		Migrate._20130421_115608_ResetTableTexts(actv, dlg1);
+		Migrate._20130421_120721_ResetTable_Words(actv, dlg1);
+		Migrate._ResetTable_WordList(actv, dlg1);
+		
+		/***************************************
+		 * Tables: Updates
+		 ***************************************/
+		Migrate.migrate__ResetTable_Updates(
+				actv, dlg1,
+				CONS.DB.tname_Updates_Texts,
+				CONS.DB.cols_Updates_Texts,
+				CONS.DB.col_types_Updates_Texts);
+
+		Migrate.migrate__ResetTable_Updates(
+				actv, dlg1,
+				CONS.DB.tname_Updates_Words,
+				CONS.DB.cols_Updates_Words,
+				CONS.DB.col_types_Updates_Words);
+
+		Migrate.migrate__ResetTable_Updates(
+				actv, dlg1,
+				CONS.DB.tname_Updates_WordList,
+				CONS.DB.cols_Updates_WordList,
+				CONS.DB.col_types_Updates_WordList);
+		
+	}//mig_ResetTable_All(Activity actv, Dialog dlg1)
+
 }//public class Migrate

@@ -747,6 +747,41 @@ public class Methods_CR5 {
 		
 	}//storeData_WordList__2__StoreText
 
+	public static boolean
+	sort_WordList(Activity actv, List<Word> wList) {
+		// TODO Auto-generated method stub
+		Collections.sort(wList, new Comparator<Word>(){
+
+//			@Override
+			public int compare(Word i1, Word i2) {
+				// TODO �����������ꂽ���\�b�h�E�X�^�u
+				
+//				return (int) (i1.getDate_added() - i2.getDate_added());
+				
+//				return (int) (i1.getName().compareToIgnoreCase(i2.getName()));
+				
+//				// Log
+//				Log.d("Methods_sl.java"
+//						+ "["
+//						+ Thread.currentThread().getStackTrace()[2]
+//								.getLineNumber()
+//						+ ":"
+//						+ Thread.currentThread().getStackTrace()[2]
+//								.getMethodName() + "]",
+//						"i1.getYomi()=" + i1.getYomi()
+//						+ "/"
+//						+ "i2.getYomi()=" + i2.getYomi());
+				
+//				return (int) (i1.getYomi().compareToIgnoreCase(i2.getYomi()));
+				return (int) (i1.getW3().compareTo(i2.getW3()));
+			}
+			
+		});//Collections.sort()
+
+		return true;
+		
+	}//sort_WordList(Activity actv, List<Word> wList)
+
 
 	
 //	public static Text get_TextFromDbId(Activity actv, long dbId) {

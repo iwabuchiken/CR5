@@ -273,10 +273,29 @@ public class Methods_dlg {
 				+ "]", "wList.size()=" + wList.size());
 		
 		/***************************************
+		 * Sort: Word list
+		 ***************************************/
+		boolean res = Methods_CR5.sort_WordList(actv, wList);
+		
+		/***************************************
+		 * Modify: Height of the table layout
+		 ***************************************/
+		TableLayout tl = (TableLayout) dlg.findViewById(R.id.dlg_word_list_xml_tl);
+		
+		TableLayout.LayoutParams tlParams =
+				new TableLayout.LayoutParams(
+								LayoutParams.WRAP_CONTENT,
+//								100,
+								300);
+//								LayoutParams.WRAP_CONTENT);
+
+		
+		
+		/***************************************
 		 * Set word list
 		 ***************************************/
 		// TableLayout => http://www.javadrive.jp/android/tablelayout/index4.html
-		TableLayout tl = (TableLayout) dlg.findViewById(R.id.dlg_word_list_xml_tl);
+//		TableLayout tl = (TableLayout) dlg.findViewById(R.id.dlg_word_list_xml_tl);
 		
 //		for (int i = 0; i < 4; i++) {
 		for (int i = 0; i < wList.size(); i++) {
@@ -299,7 +318,15 @@ public class Methods_dlg {
 			 ***************************************/
 			// Array of views => http://youinfo.sitemix.jp/uncategorized/705.html
 			TextView[] tvWs = new TextView[3];
-			
+
+//			TableRow.LayoutParams tvParams =
+//					new TableRow.LayoutParams(
+//									LayoutParams.WRAP_CONTENT,
+////									100,
+//									LayoutParams.WRAP_CONTENT);
+//			
+//			tvParams.setMargins(2, 2, 2, 2);
+
 			for (int j = 0; j < 3; j++) {
 				
 				tvWs[j] = new TextView(actv);
@@ -319,7 +346,7 @@ public class Methods_dlg {
 										100,
 										LayoutParams.WRAP_CONTENT);
 
-//				tvParams.setMargins(5, 1, 5, 1);
+				tvParams.setMargins(2, 2, 2, 2);
 				
 				tvWs[j].setLayoutParams(tvParams);
 //				tvWs[i].setLayoutParams(tvParams);

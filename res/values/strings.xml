@@ -54,9 +54,11 @@
     	<string name="dlg_GetDataFromRemote_word_lists">Word lists</string>
 
     <!-- Migrations -->
+    	<!-- Create table: Main -->
     	<string name="migrate_20130421_131922_CreateTable_Word_list">
     	    					Create table: Word list</string>
     	    					
+ 	    <!-- Create table: Updates -->
     	<string name="migrate_20130421_135728_CreateTable_Updates_Texts">
     	    					Create table: updates_texts</string>
     	<string name="migrate_20130421_135837_CreateTable_Updates_Words">
@@ -64,19 +66,22 @@
     	<string name="migrate_20130421_135941_CreateTable_Updates_WordList">
     	    					Create table: updates_word_list</string>
     	    					
-    	<string name="migrate_20130421_140108_ResetTable_Updates_Texts">
-    	    					Reset table: updates_texts</string>
-
+    	<!-- Reset table: Main -->
     	<string name="migrate_20130421_115608_ResetTableTexts">Reset table: texts</string>
     	<string name="migrate_20130421_120721_ResetTable_Words">Reset table: words</string>
     	<string name="migrate_ResetTable_WordList">Reset table: word list</string>
     	
+    	<!-- Reset table: Updates -->
     	<string name="migrate__ResetTable_Updates_Text">
     	    					Reset table: updates_texts</string>
     	<string name="migrate_ResetTable_Updates_Words">
     	    					Reset table: updates_words</string>
     	<string name="migrate_ResetTable_Updates_WordList">
     	    					Reset table: updates_word_list</string>
+
+    	<!-- Reset table: All -->
+    	<string name="mig_ResetTable_All">Reset table: All</string>
+    	
 	<!-- dlg_word_list.xml -->
     	<string name="dlg_word_list_title">Word list</string>
     	

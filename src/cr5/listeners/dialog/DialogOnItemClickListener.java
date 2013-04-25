@@ -188,7 +188,14 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 			
 			Migrate._20130421_135941_CreateTable_Updates_WordList(actv, dlg1);
 			
+		/***************************************
+		 * Create tables: Updates
+		 ***************************************/
+		} else if (item.equals(actv.getString(
+				R.string.mig_ResetTable_All))) {
 			
+			Migrate.mig_ResetTable_All(actv, dlg1);
+		
 		}
 		
 	}//private void case_dlg_Migrate(String item)
@@ -486,16 +493,23 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 		* 2. Prep => List
 		****************************/
 		String[] choices = {
+					// Reset tables: Main
 					actv.getString(R.string.migrate_20130421_115608_ResetTableTexts),
 					actv.getString(R.string.migrate_20130421_120721_ResetTable_Words),
 					actv.getString(R.string.migrate_ResetTable_WordList),
-					
+
+					// Reset tables: Updates
 					actv.getString(R.string.migrate__ResetTable_Updates_Text),
 					actv.getString(R.string.migrate_ResetTable_Updates_Words),
 					actv.getString(R.string.migrate_ResetTable_Updates_WordList),
 					
-					actv.getString(R.string.migrate_20130421_131922_CreateTable_Word_list),
+					// Reset tables: All
+					actv.getString(R.string.mig_ResetTable_All),
 					
+					// Create tables: Main
+					actv.getString(R.string.migrate_20130421_131922_CreateTable_Word_list),
+
+					// Create tables: Updates
 					actv.getString(
 							R.string.migrate_20130421_135728_CreateTable_Updates_Texts),
 					actv.getString(

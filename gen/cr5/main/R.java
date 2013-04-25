@@ -110,19 +110,28 @@ public final class R {
          */
         public static final int menu_actv_read_get_words=0x7f050011;
         public static final int menu_settings=0x7f050000;
-        public static final int migrate_20130421_115608_ResetTableTexts=0x7f050025;
-        public static final int migrate_20130421_120721_ResetTable_Words=0x7f050026;
+        /**  Reset table: All 
+         */
+        public static final int mig_ResetTable_All=0x7f05002a;
+        /**  Reset table: Main 
+         */
+        public static final int migrate_20130421_115608_ResetTableTexts=0x7f050024;
+        public static final int migrate_20130421_120721_ResetTable_Words=0x7f050025;
         /**  Migrations 
+ Create table: Main 
          */
         public static final int migrate_20130421_131922_CreateTable_Word_list=0x7f050020;
+        /**  Create table: Updates 
+         */
         public static final int migrate_20130421_135728_CreateTable_Updates_Texts=0x7f050021;
         public static final int migrate_20130421_135837_CreateTable_Updates_Words=0x7f050022;
         public static final int migrate_20130421_135941_CreateTable_Updates_WordList=0x7f050023;
-        public static final int migrate_20130421_140108_ResetTable_Updates_Texts=0x7f050024;
-        public static final int migrate_ResetTable_Updates_WordList=0x7f05002a;
-        public static final int migrate_ResetTable_Updates_Words=0x7f050029;
-        public static final int migrate_ResetTable_WordList=0x7f050027;
-        public static final int migrate__ResetTable_Updates_Text=0x7f050028;
+        public static final int migrate_ResetTable_Updates_WordList=0x7f050029;
+        public static final int migrate_ResetTable_Updates_Words=0x7f050028;
+        public static final int migrate_ResetTable_WordList=0x7f050026;
+        /**  Reset table: Updates 
+         */
+        public static final int migrate__ResetTable_Updates_Text=0x7f050027;
         public static final int opt_menu_actv_main_db_activity=0x7f050010;
         /**  main_menu.xml 
          */
