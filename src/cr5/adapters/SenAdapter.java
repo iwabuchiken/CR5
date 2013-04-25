@@ -114,7 +114,7 @@ public class SenAdapter extends ArrayAdapter<String> {
     	/***************************************
 		 * Set: Texts
 		 ***************************************/
-    	_setText_Sentence(v, sen);
+    	_setText_Sentence(v, sen, position);
     	
     	/*********************************
 		 * 9. Return view
@@ -123,7 +123,7 @@ public class SenAdapter extends ArrayAdapter<String> {
 		
     }//public View getView(int position, View convertView, ViewGroup parent)
 
-	private void _setText_Sentence(View v, String origString) {
+	private void _setText_Sentence(View v, String origString, int position) {
 //	private void _setText_Sentence(View v, String sen) {
 //	private void _setText_Sentence(View v, SpannableString sen) {
 //	private void _setText_Sentence(View v, Spannable sen) {
@@ -131,7 +131,7 @@ public class SenAdapter extends ArrayAdapter<String> {
     	TextView tvSen =
     			(TextView) v.findViewById(R.id.lr_actv_read_tv_sen);
     	
-    	tvSen.setMovementMethod(LinkMovementMethod.getInstance());
+//    	tvSen.setMovementMethod(LinkMovementMethod.getInstance());
     	
     	// Log
 		Log.d("SenAdapter.java" + "["
@@ -142,7 +142,8 @@ public class SenAdapter extends ArrayAdapter<String> {
 		
 		//debug
 //		SpannableString ss = new SpannableString(origString);
-		SpannableString ss = _setText_Sentence__1_SetSpannable(v, origString);
+//		SpannableString ss = _setText_Sentence__1_SetSpannable(v, origString);
+		SpannableString ss = _setText_Sentence__1_SetSpannable(v, origString, position);
 
 //		sen.setSpan(new ForegroundColorSpan(0xFF4444FF), 
 //		ss.setSpan(new ForegroundColorSpan(0xFF4444FF), 
@@ -152,13 +153,25 @@ public class SenAdapter extends ArrayAdapter<String> {
     	
 //		tvSen.setText(sen);
     	tvSen.setText(ss);
+//    	tvSen.setText((position + 1) + "." + ss);
     	
 	}//private void _setText_Sentence(View v, Spannable sen)
 
 	private SpannableString
-	_setText_Sentence__1_SetSpannable(View v, String origString) {
+//	_setText_Sentence__1_SetSpannable(View v, String origString) {
+	_setText_Sentence__1_SetSpannable(View v, String origString, int position) {
 		
-		SpannableString ss = new SpannableString(origString);
+//		SpannableString ss = new SpannableString((position + 1) + ". " + origString);
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(String.valueOf((position + 1)));
+		sb.append(". ");
+		sb.append(origString);
+		
+		SpannableString ss = 
+//				new SpannableString(String.valueOf((position + 1)) + ". " + origString);
+				new SpannableString(sb.toString());
 		
 		/***************************************
 		 * Matcher
@@ -185,7 +198,8 @@ public class SenAdapter extends ArrayAdapter<String> {
 			Pattern p = Pattern.compile(regex);
 			
 			//
-			Matcher m = p.matcher(origString);
+//			Matcher m = p.matcher(origString);
+			Matcher m = p.matcher(sb.toString());
 	
 			if (m.find()) {
 	

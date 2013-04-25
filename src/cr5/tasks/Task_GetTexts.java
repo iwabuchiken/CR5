@@ -1110,7 +1110,21 @@ Task_GetTexts extends AsyncTask<String, Integer, Integer> {
 				+ "]", "result=" + result.intValue());
 		
 		// debug
-		Toast.makeText(actv, "rsult =>" + result.intValue(), Toast.LENGTH_LONG).show();
+		Toast.makeText(actv, "result =>" + result.intValue(), Toast.LENGTH_LONG).show();
+		
+		/***************************************
+		 * Refresh the texts list
+		 ***************************************/
+		if (CONS.ActvMain.textList != null) {
+			
+			CONS.ActvMain.textList.clear();
+			
+		}//if (CONS.ActvMain.textList == null)
+		
+//		CONS.ActvMain.textList = Methods_CR5.get_TextList(actv);
+		CONS.ActvMain.textList.addAll(Methods_CR5.get_TextList(actv));
+		
+		CONS.ActvMain.adpTL.notifyDataSetChanged();
 		
 	}//protected void onPostExecute(Integer result)
 

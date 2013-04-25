@@ -162,26 +162,30 @@ public class ActvMain extends ListActivity {
 		/***************************************
 		 * Build: Text list
 		 ***************************************/
-		List<Text> textList = Methods_CR5.get_TextList(this);
+		CONS.ActvMain.textList = Methods_CR5.get_TextList(this);
+		
+//		List<Text> textList = Methods_CR5.get_TextList(this);
 		
 		// Log
 		Log.d("ActvMain.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-				+ "]", "textList.size()=" + textList.size());
+				+ "]", "textList.size()=" + CONS.ActvMain.textList.size());
 		
-		TLAdapter adpTL = new TLAdapter(
+		CONS.ActvMain.adpTL = new TLAdapter(
+//		TLAdapter adpTL = new TLAdapter(
 				this,
 				R.layout.listrow_text_list,
 //				R.layout.actv_al,
-				textList
+				CONS.ActvMain.textList
 				);
 
 		/*********************************
 		 * Set adapter
 		 *********************************/
-		this.setListAdapter(adpTL);
+		this.setListAdapter(CONS.ActvMain.adpTL);
+//		this.setListAdapter(adpTL);
 
 		//test
 //		_test();

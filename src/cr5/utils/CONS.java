@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cr5.adapters.SenAdapter;
+import cr5.adapters.TLAdapter;
 import cr5.items.Text;
 import cr5.items.Word;
 
@@ -369,6 +370,13 @@ public class CONS {
 								"http://cosmos-cr6.herokuapp.com/word_lists.json";
 	}
 
+	public static class ActvMain {
+		
+		public static List<Text> textList = null;
+		
+		public static TLAdapter adpTL = null;
+		
+	}
 	public static class ActvRead {
 	
 		public static final int GET_INTENT_FAILED = -10;
