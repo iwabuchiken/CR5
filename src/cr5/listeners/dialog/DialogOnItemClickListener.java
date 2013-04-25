@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cr5.main.R;
+import cr5.tasks.Task_FTP;
 import cr5.utils.CONS;
 import cr5.utils.DBUtils;
 import cr5.utils.Methods;
@@ -475,9 +476,23 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 			
 			case_dlg_db_admin_lv__Migrate();
 			
+		} else if (item.equals(actv.getString(
+				R.string.dlg_db_admin_item_upload_db_file))) {//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
+			
+			case_dlg_db_admin_item_upload_db_file();
+			
 		}//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
 		
 	}
+
+	private void
+	case_dlg_db_admin_item_upload_db_file() {
+		
+		Task_FTP task = new Task_FTP(actv, dlg1);
+		
+		task.execute(CONS.FTP.TASK_UPLOAD_DB_FILE);
+		
+	}//case_dlg_db_admin_item_upload_db_file()
 
 	private void case_dlg_db_admin_lv__Migrate() {
 		// TODO Auto-generated method stub

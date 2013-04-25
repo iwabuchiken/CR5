@@ -1,6 +1,7 @@
 package cr5.utils;
 
 import java.io.IOException;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.net.ftp.FTPClient;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
@@ -803,6 +805,92 @@ public class Methods_CR5 {
 	}//String addSpannable(Activity actv, String origString)
 
 
+	public static class FTP {
+
+		
+		public static FTPClient connect(Activity actv) {
+			
+			FTPClient fc = new FTPClient();
+			
+			int reply_code;
+			
+			String server_name = "ftp.benfranklin.chips.jp";
+			
+			String uname = "chips.jp-benfranklin";
+
+			String passwd = "9x9jh4";
+
+			String fpath_remote = "./" + "Gaelic Folk Song.mp3";
+			
+			/*********************************
+			 * Connect
+			 *********************************/
+			try {
+				
+				fc.connect(server_name);
+				
+				reply_code = fc.getReplyCode();
+				
+				// Log
+				Log.d("Methods.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ "]", "fp.getReplyCode()=" + fc.getReplyCode());
+				
+			} catch (SocketException e) {
+				
+				// Log
+				Log.e("Methods.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ "]", "Error: " + e.toString());
+				
+				return null;
+				
+			} catch (IOException e) {
+
+				// Log
+				Log.e("Methods.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ "]", "Error: " + e.toString());
+				
+				return null;
+				
+			}
+						
+			return fc;
+			
+		}//public static FTPClient connect(Activity actv)
+
+		
+		public static boolean
+		disconnect(Activity actv, FTPClient fc) {
+
+			try {
+				
+				fc.disconnect();
+				
+				// Log
+				Log.d("Methods.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ "]", "fp => Disconnected");
+
+				return true;
+				
+			} catch (IOException e) {
+				
+				// Log
+				Log.e("Methods.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ "]", e.toString());
+				
+				return false;
+				
+			}
+
+		}//disconnect(Activity actv, FTPClient fc)
+		
+		
+		
+	}//public static class FTP
 	
 //	public static Text get_TextFromDbId(Activity actv, long dbId) {
 //		
@@ -812,4 +900,4 @@ public class Methods_CR5 {
 //
 //	}//public static Text get_TextFromDbId(Activity actv, long dbId)
 	
-}//public class Methods_CM5
+}//public class Methods_CR5

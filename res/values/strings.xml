@@ -24,7 +24,7 @@
     <!-- main_menu.xml -->
 	    <string name="opt_menu_actv_main_get_texts">Get data</string>
 	    <string name="opt_menu_actv_main_db_activity">データベース</string>
-
+	    
 	<!-- menu_actv_read.xml -->
 	    <string name="menu_actv_read_get_words">Get words</string>
 	    <string name="menu_actv_read_dict">Dictionary</string>
@@ -42,6 +42,8 @@
     	    				Reset table: history</string>
     	<string name="dlg_db_admin_item_migrate">
     	    				Migrate</string>
+    	<string name="dlg_db_admin_item_upload_db_file">
+    	    				Upload: DB file</string>
     	
     	<!-- http://stackoverflow.com/questions/8536375/android-replace-with-ellipsis-character -->
     	<string name="dlg_db_admin_item_add_column_millsec_refresh">

@@ -379,21 +379,36 @@ public class CONS {
 	}
 	public static class ActvRead {
 	
-		public static final int GET_INTENT_FAILED = -10;
+		public static final int GET_INTENT_FAILED	= -10;
 
-		public static final int GET_DBID_FAILED = -20;
+		public static final int GET_DBID_FAILED		= -20;
 		
-		public static final int GET_TEXT_SUCCESSFUL = 10;
+		public static final int GET_TEXT_SUCCESSFUL	= 10;
 		
-		public static final int GET_TEXT_FAILED = -30;
+		public static final int GET_TEXT_FAILED		= -30;
 		
-		public static Text text = null;
+		public static Text text			= null;
 		
-		public static SenAdapter adpSen = null;
+		public static SenAdapter adpSen	= null;
 
-		public static TextToSpeech tts = null;
+		public static TextToSpeech tts	= null;
 		
-		public static List<Word> wList = null;
+		public static List<Word> wList	= null;
 		
+	}
+	
+	public static class FTP {
+		/***************************************
+		 * Return values
+		 ***************************************/
+		public static final int CONNECT_EXCEPTION		= -1;
+		
+		public static final int TASK_RETRUN_FAILED		= -10;
+		public static final int TASK_RETURN_SUCCEESSFUL	= 1;
+		
+		/***************************************
+		 * Task numbers
+		 ***************************************/
+		public static final int TASK_UPLOAD_DB_FILE		= 20;
 	}
 }//public class CONS
