@@ -2,9 +2,13 @@ package cr5.adapters;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import cr5.items.Text;
+import cr5.items.Word;
 import cr5.main.R;
+import cr5.utils.CONS;
 import cr5.utils.Methods;
 
 import android.app.Activity;
@@ -31,9 +35,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 // Audio item list => TextL
-public class SenAdapter extends ArrayAdapter<Spannable> {
+//public class SenAdapter extends ArrayAdapter<Spannable> {
 //public class SenAdapter extends ArrayAdapter<SpannableString> {
-//public class SenAdapter extends ArrayAdapter<String> {
+public class SenAdapter extends ArrayAdapter<String> {
 
 	/****************************
 	 * Class fields
@@ -48,8 +52,8 @@ public class SenAdapter extends ArrayAdapter<Spannable> {
 	 * Constructor
 		****************************/
 	//
-//	public SenAdapter(Context con, int resourceId, List<String> items) {
-	public SenAdapter(Context con, int resourceId, List<Spannable> items) {
+	public SenAdapter(Context con, int resourceId, List<String> items) {
+//	public SenAdapter(Context con, int resourceId, List<Spannable> items) {
 		// Super
 		super(con, resourceId, items);
 
@@ -103,9 +107,9 @@ public class SenAdapter extends ArrayAdapter<Spannable> {
     	/*********************************
 		 * 3. Get item
 		 *********************************/
-    	Spannable sen = (Spannable) getItem(position);
+//    	Spannable sen = (Spannable) getItem(position);
 //    	SpannableString sen = (SpannableString) getItem(position);
-//    	String sen = (String) getItem(position);
+    	String sen = (String) getItem(position);
 
     	/***************************************
 		 * Set: Texts
@@ -119,9 +123,10 @@ public class SenAdapter extends ArrayAdapter<Spannable> {
 		
     }//public View getView(int position, View convertView, ViewGroup parent)
 
+	private void _setText_Sentence(View v, String origString) {
 //	private void _setText_Sentence(View v, String sen) {
 //	private void _setText_Sentence(View v, SpannableString sen) {
-	private void _setText_Sentence(View v, Spannable sen) {
+//	private void _setText_Sentence(View v, Spannable sen) {
 		
     	TextView tvSen =
     			(TextView) v.findViewById(R.id.lr_actv_read_tv_sen);
@@ -137,13 +142,103 @@ public class SenAdapter extends ArrayAdapter<Spannable> {
 		
 		//debug
 //		SpannableString ss = new SpannableString(origString);
+		SpannableString ss = _setText_Sentence__1_SetSpannable(v, origString);
 
-		sen.setSpan(new ForegroundColorSpan(0xFF4444FF), 
-				0, sen.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//		sen.setSpan(new ForegroundColorSpan(0xFF4444FF), 
+//		ss.setSpan(new ForegroundColorSpan(0xFF4444FF), 
+////				0, sen.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//				0, ss.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
     	
-    	tvSen.setText(sen);
+//		tvSen.setText(sen);
+    	tvSen.setText(ss);
     	
 	}//private void _setText_Sentence(View v, Spannable sen)
 
-}//public class TLAdapter extends ArrayAdapter<Text>
+	private SpannableString
+	_setText_Sentence__1_SetSpannable(View v, String origString) {
+		
+		SpannableString ss = new SpannableString(origString);
+		
+		/***************************************
+		 * Matcher
+		 ***************************************/
+		if (CONS.ActvRead.wList == null) {
+			
+			// Log
+			Log.d("SenAdapter.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "CONS.ActvRead.wList == null");
+			
+			return ss;
+			
+		}//if (variable == condition)
+
+		for (int i = 0; i < CONS.ActvRead.wList.size(); i++) {
+			
+			Word w = CONS.ActvRead.wList.get(i);
+			
+			String regex = w.getW1();
+			
+			Pattern p = Pattern.compile(regex);
+			
+			//
+			Matcher m = p.matcher(origString);
+	
+			if (m.find()) {
+	
+				ss.setSpan(new ForegroundColorSpan(0xFF4444FF), 
+	//					0, sen.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+						m.start(), m.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+				
+			} else {//if (m.find())
+				
+				// Log
+				Log.d("SenAdapter.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2].getMethodName()
+						+ "]", "No match");
+				
+			}//if (m.find())
+			
+		}//for (int i = 0; i < CONS.ActvRead.wList.size(); i++)
+		
+//			Word w = CONS.ActvRead.wList.get(0);
+//			
+//			String regex = w.getW1();
+//			
+//			Pattern p = Pattern.compile(regex);
+//			
+//			//
+//			Matcher m = p.matcher(origString);
+//	
+//			if (m.find()) {
+//	
+//				ss.setSpan(new ForegroundColorSpan(0xFF4444FF), 
+//	//					0, sen.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//						m.start(), m.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//				
+//			} else {//if (m.find())
+//				
+//				// Log
+//				Log.d("SenAdapter.java" + "["
+//						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//						+ ":"
+//						+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//						+ "]", "No match");
+//				
+//			}//if (m.find())
+		
+//		ss.setSpan(new ForegroundColorSpan(0xFF4444FF), 
+////				0, sen.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//				0, ss.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+		
+		
+		return ss;
+		
+	}//_setText_Sentence__1_SetSpannable(View v, String origString)
+
+}//public class SenAdapter extends ArrayAdapter<String>

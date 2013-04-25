@@ -6,6 +6,7 @@ import java.util.List;
 
 import cr5.adapters.SenAdapter;
 import cr5.items.Text;
+import cr5.items.Word;
 
 import android.content.SharedPreferences;
 import android.os.Vibrator;
@@ -383,6 +384,8 @@ public class CONS {
 		public static SenAdapter adpSen = null;
 
 		public static TextToSpeech tts = null;
+		
+		public static List<Word> wList = null;
 		
 	}
 }//public class CONS

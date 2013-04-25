@@ -465,7 +465,8 @@ public class Methods_dlg {
 	/***************************************
 	 * @return null ... No entry in db
 	 ***************************************/
-	private static List<Word>
+	public static List<Word>
+//	private static List<Word>
 	dlg_word_list__2_GetWordList(Activity actv, Text text) {
 		// TODO Auto-generated method stub
 		List<Word> wList = new ArrayList<Word>();

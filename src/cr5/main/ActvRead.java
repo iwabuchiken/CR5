@@ -5,6 +5,7 @@ import java.util.List;
 
 import cr5.adapters.SenAdapter;
 import cr5.items.Text;
+import cr5.items.Word;
 import cr5.utils.CONS;
 import cr5.utils.DBUtils;
 import cr5.utils.Methods;
@@ -86,7 +87,7 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 		/***************************************
 		 * Get: Text object
 		 ***************************************/
-		int res = _onCreate_getTextItem();
+		int res = _onCreate__1_GetTextItem();
 		
 		if (res < 0) {
 			
@@ -113,32 +114,102 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 		/***************************************
 		 * Get: Sentences list
 		 ***************************************/
+		res = _onCreate__2_GetSenList();
 		
-//		String[] sens = CONS.ActvRead.text.getText().split("(,|。)");
+////		String[] sens = CONS.ActvRead.text.getText().split("(,|。)");
+//		String[] sens = CONS.ActvRead.text.getText().split("(，|。)");
+//		
+//		if (sens != null) {
+//			
+//			List<Spannable> senList = new ArrayList<Spannable>();
+////			List<SpannableString> senList = new ArrayList<SpannableString>();
+////			List<String> senList = new ArrayList<String>();
+//			
+//			for (int i = 0; i < sens.length; i++) {
+//				
+//				SpannableString spannedString = Methods_CR5.addSpannable(this, sens[i]);
+////				String spannedString = Methods_CR5.addSpannable(this, sens[i]);
+//				
+////				SpannableString ss = new SpannableString((i + 1) + ". " + spannedString);
+////				SpannableString ss = new SpannableString(spannedString);
+////				SpannableString ss2 = new SpannableString((i + 1) + ". " + spannedString);
+//				Spannable ss3 = new SpannableString((i + 1) + ". " + spannedString);
+//				
+//				
+//				senList.add(ss3);
+////				senList.add(ss2);
+////				senList.add((i + 1) + ". " + ss);
+////				senList.add((i + 1) + ". " + sens[i]);
+//				
+//			}//for (int i = 0; i < sens.length; i++)
+//			
+//			CONS.ActvRead.adpSen = new SenAdapter(
+//					this,
+//					R.layout.listrow_actv_read,
+////					R.layout.actv_al,
+//					senList
+//			);
+//			
+//			this.setListAdapter(CONS.ActvRead.adpSen);
+//			
+////			// Log
+////			Log.d("ActvRead.java" + "["
+////					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+////					+ ":"
+////					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+////					+ "]", "sens.length=" + sens.length);
+////			
+////			// Log
+////			Log.d("ActvRead.java" + "["
+////					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+////					+ ":"
+////					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+////					+ "]", "text=" + CONS.ActvRead.text.getText());
+//			
+//		} else {//if (sens != null)
+//			
+//			// Log
+//			Log.d("ActvRead.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "sens => null");
+//			
+//			return;
+//			
+//		}//if (sens != null)
+		
+		
+	}//protected void onCreate(Bundle savedInstanceState)
+
+	private int _onCreate__2_GetSenList() {
+		/***************************************
+		 * Prep: Word list
+		 ***************************************/
+//		CONS.ActvRead.text
+		CONS.ActvRead.wList =
+					Methods_dlg.dlg_word_list__2_GetWordList(this, CONS.ActvRead.text);
+		
+		/***************************************
+		 * Build: Sentences list
+		 ***************************************/
 		String[] sens = CONS.ActvRead.text.getText().split("(，|。)");
 		
 		if (sens != null) {
 			
-			List<Spannable> senList = new ArrayList<Spannable>();
-//			List<SpannableString> senList = new ArrayList<SpannableString>();
-//			List<String> senList = new ArrayList<String>();
+			List<String> senList = new ArrayList<String>();
+//			List<Spannable> senList = new ArrayList<Spannable>();
 			
 			for (int i = 0; i < sens.length; i++) {
 				
-				SpannableString spannedString = Methods_CR5.addSpannable(this, sens[i]);
-//				String spannedString = Methods_CR5.addSpannable(this, sens[i]);
-				
-//				SpannableString ss = new SpannableString((i + 1) + ". " + spannedString);
-//				SpannableString ss = new SpannableString(spannedString);
-//				SpannableString ss2 = new SpannableString((i + 1) + ". " + spannedString);
-				Spannable ss3 = new SpannableString((i + 1) + ". " + spannedString);
+//				SpannableString spannedString = Methods_CR5.addSpannable(this, sens[i]);
+//
+//				Spannable ss3 = new SpannableString((i + 1) + ". " + spannedString);
 				
 				
-				senList.add(ss3);
-//				senList.add(ss2);
-//				senList.add((i + 1) + ". " + ss);
-//				senList.add((i + 1) + ". " + sens[i]);
-				
+				senList.add(sens[i]);
+//				senList.add(ss3);
+
 			}//for (int i = 0; i < sens.length; i++)
 			
 			CONS.ActvRead.adpSen = new SenAdapter(
@@ -150,20 +221,6 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 			
 			this.setListAdapter(CONS.ActvRead.adpSen);
 			
-//			// Log
-//			Log.d("ActvRead.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ ":"
-//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//					+ "]", "sens.length=" + sens.length);
-//			
-//			// Log
-//			Log.d("ActvRead.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ ":"
-//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//					+ "]", "text=" + CONS.ActvRead.text.getText());
-			
 		} else {//if (sens != null)
 			
 			// Log
@@ -173,14 +230,15 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 					+ Thread.currentThread().getStackTrace()[2].getMethodName()
 					+ "]", "sens => null");
 			
-			return;
+			return CONS.ReturnValue.RETURN_ERROR;
 			
 		}//if (sens != null)
 		
+		return CONS.ReturnValue.RETURN_OK;
 		
-	}//protected void onCreate(Bundle savedInstanceState)
+	}//private int _onCreate__2_GetSenList()
 
-	private int _onCreate_getTextItem() {
+	private int _onCreate__1_GetTextItem() {
 		// TODO Auto-generated method stub
 		/***************************************
 		 * Get: Intent data
