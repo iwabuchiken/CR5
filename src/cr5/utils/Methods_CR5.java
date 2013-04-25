@@ -27,6 +27,9 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.speech.tts.TextToSpeech;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
@@ -781,6 +784,23 @@ public class Methods_CR5 {
 		return true;
 		
 	}//sort_WordList(Activity actv, List<Word> wList)
+
+	public static
+	SpannableString addSpannable(Activity actv, String origString) {
+//	SpannableString addSpannable(Activity actv, SpannableString origString) {
+		
+		SpannableString ss = new SpannableString(origString);
+
+		ss.setSpan(new ForegroundColorSpan(0xFF4444FF), 
+				0, origString.length() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//				1, 3, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+
+		
+		return ss;
+//		return ss.toString();
+		
+	}//String addSpannable(Activity actv, String origString)
 
 
 	

@@ -15,6 +15,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -117,11 +119,25 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 		
 		if (sens != null) {
 			
-			List<String> senList = new ArrayList<String>();
+			List<Spannable> senList = new ArrayList<Spannable>();
+//			List<SpannableString> senList = new ArrayList<SpannableString>();
+//			List<String> senList = new ArrayList<String>();
 			
 			for (int i = 0; i < sens.length; i++) {
 				
-				senList.add((i + 1) + ". " + sens[i]);
+				SpannableString spannedString = Methods_CR5.addSpannable(this, sens[i]);
+//				String spannedString = Methods_CR5.addSpannable(this, sens[i]);
+				
+//				SpannableString ss = new SpannableString((i + 1) + ". " + spannedString);
+//				SpannableString ss = new SpannableString(spannedString);
+//				SpannableString ss2 = new SpannableString((i + 1) + ". " + spannedString);
+				Spannable ss3 = new SpannableString((i + 1) + ". " + spannedString);
+				
+				
+				senList.add(ss3);
+//				senList.add(ss2);
+//				senList.add((i + 1) + ". " + ss);
+//				senList.add((i + 1) + ". " + sens[i]);
 				
 			}//for (int i = 0; i < sens.length; i++)
 			
