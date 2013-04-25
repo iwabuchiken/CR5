@@ -242,11 +242,6 @@ public class Methods_dlg {
 	public static void dlg_word_list(Activity actv, Text text) {
 		// TODO Auto-generated method stub
 		/***************************************
-		 * Dialog
-		 ***************************************/
-		Dialog dlg = dlg_word_list__1_GetDialog(actv);
-		
-		/***************************************
 		 * Layout: Window
 		 ***************************************/
 		// REF	http://y-anz-m.blogspot.jp/2012/05/androiddialog.html
@@ -264,13 +259,38 @@ public class Methods_dlg {
 		 * Build: Word list
 		 ***************************************/
 		List<Word> wList = dlg_word_list__2_GetWordList(actv, text);
-
+		
+		
+		/***************************************
+		 * Validate: wList null?
+		 ***************************************/
+		if (wList == null) {
+			
+			// Log
+			Log.d("Methods_dlg.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "wList => null");
+			
+			// debug
+			Toast.makeText(actv, "No word registered", Toast.LENGTH_LONG).show();
+			
+			return;
+			
+		}//if (wList == null)
+		
 		// Log
 		Log.d("Methods_dlg.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", "wList.size()=" + wList.size());
+		
+		/***************************************
+		 * Dialog
+		 ***************************************/
+		Dialog dlg = dlg_word_list__1_GetDialog(actv);
 		
 		/***************************************
 		 * Sort: Word list
@@ -442,6 +462,9 @@ public class Methods_dlg {
 		
 	}//public static void dlg_word_list(Activity actv, Text text)
 
+	/***************************************
+	 * @return null ... No entry in db
+	 ***************************************/
 	private static List<Word>
 	dlg_word_list__2_GetWordList(Activity actv, Text text) {
 		// TODO Auto-generated method stub
