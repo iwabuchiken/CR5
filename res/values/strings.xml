@@ -44,6 +44,8 @@
     	    				Migrate</string>
     	<string name="dlg_db_admin_item_upload_db_file">
     	    				Upload: DB file</string>
+    	<string name="dlg_db_admin_item_download_db_file">
+    	    				Download: DB file</string>
     	
     	<!-- http://stackoverflow.com/questions/8536375/android-replace-with-ellipsis-character -->
     	<string name="dlg_db_admin_item_add_column_millsec_refresh">

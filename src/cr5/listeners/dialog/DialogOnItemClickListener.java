@@ -481,9 +481,23 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 			
 			case_dlg_db_admin_item_upload_db_file();
 			
+		} else if (item.equals(actv.getString(
+				R.string.dlg_db_admin_item_download_db_file))) {//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
+			
+			case_dlg_db_admin_item_download_db_file();
+			
 		}//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db)))
 		
 	}
+
+	private void case_dlg_db_admin_item_download_db_file() {
+
+		Task_FTP task = new Task_FTP(actv, dlg1);
+		
+		task.execute(CONS.FTP.TASK_DOWNLOAD_DB_FILE);
+		
+	}
+	
 
 	private void
 	case_dlg_db_admin_item_upload_db_file() {

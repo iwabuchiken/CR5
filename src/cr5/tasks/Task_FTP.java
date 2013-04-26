@@ -3,8 +3,11 @@ package cr5.tasks;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 
 import cr5.utils.CONS;
@@ -38,48 +41,211 @@ Task_FTP extends AsyncTask<Integer, Integer, Integer> {
 			
 			return Integer.valueOf(task_UploadDbFile());
 			
+		} else if (params[0].intValue() == CONS.FTP.TASK_DOWNLOAD_DB_FILE) {//if (params[0] == condition)
+			
+			return Integer.valueOf(task_DownloadDbFile());
+			
 		} else {//if (params[0] == condition)
 			
 			return Integer.valueOf(CONS.FTP.TASK_RETURN_SUCCEESSFUL);
 			
 		}//if (params[0] == condition)
 		
-//		/***************************************
-//		 * Connect
-//		 ***************************************/
-//		FTPClient fc = Methods_CR5.FTP.connect(actv);
-//		
-//		if (fc == null) {
-//			
-//			// Log
-//			Log.d("Task_FTP.java" + "["
-//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//					+ ":"
-//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//					+ "]", "fc => null");
-//			
-//			return CONS.FTP.TASK_RETRUN_FAILED;
-//			
-//			
-//		}//if (fc == null)
-//		
-//		
-//		
-//		/***************************************
-//		 * Disconnect
-//		 ***************************************/
-//		boolean res = Methods_CR5.FTP.disconnect(actv, fc);
-//		
-//		// Log
-//		Log.d("Task_FTP.java" + "["
-//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-//				+ ":"
-//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-//				+ "]", "res=" + res);
-//		
-//		return CONS.FTP.TASK_RETURN_SUCCEESSFUL;
-		
 	}//protected Integer doInBackground(String... arg0)
+
+	private int task_DownloadDbFile() {
+		// REF http://www.syboos.jp/java/doc/jakarta-commons-net-ftpclient.html
+		FTPClient fc = Methods_CR5.FTP.connect(actv);
+		
+		if (fc == null) {
+			
+			// Log
+			Log.d("Task_FTP.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "fc => null");
+			
+			return CONS.FTP.TASK_DOWNLOAD_FAILED;
+			
+			
+		}//if (fc == null)
+		
+		/***************************************
+		 * Login
+		 ***************************************/
+		String uname = "chips.jp-benfranklin";
+
+		String passwd = "9x9jh4";
+
+		try {
+			
+			boolean res = fc.login(uname, passwd);
+			
+			if(res == false) {
+				
+				int reply_code = fc.getReplyCode();
+				
+				// Log
+				Log.e("Task_FTP.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", "Log in failed => " + reply_code);
+				
+				fc.disconnect();
+				
+				return CONS.FTP.TASK_DOWNLOAD_LOGIN_FAILED;
+				
+			} else {
+				
+				int reply_code = fc.getReplyCode();
+				
+				// Log
+				Log.d("Task_FTP.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ "]", "Log in => Succeeded: " + reply_code);
+
+			}//if(res == false)
+
+		} catch (IOException e) {
+
+			// Log
+			Log.d("Task_FTP.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", e.toString());
+			
+			try {
+				
+				fc.disconnect();
+				
+			} catch (IOException e1) {
+
+				// Log
+				Log.d("Task_FTP.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]", e1.toString());
+			
+			}
+			
+			return CONS.FTP.TASK_DOWNLOAD_LOGIN_FAILED;
+			
+		}//try
+
+		/***************************************
+		 * FTP
+		 ***************************************/
+		FileOutputStream os;
+		
+		String fpath_Local = StringUtils.join(
+								new String[]{CONS.DB.dpath_db, CONS.DB.dbName},
+								File.separator);
+				
+		// Log
+		Log.d("Task_FTP.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", fpath_Local + fpath_Local);
+		
+		String fpath_Remote = "./" + "cr5.db";
+//		String fpath_Remote = "./android_app_data/" + "cr5.db";
+//		String fpath_Remote = "./android_app_data" + "cr5.db";
+		
+		try {
+			
+			os = new FileOutputStream(fpath_Local);
+//			os = new FileInputStream(fpath_audio);
+			
+//			fc.setFileType(FTP.BINARY_FILE_TYPE);
+			
+//			fp.storeFile("./" + MainActv.fileName_db, os);// �T�[�o�[��
+			fc.retrieveFile(fpath_Remote, os);// �T�[�o�[��
+			
+//			fp.makeDirectory("./ABC");
+			
+			
+			// Log
+			Log.d("Task_FTP.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "File => Retrieved");
+			
+			os.close();
+
+		} catch (FileNotFoundException e) {
+
+			// Log
+			Log.e("Task_FTP.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", e.toString());
+			try {
+				
+				fc.disconnect();
+				
+			} catch (IOException e1) {
+
+				// Log
+				Log.d("Task_FTP.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]", e1.toString());
+			
+			}
+			
+			return CONS.FTP.TASK_DOWNLOAD_FAILED;
+
+			
+		} catch (IOException e) {
+			
+			// Log
+			Log.e("Task_FTP.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", e.toString());
+
+			try {
+				
+				fc.disconnect();
+				
+			} catch (IOException e1) {
+
+				// Log
+				Log.d("Task_FTP.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]", e1.toString());
+			
+			}
+			
+			return CONS.FTP.TASK_DOWNLOAD_FAILED;
+			
+		}//try
+		
+		/***************************************
+		 * Disconnect
+		 ***************************************/
+		boolean res = Methods_CR5.FTP.disconnect(actv, fc);
+		
+		// Log
+		Log.d("Task_FTP.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "res=" + res);
+
+		return CONS.FTP.TASK_RETRUN_LOGIN_FAILED;
+		
+	}//private String task_DownloadDbFile()
 
 	private int task_UploadDbFile() {
 		/***************************************
@@ -169,6 +335,8 @@ Task_FTP extends AsyncTask<Integer, Integer, Integer> {
 			is = new FileInputStream(fpath_DbFileBackup);
 //			is = new FileInputStream(fpath_audio);
 			
+//			fc.setFileType(FTP.BINARY_FILE_TYPE);
+			
 //			fp.storeFile("./" + MainActv.fileName_db, is);// �T�[�o�[��
 			fc.storeFile(fpath_Remote, is);// �T�[�o�[��
 			
@@ -176,7 +344,7 @@ Task_FTP extends AsyncTask<Integer, Integer, Integer> {
 			
 			
 			// Log
-			Log.d("MethodsFTP.java" + "["
+			Log.d("Task_FTP.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "File => Stored");
 			
@@ -185,14 +353,14 @@ Task_FTP extends AsyncTask<Integer, Integer, Integer> {
 		} catch (FileNotFoundException e) {
 
 			// Log
-			Log.e("MethodsFTP.java" + "["
+			Log.e("Task_FTP.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "Exception: " + e.toString());
 			
 		} catch (IOException e) {
 			
 			// Log
-			Log.e("MethodsFTP.java" + "["
+			Log.e("Task_FTP.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "Exception: " + e.toString());
 
@@ -280,6 +448,13 @@ Task_FTP extends AsyncTask<Integer, Integer, Integer> {
 			// debug
 			Toast.makeText(actv, "Upload => Successful", Toast.LENGTH_LONG).show();
 			
+		} else if (result.intValue() == CONS.FTP.TASK_DOWNLOAD_SUCCEESSFUL) {
+				
+			dlg1.dismiss();
+			
+			// debug
+			Toast.makeText(actv, "Download => Successful", Toast.LENGTH_LONG).show();
+				
 		} else {
 
 			// debug
