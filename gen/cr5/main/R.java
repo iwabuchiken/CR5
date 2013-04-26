@@ -8,6 +8,10 @@
 package cr5.main;
 
 public final class R {
+    public static final class array {
+        public static final int hogeentries=0x7f070000;
+        public static final int hogevalues=0x7f070001;
+    }
     public static final class attr {
     }
     public static final class color {
@@ -35,25 +39,25 @@ public final class R {
         public static final int ic_launcher=0x7f020004;
     }
     public static final class id {
-        public static final int actv_read_bt_back=0x7f090000;
-        public static final int dlg_db_admin_bt_cancel=0x7f090002;
-        public static final int dlg_db_admin_lv=0x7f090001;
-        public static final int dlg_word_list_xml_bt_ok=0x7f090005;
-        public static final int dlg_word_list_xml_tl=0x7f090004;
-        public static final int lr_actv_main_tv_created_at=0x7f090008;
-        public static final int lr_actv_main_tv_genre=0x7f090007;
-        public static final int lr_actv_main_tv_title=0x7f090006;
-        public static final int lr_actv_read_tv_sen=0x7f090009;
-        public static final int lr_text_list_tv_created_at=0x7f09000d;
-        public static final int lr_text_list_tv_genre=0x7f09000b;
-        public static final int lr_text_list_tv_subgenre=0x7f09000c;
-        public static final int lr_text_list_tv_title=0x7f09000a;
-        public static final int opt_actvmain_get_texts=0x7f09000f;
-        public static final int opt_actvmain_settings=0x7f090010;
-        public static final int opt_menu_actv_main_db_activity=0x7f09000e;
-        public static final int opt_menu_actv_read_dict=0x7f090012;
-        public static final int opt_menu_actv_read_get_word_list=0x7f090011;
-        public static final int scrollView1=0x7f090003;
+        public static final int actv_read_bt_back=0x7f0a0000;
+        public static final int dlg_db_admin_bt_cancel=0x7f0a0002;
+        public static final int dlg_db_admin_lv=0x7f0a0001;
+        public static final int dlg_word_list_xml_bt_ok=0x7f0a0005;
+        public static final int dlg_word_list_xml_tl=0x7f0a0004;
+        public static final int lr_actv_main_tv_created_at=0x7f0a0008;
+        public static final int lr_actv_main_tv_genre=0x7f0a0007;
+        public static final int lr_actv_main_tv_title=0x7f0a0006;
+        public static final int lr_actv_read_tv_sen=0x7f0a0009;
+        public static final int lr_text_list_tv_created_at=0x7f0a000d;
+        public static final int lr_text_list_tv_genre=0x7f0a000b;
+        public static final int lr_text_list_tv_subgenre=0x7f0a000c;
+        public static final int lr_text_list_tv_title=0x7f0a000a;
+        public static final int opt_actvmain_get_texts=0x7f0a000f;
+        public static final int opt_actvmain_settings=0x7f0a0010;
+        public static final int opt_menu_actv_main_db_activity=0x7f0a000e;
+        public static final int opt_menu_actv_read_dict=0x7f0a0012;
+        public static final int opt_menu_actv_read_get_word_list=0x7f0a0011;
+        public static final int scrollView1=0x7f0a0003;
     }
     public static final class layout {
         public static final int actv_main=0x7f030000;
@@ -68,8 +72,8 @@ public final class R {
         public static final int main_pref=0x7f030009;
     }
     public static final class menu {
-        public static final int actv_main=0x7f080000;
-        public static final int menu_actv_read=0x7f080001;
+        public static final int actv_main=0x7f090000;
+        public static final int menu_actv_read=0x7f090001;
     }
     public static final class string {
         public static final int actv_pref_choose_lang_choice_chinese=0x7f060031;
@@ -119,6 +123,8 @@ public final class R {
         public static final int generic_tv_no_data=0x7f060009;
         public static final int generic_tv_register=0x7f060006;
         public static final int hello=0x7f06000c;
+        public static final int hogedialog=0x7f060035;
+        public static final int hogetitle=0x7f060034;
         public static final int menu_actv_read_dict=0x7f060013;
         /**  menu_actv_read.xml 
          */
@@ -164,11 +170,11 @@ public final class R {
             backward-compatibility can go here.
         
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
     }
     public static final class xml {
         public static final int preferences=0x7f040000;

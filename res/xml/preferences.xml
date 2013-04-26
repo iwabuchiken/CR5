@@ -12,5 +12,12 @@
     
     />
     
-
+	<ListPreference
+		android:key="hogekey"
+		android:title="@string/hogetitle"
+		android:entries="@array/hogeentries"
+		android:entryValues="@array/hogevalues"
+		android:dialogTitle="@string/hogedialog"
+		android:defaultValue="2"
+	/>
 </PreferenceScreen>

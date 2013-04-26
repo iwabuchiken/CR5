@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
@@ -37,6 +38,17 @@ public class ActvPref extends PreferenceActivity {
 //		.setSharedPreferencesName(this.getString(R.string.prefs_shared_prefs_name));
 		
 		addPreferencesFromResource(R.xml.preferences);
+		
+		//debug
+		SharedPreferences mSP = PreferenceManager.getDefaultSharedPreferences(this);
+		int hogeInteger = Integer.parseInt(mSP.getString("hogekey", "2"));
+		
+		// Log
+		Log.d("ActvPref.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "hogeInteger=" + hogeInteger);
 		
 	}//public void onCreate(Bundle savedInstanceState)
 
