@@ -401,13 +401,15 @@ public class CONS {
 		/***************************************
 		 * Return values
 		 ***************************************/
-		public static final int CONNECT_EXCEPTION		= -1;
+		public static final int CONNECT_EXCEPTION			= -1;
 		
-		public static final int TASK_RETRUN_FAILED		= -10;
-		public static final int TASK_RETURN_SUCCEESSFUL	= 1;
+		public static final int TASK_RETRUN_FAILED			= -10;
+		public static final int TASK_RETRUN_LOGIN_FAILED	= -20;
+		
+		public static final int TASK_RETURN_SUCCEESSFUL		= 1;
 		
 		/***************************************
-		 * Task numbers
+		 * Task ID codes
 		 ***************************************/
 		public static final int TASK_UPLOAD_DB_FILE		= 20;
 	}

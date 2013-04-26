@@ -816,9 +816,9 @@ public class Methods_CR5 {
 			
 			String server_name = "ftp.benfranklin.chips.jp";
 			
-			String uname = "chips.jp-benfranklin";
-
-			String passwd = "9x9jh4";
+//			String uname = "chips.jp-benfranklin";
+//
+//			String passwd = "9x9jh4";
 
 			String fpath_remote = "./" + "Gaelic Folk Song.mp3";
 			

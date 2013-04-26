@@ -1,5 +1,7 @@
 package cr5.tasks;
 
+import java.io.IOException;
+
 import org.apache.commons.net.ftp.FTPClient;
 
 import cr5.utils.CONS;
@@ -96,7 +98,46 @@ Task_FTP extends AsyncTask<Integer, Integer, Integer> {
 			
 		}//if (fc == null)
 		
-		
+		/***************************************
+		 * Login
+		 ***************************************/
+		String uname = "chips.jp-benfranklin";
+
+		String passwd = "9x9jh4";
+
+		try {
+			
+			boolean res = fc.login(uname, passwd);
+			
+			if(res == false) {
+				
+				int reply_code = fc.getReplyCode();
+				
+				// Log
+				Log.e("Task_FTP.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber() + "]", "Log in failed => " + reply_code);
+				
+				fc.disconnect();
+				
+				return CONS.FTP.TASK_RETRUN_LOGIN_FAILED;
+				
+			} else {
+				
+				int reply_code = fc.getReplyCode();
+				
+				// Log
+				Log.d("Task_FTP.java" + "["
+						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+						+ "]", "Log in => Succeeded: " + reply_code);
+
+			}//if(res == false)
+
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		/***************************************
 		 * Disconnect
