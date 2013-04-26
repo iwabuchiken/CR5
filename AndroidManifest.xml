@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ActvRead" android:screenOrientation="portrait"></activity>
+        <activity android:name=".ActvPref" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

@@ -24,6 +24,7 @@
     <!-- main_menu.xml -->
 	    <string name="opt_menu_actv_main_get_texts">Get data</string>
 	    <string name="opt_menu_actv_main_db_activity">データベース</string>
+	    <string name="opt_menu_actv_main_settings">Settings</string>
 	    
 	<!-- menu_actv_read.xml -->
 	    <string name="menu_actv_read_get_words">Get words</string>
@@ -89,4 +90,15 @@
 	<!-- dlg_word_list.xml -->
     	<string name="dlg_word_list_title">Word list</string>
     	
+    <!-- ActvPref.java -->
+    	
+    	
+    <!-- preferences.xml -->
+	    <string name="actv_pref_choose_lang_title">Language for speech</string>
+	    <string name="actv_pref_choose_lang_choice_german">German</string>
+	    <string name="actv_pref_choose_lang_choice_chinese">Chinese</string>
+	    <string name="actv_pref_choose_lang_choice_french">French</string>
+	    
+	    <string name="actv_pref_choose_lang_key">actv_pref_choose_lang_key</string>
+	    
 </resources>

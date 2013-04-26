@@ -421,4 +421,11 @@ public class CONS {
 		public static final int TASK_UPLOAD_DB_FILE		= 20;
 		public static final int TASK_DOWNLOAD_DB_FILE	= 21;
 	}
+	
+	public static class Pref {
+		
+		public static final String ActvPref_main = "pref_actv_main";
+		
+	}
+	
 }//public class CONS

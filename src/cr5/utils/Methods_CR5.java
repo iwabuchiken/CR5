@@ -21,11 +21,13 @@ import org.json.JSONObject;
 import cr5.items.Text;
 import cr5.items.Word;
 import cr5.items.WordList;
+import cr5.main.ActvPref;
 import cr5.tasks.Task_GetTexts;
 import cr5.tasks.Task_GetWordList;
 import cr5.tasks.Task_GetWords;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.speech.tts.TextToSpeech;
@@ -891,6 +893,21 @@ public class Methods_CR5 {
 		
 		
 	}//public static class FTP
+
+
+	public static void startActv_Pref(Activity actv) {
+		// TODO Auto-generated method stub
+		
+		Intent i = new Intent();
+		
+		i.setClass(actv, ActvPref.class);
+		
+		i.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+		
+		actv.startActivity(i);
+
+		
+	}
 	
 //	public static Text get_TextFromDbId(Activity actv, long dbId) {
 //		
