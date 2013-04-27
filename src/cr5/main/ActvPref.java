@@ -1,5 +1,6 @@
 package cr5.main;
 
+import cr5.listeners.PrefChangeListener;
 import cr5.utils.CONS;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -140,6 +141,9 @@ public class ActvPref extends PreferenceActivity {
 
 	@Override
 	protected void onStart() {
+		
+		_onStart__1_SetupListPref();
+		
 		// TODO �����������ꂽ���\�b�h�E�X�^�u
 //		CheckBoxPreference pref_lang = 
 //				(CheckBoxPreference) findPreference(
@@ -153,27 +157,40 @@ public class ActvPref extends PreferenceActivity {
 		
 //		boolean chosenLang = pref_lang.
 		
-		SharedPreferences prefs =
-				this.getSharedPreferences(
-						CONS.Pref.ActvPref_main, 0);
+//		SharedPreferences prefs =
+//				this.getSharedPreferences(
+//						CONS.Pref.ActvPref_main, 0);
+
 //		this.getString(R.string.prefs_shared_prefs_name), 0);
 		
-		boolean chosenLang =
-				prefs.getBoolean(this.getString(R.string.actv_pref_choose_lang_key), false);
-//		prefs.getBoolean(this.getString(R.id.), true);
-//		String pref_history_size = prefs.getString(this.getString(R.string.prefs_history_size_key), null);
-
-		// Log
-		Log.d("ActvPref.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ ":"
-				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-				+ "]", "chosenLang=" + chosenLang);
+//		boolean chosenLang =
+//				prefs.getBoolean(this.getString(R.string.actv_pref_choose_lang_key), false);
+////		prefs.getBoolean(this.getString(R.id.), true);
+////		String pref_history_size = prefs.getString(this.getString(R.string.prefs_history_size_key), null);
+//
+//		// Log
+//		Log.d("ActvPref.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ ":"
+//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//				+ "]", "chosenLang=" + chosenLang);
 		
-		//debug
-		/***************************************
-		 * Listener
-		 ***************************************/
+//		SharedPreferences mSP = PreferenceManager.getDefaultSharedPreferences(this);
+//
+//		int hogeInteger = Integer.parseInt(mSP.getString("hogekey", "2"));
+//		
+//		// Log
+//		Log.d("ActvPref.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ ":"
+//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//				+ "]", "hogeInteger=" + hogeInteger);
+		super.onStart();
+		
+	}//protected void onStart()
+
+	private void _onStart__1_SetupListPref() {
+		// TODO Auto-generated method stub
 		ListPreference lp =
 				(ListPreference) findPreference("hogekey");
 //		(ListPreference) findPreference("hoge_key");
@@ -210,56 +227,26 @@ public class ActvPref extends PreferenceActivity {
 		}//if (lp == null)
 		
 		/***************************************
+		 * List preference: Set summary
+		 ***************************************/
+//		lp.setValue(this.getString(R.array.hogevalues));
+		
+		// REF http://stackoverflow.com/questions/4483872/get-a-string-array-into-a-string answered Dec 19 '10 at 16:41
+		lp.setValue(this.getResources().getStringArray(R.array.lang_values)[0]);
+//		lp.setValue(this.getResources().getStringArray(R.array.hogevalues)[0]);
+		
+		String val = lp.getValue();
+		
+		lp.setSummary("choice=" + val);
+		
+		/***************************************
 		 * Change listener
 		 ***************************************/
 		
 		// REF http://wada811.blog.fc2.com/?tag=ListPreference
-		lp.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
-
-			@Override
-			public boolean onPreferenceChange(Preference pref, Object newVal) {
-				String val = (String) newVal;
-				
-				// Log
-				Log.d("ActvPref.java"
-						+ "["
-						+ Thread.currentThread().getStackTrace()[2]
-								.getLineNumber()
-						+ ":"
-						+ Thread.currentThread().getStackTrace()[2]
-								.getMethodName() + "]",
-						"pref=" + pref.getClass().getName()
-						+ "/"
-						+ "new value=" + val);
-				
-//				SharedPreferences mSP = PreferenceManager.getDefaultSharedPreferences(this);
-//				int hogeInteger = Integer.parseInt(mSP.getString("hogekey", "2"));
-				
-				return false;
-			}
-			
-		});//lp.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
+		lp.setOnPreferenceChangeListener(new PrefChangeListener(this));
 		
-//		
-//		SharedPreferences.Editor edit = lp.getEditor();
-//		
-//		edit.putString("hogekey", "1");
-//		
-//		edit.commit();
-		
-		SharedPreferences mSP = PreferenceManager.getDefaultSharedPreferences(this);
-
-		int hogeInteger = Integer.parseInt(mSP.getString("hogekey", "2"));
-		
-		// Log
-		Log.d("ActvPref.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ ":"
-				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-				+ "]", "hogeInteger=" + hogeInteger);
-		super.onStart();
-		
-	}//protected void onStart()
+	}//private void _onStart__1_SetupListPref()
 
 	@Override
 	protected void onStop() {

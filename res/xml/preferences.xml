@@ -17,8 +17,8 @@
 		android:key="hogekey"
 		android:title="@string/hogetitle"
 		android:entries="@array/hogeentries"
-		android:entryValues="@array/hogevalues"
+		android:entryValues="@array/lang_values"
 		android:dialogTitle="@string/hogedialog"
-		android:defaultValue="2"
+		android:defaultValue="None"
 	/>
 </PreferenceScreen>
