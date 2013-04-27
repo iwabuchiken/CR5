@@ -191,6 +191,17 @@ public class ActvMain extends ListActivity {
 								CONS.Pref.ActvPref_main,
 								Context.MODE_PRIVATE);
 		
+		String prefVal_Lang = prefs.getString(
+						this.getString(R.string.langKey),
+						"no value set");
+		
+		// Log
+		Log.d("ActvMain.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "prefVal_Lang=" + prefVal_Lang);
+		
 //		prefs.getString(key, defValue)
 
 	}//private void _onStart__1_SetPrefs()

@@ -2,6 +2,7 @@ package cr5.main;
 
 import cr5.listeners.PrefChangeListener;
 import cr5.utils.CONS;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -192,53 +193,56 @@ public class ActvPref extends PreferenceActivity {
 		// TODO Auto-generated method stub
 		ListPreference lp =
 				(ListPreference) this.findPreference(this.getString(R.string.langKey));
-//				(ListPreference) findPreference("actv_pref_choose_lang_key");
-//		(ListPreference) findPreference("langKey");
-//		(ListPreference) findPreference("langkey");
-//		(ListPreference) findPreference("lang_key");
-//		(ListPreference) findPreference("actv_pref_choose_lang_key");
-//		(ListPreference) findPreference("hogekey");
-//		(ListPreference) findPreference("hoge_key");
-//		(ListPreference) findPreference(this.getString(R.string.hogekey));
-//		(ListPreference) this.findPreference(this.getString(R.string.hogekey));
-		
-		
-		
+
 		// Log
 		Log.d("ActvPref.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", "R.string.hogekey=" + this.getString(R.string.hogekey));
-
-		if (lp == null) {
-			
-			// Log
-			Log.d("ActvPref.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ ":"
-					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-					+ "]", "lp == null");
-			
-		} else {//if (lp == null)
-
-			// Log
-			Log.d("ActvPref.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ ":"
-					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-					+ "]", "lp != null");
-
-		}//if (lp == null)
-
+//
+//		if (lp == null) {
+//			
+//			// Log
+//			Log.d("ActvPref.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "lp == null");
+//			
+//		} else {//if (lp == null)
+//
+//			// Log
+//			Log.d("ActvPref.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "lp != null");
+//
+//		}//if (lp == null)
+//
 		/***************************************
 		 * List preference: Set summary
 		 ***************************************/
 //		lp.setValue(this.getString(R.array.hogevalues));
+
+		SharedPreferences prefs =
+				this.getSharedPreferences(
+								CONS.Pref.ActvPref_main,
+								Context.MODE_PRIVATE);
 		
-		// REF http://stackoverflow.com/questions/4483872/get-a-string-array-into-a-string answered Dec 19 '10 at 16:41
-		lp.setValue(this.getResources().getStringArray(R.array.lang_values)[0]);
-//		lp.setValue(this.getResources().getStringArray(R.array.hogevalues)[0]);
+		String prefVal_Lang = prefs.getString(
+						this.getString(R.string.langKey), null);
+		
+
+		if (prefVal_Lang == null) {
+			
+			lp.setValue(this.getResources().getStringArray(R.array.lang_values)[0]);
+			
+		}//if (prefVal_Lang == null)
+			// REF http://stackoverflow.com/questions/4483872/get-a-string-array-into-a-string answered Dec 19 '10 at 16:41
+//			lp.setValue(this.getResources().getStringArray(R.array.lang_values)[0]);
+	//		lp.setValue(this.getResources().getStringArray(R.array.hogevalues)[0]);
 		
 		String val = lp.getValue();
 		
