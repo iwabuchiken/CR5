@@ -84,6 +84,13 @@ public class ActvMain extends ListActivity {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
+		
+		// Log
+		Log.d("ActvMain.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "YES");
 	}
 
 	@Override

@@ -133,12 +133,12 @@ public class SenAdapter extends ArrayAdapter<String> {
     	
 //    	tvSen.setMovementMethod(LinkMovementMethod.getInstance());
     	
-    	// Log
-		Log.d("SenAdapter.java" + "["
-				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-				+ ":"
-				+ Thread.currentThread().getStackTrace()[2].getMethodName()
-				+ "]", "MovementMethod => Set");
+//    	// Log
+//		Log.d("SenAdapter.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ ":"
+//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//				+ "]", "MovementMethod => Set");
 		
 		//debug
 //		SpannableString ss = new SpannableString(origString);
@@ -209,12 +209,12 @@ public class SenAdapter extends ArrayAdapter<String> {
 				
 			} else {//if (m.find())
 				
-				// Log
-				Log.d("SenAdapter.java" + "["
-						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-						+ ":"
-						+ Thread.currentThread().getStackTrace()[2].getMethodName()
-						+ "]", "No match");
+//				// Log
+//				Log.d("SenAdapter.java" + "["
+//						+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//						+ ":"
+//						+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//						+ "]", "No match");
 				
 			}//if (m.find())
 			

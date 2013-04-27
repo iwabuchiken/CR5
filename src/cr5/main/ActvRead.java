@@ -2,6 +2,7 @@ package cr5.main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import cr5.adapters.SenAdapter;
 import cr5.items.Text;
@@ -34,7 +35,7 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 		
 		if(CONS.ActvRead.tts != null && CONS.ActvRead.tts.isSpeaking()) {
 			// Log
-			Log.d("MainActv.java" + "["
+			Log.d("ActvRead.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "tts != null && tts.isSpeaking()");
 			
@@ -42,11 +43,12 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 			
 			CONS.ActvRead.tts.shutdown();
 //			tts = null;
+
 			
 		} else if(CONS.ActvRead.tts != null) {
 
 			// Log
-			Log.d("MainActv.java" + "["
+			Log.d("ActvRead.java" + "["
 					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 					+ "]", "tts != null");
 			
@@ -109,7 +111,45 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 		/***************************************
 		 * TTS
 		 ***************************************/
-		CONS.ActvRead.tts = new TextToSpeech(this, this);
+		if (CONS.ActvRead.tts == null) {
+			
+			CONS.ActvRead.tts = new TextToSpeech(this, this);
+			
+			//debug
+			
+//			CONS.ActvRead.tts.setLanguage(new Locale("de"));
+			
+			String langPckgName = "com.svox.pico";
+			
+			CONS.ActvRead.tts.setEngineByPackageName(langPckgName);
+			
+			// Log
+			Log.d("ActvRead.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "Language  => Set: " + langPckgName);
+//			
+//			// Log
+//			Log.d("ActvRead.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "getLanguage=" + CONS.ActvRead.tts.getLanguage());
+			
+			
+//			+ "]", "Language  => Set (de)");
+			
+//			CONS.ActvRead.tts.setLanguage(new Locale(Locale.GERMAN));
+			
+		}//if (CONS.ActvRead.tts == null)
+//		CONS.ActvRead.tts = new TextToSpeech(this, this);
+		
+//		CONS.ActvRead.tts.getEngines();
+		
+//		TextToSpeech tts2 = new TextToSpeech(this, this);
+		
+//		CONS.ActvRead.tts.ge
 		
 		/***************************************
 		 * Get: Sentences list
@@ -323,18 +363,39 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+		
+		// Log
+		Log.d("ActvRead.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "YES");
 	}
 
 	@Override
 	protected void onRestart() {
 		// TODO Auto-generated method stub
 		super.onRestart();
+		// Log
+		Log.d("ActvRead.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "YES");
+
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		// Log
+		Log.d("ActvRead.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "YES");
+
 	}
 
 	@Override
@@ -350,12 +411,38 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 			CONS.Admin.vib = (Vibrator) this.getSystemService(this.VIBRATOR_SERVICE);
 			
 		}//if (CONS.Admin.vib == null)
-	}
+		
+		/***************************************
+		 * Select: CONS.ActvRead.tts
+		 ***************************************/
+//		// Log
+//		Log.d("ActvRead.java" + "["
+//				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//				+ ":"
+//				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//				+ "]", "TTS lang=" + CONS.ActvRead.tts.getLanguage().getLanguage());
+		
+		// Log
+		Log.d("ActvRead.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "getDefaultEngine=" + CONS.ActvRead.tts.getDefaultEngine());
+//		+ "]", "CONS.ActvRead.tts.getLanguage()=" + CONS.ActvRead.tts.getLanguage());
+		
+	}//protected void onStart()
 
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
 		super.onStop();
+		// Log
+		Log.d("ActvRead.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "YES");
+
 	}
 
 	@Override
@@ -369,6 +456,12 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 	@Override
 	public void onInit(int arg0) {
 		// TODO Auto-generated method stub
+		// Log
+		Log.d("ActvRead.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "YES");
 		
 	}
 

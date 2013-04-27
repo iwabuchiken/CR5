@@ -625,7 +625,14 @@ public class Methods_CR5 {
 
 	public static void
 	start_speech(Activity actv, String text) {
-		// TODO Auto-generated method stub
+		
+		// Log
+		Log.d("Methods_CR5.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "Starting...");
+		
 		String textTrunk = Methods_CR5.find_text_trunk(text);
 		
 		if (textTrunk == null) {
@@ -644,6 +651,34 @@ public class Methods_CR5 {
         }
 
         CONS.ActvRead.tts.speak(textTrunk, TextToSpeech.QUEUE_FLUSH, null);
+        
+		// Log
+		Log.d("Methods_CR5.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "getDefaultEngine=" + CONS.ActvRead.tts.getDefaultEngine());
+		
+//		if (CONS.ActvRead.tts.getLanguage() != null) {
+//
+//			// Log
+//			Log.d("Methods_CR5.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "TTS lang=" + CONS.ActvRead.tts.getLanguage().getLanguage());
+//
+//		} else {//if (CONS.ActvRead.tts.getLanguage() != null)
+//
+//			// Log
+//			Log.d("Methods_CR5.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "CONS.ActvRead.tts.getLanguage() == null");
+//			
+//		}//if (CONS.ActvRead.tts.getLanguage() != null)
+		
 
 	}//start_speech(Activity actv, String text)
 
