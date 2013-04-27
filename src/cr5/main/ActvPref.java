@@ -191,7 +191,13 @@ public class ActvPref extends PreferenceActivity {
 	private void _onStart__1_SetupListPref() {
 		// TODO Auto-generated method stub
 		ListPreference lp =
-				(ListPreference) findPreference("hogekey");
+				(ListPreference) this.findPreference(this.getString(R.string.langKey));
+//				(ListPreference) findPreference("actv_pref_choose_lang_key");
+//		(ListPreference) findPreference("langKey");
+//		(ListPreference) findPreference("langkey");
+//		(ListPreference) findPreference("lang_key");
+//		(ListPreference) findPreference("actv_pref_choose_lang_key");
+//		(ListPreference) findPreference("hogekey");
 //		(ListPreference) findPreference("hoge_key");
 //		(ListPreference) findPreference(this.getString(R.string.hogekey));
 //		(ListPreference) this.findPreference(this.getString(R.string.hogekey));

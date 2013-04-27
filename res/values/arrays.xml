@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- REF http://yan-note.blogspot.jp/2010/09/android-preferencescreen.html -->
 	<!-- preferences.xml -->
 		<string-array name="lang_entries">
 			<item>Chinese</item>

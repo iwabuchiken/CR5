@@ -14,7 +14,9 @@ import cr5.utils.Migrate;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -172,10 +174,26 @@ public class ActvMain extends ListActivity {
 		this.setListAdapter(CONS.ActvMain.adpTL);
 //		this.setListAdapter(adpTL);
 
+		/***************************************
+		 * Set preference: Lang
+		 ***************************************/
+		_onStart__1_SetPrefs();
+		
 		//test
 //		_test();
 		
 	}//protected void onStart()
+
+	private void _onStart__1_SetPrefs() {
+		// TODO Auto-generated method stub
+		SharedPreferences prefs =
+				this.getSharedPreferences(
+								CONS.Pref.ActvPref_main,
+								Context.MODE_PRIVATE);
+		
+//		prefs.getString(key, defValue)
+
+	}//private void _onStart__1_SetPrefs()
 
 	private void _test() {
 		

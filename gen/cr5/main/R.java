@@ -10,7 +10,8 @@ package cr5.main;
 public final class R {
     public static final class array {
         public static final int hogeentries=0x7f050001;
-        /**  preferences.xml 
+        /**  REF http://yan-note.blogspot.jp/2010/09/android-preferencescreen.html 
+ preferences.xml 
          */
         public static final int lang_entries=0x7f050000;
         public static final int lang_values=0x7f050002;
@@ -126,9 +127,10 @@ public final class R {
         public static final int generic_tv_no_data=0x7f070009;
         public static final int generic_tv_register=0x7f070006;
         public static final int hello=0x7f07000c;
-        public static final int hogedialog=0x7f070036;
-        public static final int hogekey=0x7f070034;
-        public static final int hogetitle=0x7f070035;
+        public static final int hogedialog=0x7f070037;
+        public static final int hogekey=0x7f070035;
+        public static final int hogetitle=0x7f070036;
+        public static final int langKey=0x7f070034;
         public static final int menu_actv_read_dict=0x7f070013;
         /**  menu_actv_read.xml 
          */

@@ -100,6 +100,7 @@
 	    <string name="actv_pref_choose_lang_choice_french">French</string>
 	    
 	    <string name="actv_pref_choose_lang_key">actv_pref_choose_lang_key</string>
+	    <string name="langKey">lang_key</string>
 	    
 	    <string name="hogekey">hoge_key</string>
 	    <string name="hogetitle">hogehoge</string>
