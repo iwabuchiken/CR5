@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<!-- preferences.xml -->
+		<string-array name="lang_entries">
+			<item>hoge0</item>
+			<item>hoge1</item>
+			<item>hoge2</item>
+		</string-array>
+		
 		<string-array name="hogeentries">
 			<item>hoge0</item>
 			<item>hoge1</item>
 			<item>hoge2</item>
 		</string-array>
+		
 		<string-array name="lang_values">
 			<item>Chinese</item>
 			<item>German</item>
