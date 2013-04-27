@@ -160,6 +160,8 @@ public class ActvMain extends ListActivity {
 		
 //		List<Text> textList = Methods_CR5.get_TextList(this);
 		
+		Methods_CR5.sort_TextList(this, CONS.ActvMain.textList);
+		
 		// Log
 		Log.d("ActvMain.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
