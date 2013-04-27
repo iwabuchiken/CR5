@@ -13,6 +13,7 @@
     />
     
 	<ListPreference
+	    
 		android:key="hogekey"
 		android:title="@string/hogetitle"
 		android:entries="@array/hogeentries"

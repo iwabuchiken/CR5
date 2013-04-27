@@ -123,8 +123,9 @@ public final class R {
         public static final int generic_tv_no_data=0x7f060009;
         public static final int generic_tv_register=0x7f060006;
         public static final int hello=0x7f06000c;
-        public static final int hogedialog=0x7f060035;
-        public static final int hogetitle=0x7f060034;
+        public static final int hogedialog=0x7f060036;
+        public static final int hogekey=0x7f060034;
+        public static final int hogetitle=0x7f060035;
         public static final int menu_actv_read_dict=0x7f060013;
         /**  menu_actv_read.xml 
          */

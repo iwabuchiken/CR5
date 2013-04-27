@@ -2,9 +2,13 @@ package cr5.main;
 
 import cr5.utils.CONS;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
+import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.text.InputType;
@@ -43,12 +47,70 @@ public class ActvPref extends PreferenceActivity {
 		SharedPreferences mSP = PreferenceManager.getDefaultSharedPreferences(this);
 		int hogeInteger = Integer.parseInt(mSP.getString("hogekey", "2"));
 		
+		
+		
 		// Log
 		Log.d("ActvPref.java" + "["
 				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
 				+ ":"
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", "hogeInteger=" + hogeInteger);
+		
+		/***************************************
+		 * Listener
+		 ***************************************/
+		ListPreference lp =
+				(ListPreference) findPreference("hoge_key");
+//		(ListPreference) findPreference(this.getString(R.string.hogekey));
+//		(ListPreference) this.findPreference(this.getString(R.string.hogekey));
+		
+		
+		
+		// Log
+		Log.d("ActvPref.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "R.string.hogekey=" + this.getString(R.string.hogekey));
+		
+		if (lp == null) {
+			
+			// Log
+			Log.d("ActvPref.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "lp == null");
+			
+		} else {//if (lp == null)
+
+			// Log
+			Log.d("ActvPref.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "lp != null");
+
+		}//if (lp == null)
+		
+//		
+//		SharedPreferences.Editor edit = lp.getEditor();
+//		
+//		edit.putString("hogekey", "1");
+//		
+//		edit.commit();
+		
+		
+
+		hogeInteger = Integer.parseInt(mSP.getString("hogekey", "2"));
+		
+		// Log
+		Log.d("ActvPref.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "hogeInteger=" + hogeInteger);
+
 		
 	}//public void onCreate(Bundle savedInstanceState)
 
@@ -108,6 +170,93 @@ public class ActvPref extends PreferenceActivity {
 				+ Thread.currentThread().getStackTrace()[2].getMethodName()
 				+ "]", "chosenLang=" + chosenLang);
 		
+		//debug
+		/***************************************
+		 * Listener
+		 ***************************************/
+		ListPreference lp =
+				(ListPreference) findPreference("hogekey");
+//		(ListPreference) findPreference("hoge_key");
+//		(ListPreference) findPreference(this.getString(R.string.hogekey));
+//		(ListPreference) this.findPreference(this.getString(R.string.hogekey));
+		
+		
+		
+		// Log
+		Log.d("ActvPref.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "R.string.hogekey=" + this.getString(R.string.hogekey));
+		
+		if (lp == null) {
+			
+			// Log
+			Log.d("ActvPref.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "lp == null");
+			
+		} else {//if (lp == null)
+
+			// Log
+			Log.d("ActvPref.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "lp != null");
+
+		}//if (lp == null)
+		
+		/***************************************
+		 * Change listener
+		 ***************************************/
+		
+		// REF http://wada811.blog.fc2.com/?tag=ListPreference
+		lp.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
+
+			@Override
+			public boolean onPreferenceChange(Preference pref, Object newVal) {
+				String val = (String) newVal;
+				
+				// Log
+				Log.d("ActvPref.java"
+						+ "["
+						+ Thread.currentThread().getStackTrace()[2]
+								.getLineNumber()
+						+ ":"
+						+ Thread.currentThread().getStackTrace()[2]
+								.getMethodName() + "]",
+						"pref=" + pref.getClass().getName()
+						+ "/"
+						+ "new value=" + val);
+				
+//				SharedPreferences mSP = PreferenceManager.getDefaultSharedPreferences(this);
+//				int hogeInteger = Integer.parseInt(mSP.getString("hogekey", "2"));
+				
+				return false;
+			}
+			
+		});//lp.setOnPreferenceChangeListener(new OnPreferenceChangeListener(){
+		
+//		
+//		SharedPreferences.Editor edit = lp.getEditor();
+//		
+//		edit.putString("hogekey", "1");
+//		
+//		edit.commit();
+		
+		SharedPreferences mSP = PreferenceManager.getDefaultSharedPreferences(this);
+
+		int hogeInteger = Integer.parseInt(mSP.getString("hogekey", "2"));
+		
+		// Log
+		Log.d("ActvPref.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "hogeInteger=" + hogeInteger);
 		super.onStart();
 		
 	}//protected void onStart()
