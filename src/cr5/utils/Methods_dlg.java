@@ -192,6 +192,7 @@ public class Methods_dlg {
 			actv.getString(R.string.dlg_GetDataFromRemote_texts),
 			actv.getString(R.string.dlg_GetDataFromRemote_words),
 			actv.getString(R.string.dlg_GetDataFromRemote_word_lists),
+			actv.getString(R.string.dlg_GetDataFromRemote_all),
 		};
 		
 		List<String> list = new ArrayList<String>();

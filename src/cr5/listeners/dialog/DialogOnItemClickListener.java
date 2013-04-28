@@ -276,9 +276,28 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 			
 			_GetDataFromRemote_lv_WordList();
 			
+		} else if (item.equals(actv.getString(
+				R.string.dlg_GetDataFromRemote_all))) {
+			
+			_GetDataFromRemote_lv_All();
+			
 		}//if (item.equals(actv.getString(R.string.dlg_db_admin_item_backup_db))) {
 		
 	}//private void case_dlg_GetDataFromRemote_lv(String item)
+
+	private void _GetDataFromRemote_lv_All() {
+
+//		Methods_CR5.getAll(actv);
+		
+		this._GetDataFromRemote_lv_Texts();
+		
+		this._GetDataFromRemote_lv_Words();
+		
+		this._GetDataFromRemote_lv_WordList();
+		
+		dlg1.dismiss();
+		
+	}//private void _GetDataFromRemote_lv_All()
 
 	private void _GetDataFromRemote_lv_WordList() {
 		// TODO Auto-generated method stub

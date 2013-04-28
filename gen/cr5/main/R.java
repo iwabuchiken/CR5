@@ -80,15 +80,16 @@ public final class R {
         public static final int menu_actv_read=0x7f090001;
     }
     public static final class string {
-        public static final int actv_pref_choose_lang_choice_chinese=0x7f070031;
-        public static final int actv_pref_choose_lang_choice_french=0x7f070032;
-        public static final int actv_pref_choose_lang_choice_german=0x7f070030;
-        public static final int actv_pref_choose_lang_key=0x7f070033;
+        public static final int actv_pref_choose_lang_choice_chinese=0x7f070032;
+        public static final int actv_pref_choose_lang_choice_french=0x7f070033;
+        public static final int actv_pref_choose_lang_choice_german=0x7f070031;
+        public static final int actv_pref_choose_lang_key=0x7f070034;
         /**  ActvPref.java 
  preferences.xml 
          */
-        public static final int actv_pref_choose_lang_title=0x7f07002f;
+        public static final int actv_pref_choose_lang_title=0x7f070030;
         public static final int app_name=0x7f07000d;
+        public static final int dlg_GetDataFromRemote_all=0x7f070023;
         public static final int dlg_GetDataFromRemote_texts=0x7f070020;
         /**  dlg_GetDataFromRemote(Activity actv) 
          */
@@ -112,7 +113,7 @@ public final class R {
         public static final int dlg_db_admin_title=0x7f070014;
         /**  dlg_word_list.xml 
          */
-        public static final int dlg_word_list_title=0x7f07002e;
+        public static final int dlg_word_list_title=0x7f07002f;
         public static final int generic_bt_back=0x7f070003;
         public static final int generic_bt_cancel=0x7f070002;
         /**  Generic items 
@@ -127,10 +128,10 @@ public final class R {
         public static final int generic_tv_no_data=0x7f070009;
         public static final int generic_tv_register=0x7f070006;
         public static final int hello=0x7f07000c;
-        public static final int hogedialog=0x7f070037;
-        public static final int hogekey=0x7f070035;
-        public static final int hogetitle=0x7f070036;
-        public static final int langKey=0x7f070034;
+        public static final int hogedialog=0x7f070038;
+        public static final int hogekey=0x7f070036;
+        public static final int hogetitle=0x7f070037;
+        public static final int langKey=0x7f070035;
         public static final int menu_actv_read_dict=0x7f070013;
         /**  menu_actv_read.xml 
          */
@@ -138,26 +139,26 @@ public final class R {
         public static final int menu_settings=0x7f070000;
         /**  Reset table: All 
          */
-        public static final int mig_ResetTable_All=0x7f07002d;
+        public static final int mig_ResetTable_All=0x7f07002e;
         /**  Reset table: Main 
          */
-        public static final int migrate_20130421_115608_ResetTableTexts=0x7f070027;
-        public static final int migrate_20130421_120721_ResetTable_Words=0x7f070028;
+        public static final int migrate_20130421_115608_ResetTableTexts=0x7f070028;
+        public static final int migrate_20130421_120721_ResetTable_Words=0x7f070029;
         /**  Migrations 
  Create table: Main 
          */
-        public static final int migrate_20130421_131922_CreateTable_Word_list=0x7f070023;
+        public static final int migrate_20130421_131922_CreateTable_Word_list=0x7f070024;
         /**  Create table: Updates 
          */
-        public static final int migrate_20130421_135728_CreateTable_Updates_Texts=0x7f070024;
-        public static final int migrate_20130421_135837_CreateTable_Updates_Words=0x7f070025;
-        public static final int migrate_20130421_135941_CreateTable_Updates_WordList=0x7f070026;
-        public static final int migrate_ResetTable_Updates_WordList=0x7f07002c;
-        public static final int migrate_ResetTable_Updates_Words=0x7f07002b;
-        public static final int migrate_ResetTable_WordList=0x7f070029;
+        public static final int migrate_20130421_135728_CreateTable_Updates_Texts=0x7f070025;
+        public static final int migrate_20130421_135837_CreateTable_Updates_Words=0x7f070026;
+        public static final int migrate_20130421_135941_CreateTable_Updates_WordList=0x7f070027;
+        public static final int migrate_ResetTable_Updates_WordList=0x7f07002d;
+        public static final int migrate_ResetTable_Updates_Words=0x7f07002c;
+        public static final int migrate_ResetTable_WordList=0x7f07002a;
         /**  Reset table: Updates 
          */
-        public static final int migrate__ResetTable_Updates_Text=0x7f07002a;
+        public static final int migrate__ResetTable_Updates_Text=0x7f07002b;
         public static final int opt_menu_actv_main_db_activity=0x7f070010;
         /**  main_menu.xml 
          */

@@ -980,6 +980,12 @@ public class Methods_CR5 {
 
 		
 	}
+
+	public static void getAll(Activity actv) {
+		// TODO Auto-generated method stub
+		
+		
+	}
 	
 //	public static Text get_TextFromDbId(Activity actv, long dbId) {
 //		
