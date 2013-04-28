@@ -45,6 +45,9 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 //			tts = null;
 
 			
+			//debug
+			CONS.ActvRead.tts = null;
+			
 		} else if(CONS.ActvRead.tts != null) {
 
 			// Log
