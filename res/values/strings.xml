@@ -98,6 +98,7 @@
 	    <string name="actv_pref_choose_lang_choice_german">German</string>
 	    <string name="actv_pref_choose_lang_choice_chinese">Chinese</string>
 	    <string name="actv_pref_choose_lang_choice_french">French</string>
+	    <string name="actv_pref_choose_lang_choice_english">English</string>
 	    
 	    <string name="actv_pref_choose_lang_key">actv_pref_choose_lang_key</string>
 	    <string name="langKey">lang_key</string>

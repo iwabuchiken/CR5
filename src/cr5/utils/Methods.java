@@ -1156,5 +1156,19 @@ public class Methods {
 		
 	}//public static void confirm_quit(Activity actv, int keyCode)
 
+	public static String 
+	getPref_String(Activity actv, String prefName, String prefKey) {
+		
+		SharedPreferences prefs =
+				actv.getSharedPreferences(
+						prefName,
+						Context.MODE_PRIVATE);
+		
+		String prefVal_Lang = prefs.getString(prefKey, null);
+		
+		return prefVal_Lang;
+				
+	}//getPref_String(Activity actv, String prefName, String prefKey)
+
 }//public class Methods
 

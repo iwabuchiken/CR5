@@ -81,9 +81,10 @@ public final class R {
     }
     public static final class string {
         public static final int actv_pref_choose_lang_choice_chinese=0x7f070031;
+        public static final int actv_pref_choose_lang_choice_english=0x7f070033;
         public static final int actv_pref_choose_lang_choice_french=0x7f070032;
         public static final int actv_pref_choose_lang_choice_german=0x7f070030;
-        public static final int actv_pref_choose_lang_key=0x7f070033;
+        public static final int actv_pref_choose_lang_key=0x7f070034;
         /**  ActvPref.java 
  preferences.xml 
          */
@@ -127,10 +128,10 @@ public final class R {
         public static final int generic_tv_no_data=0x7f070009;
         public static final int generic_tv_register=0x7f070006;
         public static final int hello=0x7f07000c;
-        public static final int hogedialog=0x7f070037;
-        public static final int hogekey=0x7f070035;
-        public static final int hogetitle=0x7f070036;
-        public static final int langKey=0x7f070034;
+        public static final int hogedialog=0x7f070038;
+        public static final int hogekey=0x7f070036;
+        public static final int hogetitle=0x7f070037;
+        public static final int langKey=0x7f070035;
         public static final int menu_actv_read_dict=0x7f070013;
         /**  menu_actv_read.xml 
          */

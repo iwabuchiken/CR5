@@ -398,6 +398,7 @@ public class DialogOnItemClickListener implements OnItemClickListener {
 		 ***************************************/
 		if (lastCreatedAt > 0) {
 			
+			// REF http://twigstechtips.blogspot.com/2011/01/android-create-url-using.html
 			Uri.Builder ub = Uri.parse(CONS.Admin.remoteUrl_Texts).buildUpon();
 			
 			ub.appendQueryParameter("since", String.valueOf(lastCreatedAt));

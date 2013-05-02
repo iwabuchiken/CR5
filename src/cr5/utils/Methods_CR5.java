@@ -22,6 +22,7 @@ import cr5.items.Text;
 import cr5.items.Word;
 import cr5.items.WordList;
 import cr5.main.ActvPref;
+import cr5.main.R;
 import cr5.tasks.Task_GetTexts;
 import cr5.tasks.Task_GetWordList;
 import cr5.tasks.Task_GetWords;
@@ -621,6 +622,54 @@ public class Methods_CR5 {
 //		SQLiteDatabase rdb = dbu.getReadableDatabase();
 //		return null;
 	}
+
+	public static List<Text>
+	get_TextList(Activity actv, String langName) {
+		
+//		List<Text> textList = new ArrayList<Text>();
+		
+		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
+		
+		/***************************************
+		 * Get: lang id
+		 ***************************************/
+		long langId = 0;
+		
+		if (langName == null) {
+			
+			langId = 0;			// 0 => Select all
+			
+		} else if (langName.equals(actv.getString(
+				R.string.actv_pref_choose_lang_choice_chinese))) {//if (langName == null)
+			
+			langId = 1;
+			
+		} else if (langName.equals(actv.getString(
+				R.string.actv_pref_choose_lang_choice_german))) {//if (langName == null)
+			
+			langId = 2;
+			
+		} else if (langName.equals(actv.getString(
+				R.string.actv_pref_choose_lang_choice_french))) {//if (langName == null)
+			
+			langId = 3;
+			
+		} else if (langName.equals(actv.getString(
+				R.string.actv_pref_choose_lang_choice_english))) {//if (langName == null)
+			
+			langId = 4;
+			
+		} else {//if (langName == null)
+			
+		}//if (langName == null)
+		
+		
+		return dbu.getTexts(actv, langId);
+//		return dbu.getTexts(actv);
+		
+//		SQLiteDatabase rdb = dbu.getReadableDatabase();
+//		return null;
+	}//get_TextList(Activity actv, String langName)
 
 
 	public static void

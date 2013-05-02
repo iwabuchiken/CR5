@@ -294,8 +294,14 @@ public class DBUtils extends SQLiteOpenHelper{
 		
 		// Judge
 		if (cursor.getCount() > 0) {
+			
+			rdb.close();
+			
 			return true;
 		} else {//if (cursor.getCount() > 0)
+			
+			rdb.close();
+			
 			return false;
 		}//if (cursor.getCount() > 0)
 	}//public boolean tableExists(String tableName)
@@ -1193,6 +1199,96 @@ public class DBUtils extends SQLiteOpenHelper{
 //		return null;
 		
 	}//public List<Text> getTexts(Activity actv)
+
+	public List<Text> getTexts(Activity actv, long langId) {
+		
+		List<Text> textList = new ArrayList<Text>();
+		
+		SQLiteDatabase rdb = this.getReadableDatabase();
+		
+		/***************************************
+		 * Query
+		 ***************************************/
+//		String sql = "SELECT * FROM " + CONS.DB.tname_texts;
+		
+		Cursor c = null;
+
+		
+		try {
+			
+//			c = rdb.rawQuery(sql, null);
+			c = rdb.query(
+					CONS.DB.tname_texts,
+					null,
+					CONS.DB.cols_texts[6] + " like ?",
+					new String[]{String.valueOf(langId)},
+					null, null, null);
+			
+		} catch (Exception e) {
+			// Log
+			Log.d("Methods.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ "]", "Exception => " + e.toString());
+			
+			rdb.close();
+			
+			return null;
+		}
+		
+		/***************************************
+		 * Build list
+		 ***************************************/
+//		android.provider.BaseColumns._ID,	// 0
+//		"created_at", "modified_at",		// 1, 2
+//		"text", "url",						// 3, 4
+//		"genreId", "subGenreId", "dbId", "langId",	// 5, 6, 7, 8
+//		"memo", "createdAt_mill",			// 9 10
+//		"title"								// 11
+		
+		Text t = null;
+		
+		c.moveToFirst();
+		
+		for (int i = 0; i < c.getCount(); i++) {
+			
+			t = new Text.Builder()
+			.setCreatedAt(c.getLong(1))
+			.setModifiedAt(c.getLong(2))
+			
+			.setText(c.getString(3))
+			.setUrl(c.getString(4))
+			.setTitle(c.getString(5))
+			.setMemo(c.getString(6))
+			
+			.setGenreId(c.getInt(7))
+			.setSubGenreId(c.getInt(8))
+			.setLangId(c.getInt(9))
+			
+			.setWordIds(c.getString(10))
+			
+			.setRemoteDbId(c.getInt(11))
+			.setCreatedAt_mill(c.getLong(12))
+			.setUpdatedAt_mill(c.getLong(13))
+			
+			.build();
+			
+			textList.add(t);
+			
+			c.moveToNext();
+			
+		}//for (int i = 0; i < c.getCount(); i++)
+		
+		
+		/***************************************
+		 * Finish
+		 ***************************************/
+		rdb.close();
+		
+		return textList;
+		
+//		return null;
+		
+	}//public List<Text> getTexts(Activity actv, long langId)
 
 	
 	public Text get_TextFromDbId(Activity actv, long dbId) {

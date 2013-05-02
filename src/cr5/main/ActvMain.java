@@ -134,18 +134,39 @@ public class ActvMain extends ListActivity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
+		
+		// Log
+		Log.d("ActvMain.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "onPause()");
 	}
 
 	@Override
 	protected void onRestart() {
 		// TODO Auto-generated method stub
 		super.onRestart();
+		
+		// Log
+		Log.d("ActvMain.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "onRestart()");
 	}
 
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		
+		// Log
+		Log.d("ActvMain.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "onResume()");
 	}
 
 	@Override
@@ -154,9 +175,59 @@ public class ActvMain extends ListActivity {
 		super.onStart();
 		
 		/***************************************
+		 * Get: Chosen language
+		 ***************************************/
+		// Log
+		Log.d("ActvMain.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "onStart()");
+		
+//		SharedPreferences prefs =
+//				this.getSharedPreferences(
+//								CONS.Pref.ActvPref_main,
+//								Context.MODE_PRIVATE);
+//		
+//		String prefVal_Lang = prefs.getString(
+//						this.getString(R.string.langKey),
+//						"no value set");
+
+		String prefLang = Methods.getPref_String(
+							this,
+							CONS.Pref.ActvPref_main,
+							this.getString(R.string.langKey));
+		
+		// Log
+		Log.d("ActvMain.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "prefLang=" + prefLang);
+		
+		/***************************************
 		 * Build: Text list
 		 ***************************************/
-		CONS.ActvMain.textList = Methods_CR5.get_TextList(this);
+		if (prefLang != null) {
+			
+			CONS.ActvMain.textList = Methods_CR5.get_TextList(this, prefLang);
+			
+		} else {//if (prefLang != null)
+			
+			CONS.ActvMain.textList = Methods_CR5.get_TextList(this);
+			
+		}//if (prefLang != null)
+		
+		if (CONS.ActvMain.textList == null) {
+			
+			// debug
+			Toast.makeText(this, "Can't build a texts list", Toast.LENGTH_LONG).show();
+			
+			return;
+			
+		}//if (CONS.ActvMain.textList == null)
+		
+//		CONS.ActvMain.textList = Methods_CR5.get_TextList(this);
 		
 //		List<Text> textList = Methods_CR5.get_TextList(this);
 		
