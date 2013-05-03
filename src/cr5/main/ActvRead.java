@@ -234,9 +234,59 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 					Methods_dlg.dlg_word_list__2_GetWordList(this, CONS.ActvRead.text);
 		
 		/***************************************
+		 * Get: Lang pref
+		 ***************************************/
+		String prefLang = Methods.getPref_String(
+				this,
+				CONS.Pref.ActvPref_main,
+				this.getString(R.string.langKey));
+		
+		// Log
+		Log.d("ActvRead.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "prefLang=" + prefLang);
+		
+		/***************************************
 		 * Build: Sentences list
 		 ***************************************/
-		String[] sens = CONS.ActvRead.text.getText().split("(，|。)");
+		String[] sens = null;
+		
+		String separatorRegex = Methods_CR5.getSepRegex(this, prefLang);
+		
+		// Log
+		Log.d("ActvRead.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "separatorRegex=" + separatorRegex);
+		
+		sens = CONS.ActvRead.text.getText().split(separatorRegex);
+//		sens = CONS.ActvRead.text.getText().split("(，|。)");
+//		sens = CONS.ActvRead.text.getText().split("(,|\\.)");
+		
+		//debug
+		if (sens != null) {
+			
+			// Log
+			Log.d("ActvRead.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "sens.length=" + sens.length);
+			
+		} else {//if (sens != null)
+		
+			// Log
+			Log.d("ActvRead.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "sens => null");
+			
+		}//if (sens != null)
+		
 		
 		if (sens != null) {
 			

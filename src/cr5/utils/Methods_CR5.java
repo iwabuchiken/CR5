@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -1029,13 +1030,38 @@ public class Methods_CR5 {
 
 		
 	}
+
 	
-//	public static Text get_TextFromDbId(Activity actv, long dbId) {
-//		
-//		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
-//		
-//		return dbu.get_TextFromDbId(actv, dbId);
-//
-//	}//public static Text get_TextFromDbId(Activity actv, long dbId)
+	public static String
+	getSepRegex(Activity actv, String prefLang) {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("(");
+
+		if (prefLang == null || prefLang.equals(actv.getString(
+					R.string.actv_pref_choose_lang_choice_chinese))) {
+			
+			sb.append(StringUtils.join(CONS.Separator.sep_Chinese, "|"));
+			
+		} else if (prefLang.equals(actv.getString(
+					R.string.actv_pref_choose_lang_choice_german))) { 
+			
+			sb.append(StringUtils.join(CONS.Separator.sep_German, "|"));
+			
+		} else if (prefLang.equals(actv.getString(
+				R.string.actv_pref_choose_lang_choice_french))) { 
+			
+			sb.append(StringUtils.join(CONS.Separator.sep_French, "|"));
+			
+		} else {//if (prefLang == null)
+			
+		}//if (prefLang == null)
+		
+		sb.append(")");
+		
+		return sb.toString();
+		
+	}//getSepRegex(Activity actv, String prefLang)
 	
 }//public class Methods_CR5

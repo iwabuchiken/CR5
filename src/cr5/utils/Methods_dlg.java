@@ -476,6 +476,14 @@ public class Methods_dlg {
 		/***************************************
 		 * Build: Word id list
 		 ***************************************/
+		// Log
+		Log.d("Methods_dlg.java" + "["
+				+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+				+ ":"
+				+ Thread.currentThread().getStackTrace()[2].getMethodName()
+				+ "]", "text.getRemoteDbId()=" + text.getRemoteDbId());
+		
+		
 		long remoteDbId = text.getRemoteDbId();
 		
 		DBUtils dbu = new DBUtils(actv, CONS.DB.dbName);
@@ -552,6 +560,13 @@ public class Methods_dlg {
 			long wordId = wordIdList.get(i).longValue();
 			
 			Word w = dbu.get_WordFromDbId(actv, wordId);
+			
+			// Log
+			Log.d("Methods_dlg.java" + "["
+					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+					+ ":"
+					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+					+ "]", "wordId=" + wordId);
 			
 			// Log
 			Log.d("Methods_dlg.java" + "["
