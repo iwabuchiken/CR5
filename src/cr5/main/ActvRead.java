@@ -523,11 +523,11 @@ public class ActvRead extends ListActivity implements TextToSpeech.OnInitListene
 		// TODO Auto-generated method stub
 		switch (item.getItemId()) {
 		
-		case R.id.opt_menu_actv_read_get_word_list://------------------------------
-			
-			opt_menu_actv_read_get_word_list();
-			
-			break;// case R.id.opt_menu_actv_read_get_word_list
+//		case R.id.opt_menu_actv_read_get_word_list://------------------------------
+//			
+//			opt_menu_actv_read_get_word_list();
+//			
+//			break;// case R.id.opt_menu_actv_read_get_word_list
 			
 		case R.id.opt_menu_actv_read_dict://------------------------------
 			

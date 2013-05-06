@@ -298,7 +298,42 @@ public class Methods_dlg {
 		/***************************************
 		 * Sort: Word list
 		 ***************************************/
-		boolean res = Methods_CR5.sort_WordList(actv, wList);
+		String prefLang = Methods.getPref_String(
+				actv,
+				CONS.Pref.ActvPref_main,
+				actv.getString(R.string.langKey));
+		
+		CONS.SortOrder.PrefWord prefWord;
+		
+		if (prefLang.equals(actv.getString(
+						R.string.actv_pref_choose_lang_choice_chinese))) {
+			
+			prefWord = CONS.SortOrder.PrefWord.Chinese;
+			
+		} else if (prefLang.equals(actv.getString(
+					R.string.actv_pref_choose_lang_choice_german))) {
+				
+				prefWord = CONS.SortOrder.PrefWord.German;
+				
+		} else if (prefLang.equals(actv.getString(
+				R.string.actv_pref_choose_lang_choice_french))) {
+			
+			prefWord = CONS.SortOrder.PrefWord.French;
+			
+		} else if (prefLang.equals(actv.getString(
+				R.string.actv_pref_choose_lang_choice_english))) {
+			
+			prefWord = CONS.SortOrder.PrefWord.English;
+			
+		} else {//if (prefLang.equals(actv.getString(R.string.actv_pref_choose_lang_choice_chinese)))
+			
+			prefWord = CONS.SortOrder.PrefWord.Chinese;
+			
+		}//if (prefLang.equals(actv.getString(R.string.actv_pref_choose_lang_choice_chinese)))
+		
+		
+		boolean res = Methods_CR5.sort_WordList(actv, wList, prefWord);
+//		boolean res = Methods_CR5.sort_WordList(actv, wList);
 		
 		/***************************************
 		 * Modify: Height of the table layout
@@ -562,19 +597,19 @@ public class Methods_dlg {
 			
 			Word w = dbu.get_WordFromDbId(actv, wordId);
 			
-			// Log
-			Log.d("Methods_dlg.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ ":"
-					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-					+ "]", "wordId=" + wordId);
-			
-			// Log
-			Log.d("Methods_dlg.java" + "["
-					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
-					+ ":"
-					+ Thread.currentThread().getStackTrace()[2].getMethodName()
-					+ "]", "w.getW1()=" + w.getW1());
+//			// Log
+//			Log.d("Methods_dlg.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "wordId=" + wordId);
+//			
+//			// Log
+//			Log.d("Methods_dlg.java" + "["
+//					+ Thread.currentThread().getStackTrace()[2].getLineNumber()
+//					+ ":"
+//					+ Thread.currentThread().getStackTrace()[2].getMethodName()
+//					+ "]", "w.getW1()=" + w.getW1());
 			
 			wList.add(w);
 			
