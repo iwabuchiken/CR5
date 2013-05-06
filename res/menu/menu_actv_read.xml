@@ -1,9 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item android:id="@+id/opt_menu_actv_read_get_word_list"
-		android:title="@string/menu_actv_read_get_words"
-		android:icon="@android:drawable/ic_menu_agenda"/>
-    
     <item android:id="@+id/opt_menu_actv_read_dict"
 		android:title="@string/menu_actv_read_dict"
 		android:icon="@android:drawable/ic_menu_gallery"/>

@@ -448,4 +448,13 @@ public class CONS {
 		};
 		
 	}
+	
+	public static class SortOrder {
+		
+		public static enum PrefWord {
+			
+			Chinese, German, French, English,
+		};
+		
+	}
 }//public class CONS

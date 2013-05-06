@@ -59,8 +59,7 @@ public final class R {
         public static final int opt_actvmain_get_texts=0x7f0a000f;
         public static final int opt_actvmain_settings=0x7f0a0010;
         public static final int opt_menu_actv_main_db_activity=0x7f0a000e;
-        public static final int opt_menu_actv_read_dict=0x7f0a0012;
-        public static final int opt_menu_actv_read_get_word_list=0x7f0a0011;
+        public static final int opt_menu_actv_read_dict=0x7f0a0011;
         public static final int scrollView1=0x7f0a0003;
     }
     public static final class layout {
