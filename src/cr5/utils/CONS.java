@@ -430,11 +430,13 @@ public class CONS {
 	
 	public static class Separator {
 		
-		public static final String[] sep_Chinese = {"，", "。"};
+		public static final String[] sep_Chinese = {"，", "。", "？"};
 		
-		public static final String[] sep_French = {",", "\\."};
+		public static final String[] sep_French = {",", "\\.", "\\?"};
 		
-		public static final String[] sep_German = {",", "\\."};
+		public static final String[] sep_German = {",", "\\.", "\\?"};
+		
+		public static final String[] sep_English = {",", "\\.", "\\?"};
 		
 	}
 	

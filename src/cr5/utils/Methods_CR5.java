@@ -1140,6 +1140,11 @@ public class Methods_CR5 {
 			
 			sb.append(StringUtils.join(CONS.Separator.sep_French, "|"));
 			
+		} else if (prefLang.equals(actv.getString(
+				R.string.actv_pref_choose_lang_choice_english))) { 
+			
+			sb.append(StringUtils.join(CONS.Separator.sep_English, "|"));
+			
 		} else {//if (prefLang == null)
 			
 		}//if (prefLang == null)
