@@ -437,4 +437,13 @@ public class CONS {
 		public static final String[] sep_German = {",", "\\."};
 		
 	}
+	
+	public static class SortOrder {
+		
+		public static enum PrefWord {
+			
+			Chinese, German, French, English,
+		};
+		
+	}
 }//public class CONS

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -870,6 +871,86 @@ public class Methods_CR5 {
 			
 		});//Collections.sort()
 
+		return true;
+		
+	}//sort_WordList(Activity actv, List<Word> wList)
+
+	public static boolean
+	sort_WordList(Activity actv, List<Word> wList, CONS.SortOrder.PrefWord prefLang) {
+		// TODO Auto-generated method stub
+		
+		switch (prefLang) {
+		
+		
+		case Chinese:
+			
+			Collections.sort(wList, new Comparator<Word>(){
+				
+//				@Override
+				public int compare(Word i1, Word i2) {
+
+					// toLowerCase() http://stackoverflow.com/questions/7469643/how-to-sort-alphabetically-while-ignoring-case-sensitive answered Sep 19 '11 at 11:58
+					return (int) (i1.getW3().toLowerCase(Locale.CHINA)
+									.compareTo(i2.getW3().toLowerCase(Locale.CHINA)));
+//					return (int) (i1.getW3().compareTo(i2.getW3()));
+					
+				}
+				
+			});//Collections.sort()
+
+			break;
+			
+		case German:
+		case French:
+		case English:
+
+			Collections.sort(wList, new Comparator<Word>(){
+				
+//				@Override
+				public int compare(Word i1, Word i2) {
+
+					return (int) (i1.getW1().toLowerCase(Locale.ENGLISH)
+							.compareTo(i2.getW1().toLowerCase(Locale.ENGLISH)));
+//					return (int) (i1.getW1().compareTo(i2.getW1()));
+				}
+				
+			});//Collections.sort()
+
+			break;
+			
+		default:
+			break;
+			
+		}
+		
+//		Collections.sort(wList, new Comparator<Word>(){
+//			
+////			@Override
+//			public int compare(Word i1, Word i2) {
+//				// TODO �����������ꂽ���\�b�h�E�X�^�u
+//				
+////				return (int) (i1.getDate_added() - i2.getDate_added());
+//				
+////				return (int) (i1.getName().compareToIgnoreCase(i2.getName()));
+//				
+////				// Log
+////				Log.d("Methods_sl.java"
+////						+ "["
+////						+ Thread.currentThread().getStackTrace()[2]
+////								.getLineNumber()
+////						+ ":"
+////						+ Thread.currentThread().getStackTrace()[2]
+////								.getMethodName() + "]",
+////						"i1.getYomi()=" + i1.getYomi()
+////						+ "/"
+////						+ "i2.getYomi()=" + i2.getYomi());
+//				
+////				return (int) (i1.getYomi().compareToIgnoreCase(i2.getYomi()));
+//				return (int) (i1.getW3().compareTo(i2.getW3()));
+//			}
+//			
+//		});//Collections.sort()
+		
 		return true;
 		
 	}//sort_WordList(Activity actv, List<Word> wList)
